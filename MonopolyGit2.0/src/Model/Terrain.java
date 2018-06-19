@@ -51,5 +51,9 @@ public abstract class Terrain extends Carreau {
 
     @Override
     public abstract Propriete getPropriete();
+
+    public Object getHotel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
 }

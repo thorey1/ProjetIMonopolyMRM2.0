@@ -12,6 +12,7 @@ public class Joueur {
 	private Carreau position;
 	private HashMap<Color, Terrain> proprietes;
         private boolean tour;
+        private boolean carteLibPrison;
 
         public Joueur(int numJoueur, String nomJoueur, Carreau position) {
             this.numJoueur = numJoueur;
@@ -20,9 +21,18 @@ public class Joueur {
             this.prisonnier = false;
             setPosition(position);
             proprietes = new HashMap();
+            setCarteLibPrison(false);
+        }
+
+        public boolean isCarteLibPrison() {
+            return carteLibPrison;
+        }
+
+        public void setCarteLibPrison(boolean carteLibPrison) {
+            this.carteLibPrison = carteLibPrison;
         }
         
-
+        
        
         
 	public boolean getPrison() {
@@ -88,7 +98,7 @@ public class Joueur {
         }
         
         public void addProprietes (Color col, Terrain prop){
-            this.proprietes.put(col, prop);
+            this.getProprietes().put(col, prop);
         }
 
         public boolean getTour() {
@@ -101,16 +111,16 @@ public class Joueur {
             TypeCarreau tc = t.getTypeCarreau();
             
             if(tc == TypeCarreau.GARE || tc == TypeCarreau.COMPAGNIE){              
-                for(int i = 0; i<=proprietes.size(); i++){             
-                    if(proprietes.get(i).getTypeCarreau() == tc){
+                for(int i = 0; i<=getProprietes().size(); i++){             
+                    if(getProprietes().get(i).getTypeCarreau() == tc){
                         nb++;
                     }
                 }
             }
             else if(tc == TypeCarreau.PROPRIETE){
                 c = t.getCouleur();
-                for(int i = 0; i<=proprietes.size(); i++){             
-                    if(proprietes.get(i).getCouleur()== c){
+                for(int i = 0; i<=getProprietes().size(); i++){             
+                    if(getProprietes().get(i).getCouleur()== c){
                         nb++;
                     }
                 }
@@ -125,5 +135,12 @@ public class Joueur {
         public void gain(int prix){
             setSolde(solde+prix);
         }
+
+    /**
+     * @return the proprietes
+     */
+    public HashMap<Color, Terrain> getProprietes() {
+        return proprietes;
+    }
         
 }

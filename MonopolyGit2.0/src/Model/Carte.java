@@ -15,7 +15,7 @@ public class Carte {
     private TypeCarte type;
     private TypeCarreau car;
 
-    Carte(int numCarte, TypeCarte type, TypeCarreau car, String description){
+    public Carte(int numCarte, TypeCarte type, TypeCarreau car, String description){
         this.numCarte=numCarte;
         this.type=type;
         this.description=description;
