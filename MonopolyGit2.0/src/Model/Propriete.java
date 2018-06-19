@@ -94,7 +94,7 @@ public class Propriete extends Terrain{
     }
     
     public int getNbMaisonsCouleur(Color c){
-        
+        int nbMais;
     }
     
 }
