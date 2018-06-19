@@ -93,5 +93,4 @@ public class Propriete extends Terrain{
         return this;
     }
     
-    
 }
