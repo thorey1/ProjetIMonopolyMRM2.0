@@ -503,6 +503,16 @@ public class Controler implements Observateur {
         int nbMais = t.getPropriete().getMaisons().size();
         
     }
+    
+    public int getNbMaisonsCouleur(Color c){
+        int nbMais = 0;
+        ArrayList<Propriete> props = new ArrayList();
+        for(int i = 0; i <= getCarreaux().size(); i++){
+            if(getCarreaux().get(i).getPropriete().getCouleur() == c){
+                props.add(getCarreaux().get(i).getPropriete());
+            }
+        }
+    }
     //changement
       
 }
