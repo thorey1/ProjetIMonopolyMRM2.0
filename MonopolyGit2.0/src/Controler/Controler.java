@@ -497,6 +497,12 @@ public class Controler implements Observateur {
         faireAction(m);
     }   
     
+    public boolean memeNbMaison(Terrain t, Joueur j){
+        boolean meme = false;
+        Color coul = t.getPropriete().getCouleur();
+        int nbMais = t.getPropriete().getMaisons().size();
+        
+    }
     //changement
       
 }
