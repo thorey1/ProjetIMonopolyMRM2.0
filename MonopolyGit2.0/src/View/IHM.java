@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -109,10 +110,15 @@ public class IHM implements Observe {
             JLabel infos = new JLabel();
             JLabel infos2 = new JLabel();
             JLabel lab = new JLabel();
-            Font font1 = new Font("Arial",Font.BOLD,22);
-            Font font2 = new Font("Arial",Font.BOLD,17);
+            JLabel img = new JLabel();
+            Font font1 = new Font("Arial", Font.BOLD, 22);
+            Font font2 = new Font("Arial", Font.BOLD, 17);
+            Font font3 = new Font("Arial", Font.BOLD, 28);
+            Font font4 = new Font("Arial", Font.ITALIC, 10);
+            Font fontcaisse = new Font("Arial", Font.BOLD, 14);
+            Font fontchance = new Font("Arial", Font.BOLD,20 );
             Dimension dim2;
-            Dimension dim3;
+            Dimension dim3=new Dimension(100,100);
 
             switch (i) {
                 //case chance et caisse de communauté
@@ -126,7 +132,7 @@ public class IHM implements Observe {
                     car.setBackground(Color.RED);
                     car.setBorder(cadre);
                     break;
-                    
+
                 case 85:
                     lab = new JLabel("<html>Caisse de<br>communauté</html>");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
@@ -136,16 +142,22 @@ public class IHM implements Observe {
                     plateau.add(car);
                     car.setBackground(Color.BLUE);
                     car.setBorder(cadre);
-                    break;    
-                    
-                    //début du tour
+                    break;
+
+                //début du tour
                 case 1:
-                    lab = new JLabel(new ImageIcon("/users/info/etu-s2/boedam/Downloads/index.jpeg"));
-                    dim2 = new Dimension(100, 100);
-                    lab.setSize(dim2);
-                    car.add(lab);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/fleche.gif"));
+                    lab = new JLabel("GO");
+                    lab.setHorizontalAlignment(car.getWidth() / 2);
+                    infos.setText("<html>+200€ à chaque<br> passage</html>");
+                    infos.setFont(font4);
+                    lab.setFont(font3);
+                    car.add(lab, BorderLayout.NORTH);
+                    car.add(infos, BorderLayout.CENTER);
+                    car.add(img, BorderLayout.SOUTH);
                     plateau.add(car);
                     car.setBackground(Color.white);
+
                     break;
 
                 case 2:
@@ -164,6 +176,12 @@ public class IHM implements Observe {
                     break;
 
                 case 3:
+                    infos.setText("<html>Caisse de Communauté</html>");
+                    infos.setFont(fontcaisse);
+                    infos.setForeground(Color.blue);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -218,6 +236,13 @@ public class IHM implements Observe {
                     break;
 
                 case 8:
+                    infos.setText("<html>Chance</html>");
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos.setFont(fontchance);
+                    infos.setForeground(Color.red);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -334,6 +359,13 @@ public class IHM implements Observe {
                     break;
 
                 case 45:
+                    infos.setText("<html>Chance</html>");
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos.setFont(fontchance);
+                    infos.setForeground(Color.red);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -394,7 +426,7 @@ public class IHM implements Observe {
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
                     break;
-
+                //case centre
                 case 61:
                     lab = new JLabel(new ImageIcon("/users/info/etu-s2/tostonr/Downloads/index.jpeg"));
                     dim2 = new Dimension(150, 150);
@@ -403,7 +435,7 @@ public class IHM implements Observe {
                     lab.setPreferredSize(dim2);
                     car.add(lab);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+
                     break;
 
                 case 77:
@@ -423,12 +455,24 @@ public class IHM implements Observe {
                     break;
 
                 case 78:
+                    infos.setText("<html>Caisse de Communauté</html>");
+                    infos.setFont(fontcaisse);
+                    infos.setForeground(Color.blue);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
                     break;
-                    
+
                 case 88:
+                    infos.setText("<html>Caisse de Communauté</html>");
+                    infos.setFont(fontcaisse);
+                    infos.setForeground(Color.blue);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -599,6 +643,13 @@ public class IHM implements Observe {
                     break;
 
                 case 119:
+                    infos.setText("<html>Chance</html>");
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos.setFont(fontchance);
+                    infos.setForeground(Color.red);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
