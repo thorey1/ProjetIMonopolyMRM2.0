@@ -731,4 +731,28 @@ public class Controler implements Observateur {
 
     }
 
+    public boolean memeNbMaison(Terrain t, Joueur j){
+        boolean meme = false;
+        Color coul = t.getPropriete().getCouleur();
+        int nbMais = t.getPropriete().getMaisons().size();
+        //a changer
+        return false;
+        
+    }
+    
+    public int getNbMaisonsCouleur(Color c){
+        int nbMais = 0;
+        ArrayList<Propriete> props = new ArrayList();
+        for(int i = 0; i <= getCarreaux().size(); i++){
+            if(getCarreaux().get(i).getPropriete().getCouleur() == c){
+                props.add(getCarreaux().get(i).getPropriete());
+            }
+        }
+        //a changer
+        return 0;
+    }   
+    
+    
+    //changement
+      
 }

@@ -8,26 +8,25 @@ package Model;
 import Enum.TypeCarreau;
 import java.awt.Color;
 
-
-
 /**
  *
- * @author hassanyo
+ * @author boedam
  */
-public class Gare extends Terrain{
-    
-    private int loyer;
-    public Gare(int numCarreau, String nomCarreau, TypeCarreau type, int prix, Color couleur) {
-        super(numCarreau, nomCarreau, type, prix, couleur);       
+public class Compagnie extends Terrain {
+
+    public Compagnie(int numCarreau, String nomCarreau, TypeCarreau type, int prix, Color couleur) {
+        super(numCarreau, nomCarreau, type, prix, couleur);
     }
-    
+
     @Override
     public int getLoyer() {
-      return super.getProprietaire().getNbProp(this)*25;
-
+        if (super.getProprietaire().getNbProp(this) == 1) {
+            return ((int) ((Math.random() * 6) + 1)) * 4;
+        } else {
+            return ((int) ((Math.random() * 6) + 1)) * 10;
+        }
     }
-    
-    
+
     //overrides inutilisés mais requis
     @Override
     public int getPrixMais() {
@@ -44,5 +43,4 @@ public class Gare extends Terrain{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }
