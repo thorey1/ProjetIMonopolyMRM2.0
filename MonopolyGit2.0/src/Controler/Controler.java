@@ -497,6 +497,6 @@ public class Controler implements Observateur {
         faireAction(m);
     }   
     
-    //changement
+    //changementbteivbietiviietie
       
 }
