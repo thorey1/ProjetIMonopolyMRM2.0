@@ -200,10 +200,10 @@ public class Controler implements Observateur {
                         System.out.println("Il te reste " + j.getSolde());
                         //
                         Propriete prop = newCar.getPropriete();
-                        if ((j.getNbProp(prop) == getCouleurs().get(prop.getCouleur())) && (getCouleurs())) {
+                        //if ((j.getNbProp(prop) == getCouleurs().get(prop.getCouleur())) && (getCouleurs())) {
                             //Construction après vérification que le joueur possède tous les terrains de la couleur de la case qu'il possède
-                            this.construire(j, prop);
-                        }
+                            //this.construire(j, prop);
+                        //}
 
                     }
                 } else if (proprio != null && proprio != j) {
