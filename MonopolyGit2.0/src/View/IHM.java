@@ -18,6 +18,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -36,7 +38,9 @@ import javax.swing.border.Border;
  */
 public class IHM implements Observe {
 
-    JFrame fenetre, fenetremenu, fenetreregles1,fenetreregles2;
+    JFrame fenetre, fenetremenu, fenetreregles1, fenetreregles2;
+    JTextField j1t, j2t, j3t, j4t, j5t, j6t;
+    JLabel j1, j2, j3, j4, j5, j6;
     private Observateur o;
     JComboBox listeJoueurs;
 
@@ -59,20 +63,20 @@ public class IHM implements Observe {
         JButton fin = new JButton("Fin du tour");
         JButton b5 = new JButton("Arrêter");
         JButton b6 = new JButton("Règles");
-        
+
         b5.addActionListener((ActionEvent e) -> {
             fenetre.setVisible(false);
             fenetre.repaint();
             fenetremenu.setVisible(true);
             fenetremenu.repaint();
         });
-        b6.addActionListener((ActionEvent)->{
+        b6.addActionListener((ActionEvent) -> {
             fenetreregles1.setVisible(true);
         });
-        JPanel pchoix = new JPanel(new GridLayout(0,2));
+        JPanel pchoix = new JPanel(new GridLayout(0, 2));
         pchoix.add(b5);
         pchoix.add(b6);
-        
+
         //instanciation des propriétés
         JTextField p1 = new JTextField("Vide");
         JTextField p2 = new JTextField("Vide");
@@ -98,9 +102,8 @@ public class IHM implements Observe {
         commande.add(p4);
         commande.add(p5);
         commandeLayout.add(pchoix, BorderLayout.SOUTH);
-               
+
         //Mise en pages de la zone de commande 
-        
         Dimension dim = new Dimension(300, 1080 - b5.getHeight());
         commandeLayout.setPreferredSize(dim);
         Border cadre = BorderFactory.createLineBorder(Color.black);
@@ -109,7 +112,6 @@ public class IHM implements Observe {
         fenetre.add(commandeLayout, BorderLayout.WEST);
 
         //Création du plateau de jeu
-        
         JPanel plateau = new JPanel();
         plateau.setLayout(new GridLayout(11, 11));
         //Boucle d'ajout des différentes cases
@@ -226,7 +228,7 @@ public class IHM implements Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -805,7 +807,7 @@ public class IHM implements Observe {
         //Fenêtre de menu principal
         fenetremenu = new JFrame();
         fenetremenu.setTitle("Menu Monopoly");
-        fenetremenu.setSize(400, 200);
+        fenetremenu.setSize(400, 300);
         fenetremenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetremenu.setVisible(false);
         fenetremenu.setLayout(new BorderLayout());
@@ -815,7 +817,7 @@ public class IHM implements Observe {
         titre.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel panelCentre = new JPanel();
-        panelCentre.setLayout(new GridLayout(4, 4));
+        panelCentre.setLayout(new GridLayout(9, 4));
         JLabel nbjoueurs = new JLabel("Joueurs : ");
         nbjoueurs.setHorizontalAlignment(JLabel.CENTER);
         listeJoueurs = new JComboBox();
@@ -823,22 +825,136 @@ public class IHM implements Observe {
             listeJoueurs.addItem(i + 1);
         }
 
-        for (int i = 0; i <= 15; i++) {
+        //Listener sur la ComboBox pour afficher le nombre de joueurs 
+        //à inscrire selon le nombre de joueurs choisi
+        listeJoueurs.addActionListener((ActionEvent e) -> {
+            if ("2".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(false);
+                j4.setVisible(false);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(false);
+                j4t.setVisible(false);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("3".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(false);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(false);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("4".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("5".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(true);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(true);
+                j6t.setVisible(false);
+            } else {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(true);
+                j6.setVisible(true);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(true);
+                j6t.setVisible(true);
+            }
+        });
+
+        //Instanciation des JLabels et JTextfiels pour le nombre de joueurs ainsi 
+        //que leur visibilité pour nombre de joueurs par défault=2
+        j1 = new JLabel("Joueur 1 :");
+        j2 = new JLabel("Joueur 2 :");
+        j3 = new JLabel("Joueur 3 :");
+        j3.setVisible(false);
+        j4 = new JLabel("Joueur 4 :");
+        j4.setVisible(false);
+        j5 = new JLabel("Joueur 5 :");
+        j5.setVisible(false);
+        j6 = new JLabel("Joueur 6 :");
+        j6.setVisible(false);
+
+        j1t = new JTextField();
+        j2t = new JTextField();
+        j3t = new JTextField();
+        j3t.setVisible(false);
+        j4t = new JTextField();
+        j4t.setVisible(false);
+        j5t = new JTextField();
+        j5t.setVisible(false);
+        j6t = new JTextField();
+        j6t.setVisible(false);
+
+        //Ajout des joueurs dans le gridLayout
+        for (int i = 0; i < 36; i++) {
             switch (i) {
-                case 6:
+                case 5:
                     panelCentre.add(nbjoueurs);
-                case 7:
+                    break;
+                case 6:
                     panelCentre.add(listeJoueurs);
+                    break;
+                case 9:
+                    panelCentre.add(j1);
+                    break;
+                case 10:
+                    panelCentre.add(j1t);
+                    break;
+                case 13:
+                    panelCentre.add(j2);
+                    break;
+                case 14:
+                    panelCentre.add(j2t);
+                    break;
+                case 17:
+                    panelCentre.add(j3);
+                    break;
+                case 18:
+                    panelCentre.add(j3t);
+                    break;
+                case 21:
+                    panelCentre.add(j4);
+                    break;
+                case 22:
+                    panelCentre.add(j4t);
+                    break;
+                case 25:
+                    panelCentre.add(j5);
+                    break;
+                case 26:
+                    panelCentre.add(j5t);
+                    break;
+                case 29:
+                    panelCentre.add(j6);
+                    break;
+                case 30:
+                    panelCentre.add(j6t);
+                    break;
                 default:
                     panelCentre.add(new JLabel());
+                    break;
             }
-
         }
 
         fenetremenu.add(panelCentre, BorderLayout.CENTER);
 
         JPanel panelBas = new JPanel();
-        panelBas.setLayout(new GridLayout(0,2));
+        panelBas.setLayout(new GridLayout(0, 2));
         JButton commencer = new JButton("Commencer");
         JButton arreter = new JButton("Arrêter");
         panelBas.add(commencer);
@@ -858,7 +974,6 @@ public class IHM implements Observe {
             fenetremenu.disable();
         });
 
-
         //fenetre regles1
         fenetreregles1 = new JFrame();
         fenetreregles1.setTitle("Règles Monopoly");
@@ -869,7 +984,7 @@ public class IHM implements Observe {
         JLabel teteRegles = new JLabel("Règles du Monopoly");
         fenetreregles1.add(teteRegles, BorderLayout.NORTH);
         teteRegles.setHorizontalAlignment(JLabel.CENTER);
-        
+
         JLabel regle1 = new JLabel("<html> <h2>I.Préparation</h2> "
                 + "<p>1. Chaque joueur choisit un pion et le place sur la case numéro 1. </p> <br>"
                 + "<p>2. Le  Banquier  remet  à  chaque  joueur  une  somme  de 1500  euros. La  banque  possède  les Titres de  Propriété ."
@@ -902,29 +1017,26 @@ public class IHM implements Observe {
                 + "  à  personne.  Comme  pour  les  Propriétés,  payez  à  la  Banque  le  prix indiqué  sur  le  plateau.  Si  la  Compagnie  de "
                 + " Distribution  appartient  déjà  à  l'un  des  joueurs, vous devez payer un loyer, qui est fonction des points indiqués par"
                 + " vos dés :</p> <br></html>");
-        fenetreregles1.add(regle1,BorderLayout.CENTER);
-        
+        fenetreregles1.add(regle1, BorderLayout.CENTER);
 
-        
         JButton retour = new JButton("Retour au jeu");
         JButton nextpage = new JButton("Page Suivante");
-        JPanel pbas = new JPanel(new GridLayout(0,2));
+        JPanel pbas = new JPanel(new GridLayout(0, 2));
         pbas.add(retour);
         pbas.add(nextpage);
         fenetreregles1.add(pbas, BorderLayout.SOUTH);
-        
+
         //fenetre regles2
         fenetreregles2 = new JFrame();
         fenetreregles2.setTitle("Règles Monopoly (suite)");
         fenetreregles2.setSize(600, 500);
         fenetreregles2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetreregles2.setVisible(false);
-        
+
         JLabel teteRegles2 = new JLabel("Règles du Monopoly (suite)");
         fenetreregles2.add(teteRegles2, BorderLayout.NORTH);
         teteRegles2.setHorizontalAlignment(JLabel.CENTER);
-        
-        
+
         JLabel regle2 = new JLabel("<html><p>Si ce propriétaire possède une Compagnie de Distribution, le loyer sera égal à quatre fois"
                 + " la valeur de vos dés</p> <br>"
                 + "<p>S'il possède les deux Compagnies de Distribution, le loyer s'élèvera alors à dix fois la valeur indiquée par les dés.</p> <br>"
@@ -938,18 +1050,15 @@ public class IHM implements Observe {
                 + " les conditions initiales du jeu.</p> <br>"
                 + "<h4>8. Le vainqueur</h4>"
                 + "<p>Le dernier joueur restant en jeu est le vainqueur.</p></html>");
-        fenetreregles2.add(regle2,BorderLayout.CENTER);
-        
-        
-        
+        fenetreregles2.add(regle2, BorderLayout.CENTER);
+
         JButton retour2 = new JButton("Retour au jeu");
         JButton retourpage = new JButton("Page précédente");
-        JPanel pbas2 = new JPanel(new GridLayout(0,2));
+        JPanel pbas2 = new JPanel(new GridLayout(0, 2));
         pbas2.add(retourpage);
         pbas2.add(retour2);
         fenetreregles2.add(pbas2, BorderLayout.SOUTH);
-        
-        
+
         //Listener regles
         retour.addActionListener((ActionEvent e) -> {
             fenetreregles1.setVisible(false);
@@ -963,7 +1072,7 @@ public class IHM implements Observe {
             fenetreregles1.setVisible(false);
             fenetreregles2.setVisible(true);
         });
-        retourpage.addActionListener((ActionEvent e) ->{
+        retourpage.addActionListener((ActionEvent e) -> {
             fenetreregles2.setVisible(false);
             fenetreregles1.setVisible(true);
         });
