@@ -58,12 +58,21 @@ public class IHM implements Observe {
         JButton b4 = new JButton("Bouton 4");
         JButton fin = new JButton("Fin du tour");
         JButton b5 = new JButton("Arrêter");
+        JButton b6 = new JButton("Règles");
+        
         b5.addActionListener((ActionEvent e) -> {
             fenetre.setVisible(false);
             fenetre.repaint();
             fenetremenu.setVisible(true);
             fenetremenu.repaint();
         });
+        b6.addActionListener((ActionEvent)->{
+            fenetreregles1.setVisible(true);
+        });
+        JPanel pchoix = new JPanel(new GridLayout(0,2));
+        pchoix.add(b5);
+        pchoix.add(b6);
+        
         //instanciation des propriétés
         JTextField p1 = new JTextField("Vide");
         JTextField p2 = new JTextField("Vide");
@@ -88,8 +97,10 @@ public class IHM implements Observe {
         commande.add(p3);
         commande.add(p4);
         commande.add(p5);
-        commandeLayout.add(b5, BorderLayout.SOUTH);
-        //Mise en pages de la zone de commande
+        commandeLayout.add(pchoix, BorderLayout.SOUTH);
+               
+        //Mise en pages de la zone de commande 
+        
         Dimension dim = new Dimension(300, 1080 - b5.getHeight());
         commandeLayout.setPreferredSize(dim);
         Border cadre = BorderFactory.createLineBorder(Color.black);
@@ -98,6 +109,7 @@ public class IHM implements Observe {
         fenetre.add(commandeLayout, BorderLayout.WEST);
 
         //Création du plateau de jeu
+        
         JPanel plateau = new JPanel();
         plateau.setLayout(new GridLayout(11, 11));
         //Boucle d'ajout des différentes cases
