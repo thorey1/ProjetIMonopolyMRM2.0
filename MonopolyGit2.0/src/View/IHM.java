@@ -127,10 +127,13 @@ public class IHM implements Observe {
             Font font2 = new Font("Arial", Font.BOLD, 17);
             Font font3 = new Font("Arial", Font.BOLD, 28);
             Font font4 = new Font("Arial", Font.ITALIC, 10);
+            Font font5 = new Font("Arial", Font.BOLD, 12);
+            Font font6 = new Font("Arial", Font.BOLD, 14);
+            Font font7 = new Font("Arial", Font.BOLD, 9);
             Font fontcaisse = new Font("Arial", Font.BOLD, 14);
-            Font fontchance = new Font("Arial", Font.BOLD,20 );
+            Font fontchance = new Font("Arial", Font.BOLD, 20);
             Dimension dim2;
-            Dimension dim3=new Dimension(100,100);
+            Dimension dim3 = new Dimension(100, 100);
 
             switch (i) {
                 //case chance et caisse de communauté
@@ -159,11 +162,11 @@ public class IHM implements Observe {
                 //début du tour
                 case 1:
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/fleche.gif"));
-                    lab = new JLabel("GO");
+                    lab = new JLabel("DEPART");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setText("<html>+200€ à chaque<br> passage</html>");
                     infos.setFont(font4);
-                    lab.setFont(font3);
+                    lab.setFont(font1);
                     car.add(lab, BorderLayout.NORTH);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(img, BorderLayout.SOUTH);
@@ -193,7 +196,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.blue);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -215,6 +218,15 @@ public class IHM implements Observe {
                     break;
 
                 case 5:
+                    infos.setText("<html>IMPOTS SUR<br>LE REVENU</html>");
+                    infos.setFont(font7);
+                    infos2 = new JLabel("200€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/impot.jpg"));
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    car.add(infos, BorderLayout.SOUTH);
+                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(img,BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -223,10 +235,12 @@ public class IHM implements Observe {
                 case 6:
                     infos.setText("<html>Gare Montparnasse</html>");
                     infos2 = new JLabel("200€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.CENTER);
+                    car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -254,7 +268,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.red);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -291,6 +305,24 @@ public class IHM implements Observe {
                     break;
 
                 case 11:
+                    infos.setText("<html>SIMPLE VISITE</html>");
+                    infos.setFont(font6);
+                    infos2.setText("<html>PRISON</html>");
+                    infos2.setFont(font5);
+                    lab.setText("     ");
+                    infos.setBorder(cadre);
+                    lab.setBorder(cadre);
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/prison.jpg"));
+                    img.setHorizontalAlignment(0);
+                    car.setBorder(cadre);
+                    car.add(lab, BorderLayout.EAST);
+                    car.add(infos, BorderLayout.NORTH);
+                    panelCase.add(img, BorderLayout.CENTER);
+                    panelCase.add(infos2, BorderLayout.SOUTH);
+                    panelCase.setBackground(Color.ORANGE);
+                    car.add(panelCase, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -329,15 +361,34 @@ public class IHM implements Observe {
                     break;
 
                 case 23:
+                    infos.setText("<html>Taxe de luxe</html>");
+                    infos2 = new JLabel("150€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/luxe.jpg"));
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    car.add(infos, BorderLayout.SOUTH);
+                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    panelCase.setBackground(Color.white);
                     break;
+
                 case 33:
+                    infos.setText("<html>Compagnie de distibution d'électricité</html>");
+                    infos.setFont(font7);
+                    infos2 = new JLabel("150€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/elec.jpg"));
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    car.add(infos, BorderLayout.SOUTH);
+                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    panelCase.setBackground(Color.white);
                     break;
+
                 case 34:
                     infos.setText("<html>Avenue des Champs-<br>Elysées</html>");
                     infos2 = new JLabel("350€");
@@ -377,7 +428,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.red);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -402,10 +453,12 @@ public class IHM implements Observe {
                 case 56:
                     infos.setText("<html>Gare Saint-Lazare</html>");
                     infos2 = new JLabel("200€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.CENTER);
+                    car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -414,10 +467,12 @@ public class IHM implements Observe {
                 case 66:
                     infos.setText("<html>Gare de Lyon</html>");
                     infos2 = new JLabel("200€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.CENTER);
+                    car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -472,7 +527,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.blue);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -484,7 +539,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.blue);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -556,6 +611,15 @@ public class IHM implements Observe {
 
                 //case bas gauche   
                 case 111:
+                    infos.setText("<html>ALLER EN</html>");
+                    infos2.setText("<html>PRISON</html>");
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/police.jpg"));
+                    car.setBorder(cadre);
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
+                    car.add(infos2, BorderLayout.SOUTH);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -577,9 +641,17 @@ public class IHM implements Observe {
                     break;
 
                 case 113:
+                    infos.setText("<html>Compagnie de distibution d'eau</html>");
+                    infos2 = new JLabel("150€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/eau.jpg"));
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    car.add(infos, BorderLayout.SOUTH);
+                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    panelCase.setBackground(Color.white);
                     break;
 
                 case 114:
@@ -615,10 +687,12 @@ public class IHM implements Observe {
                 case 116:
                     infos.setText("<html>Gare du Nord</html>");
                     infos2 = new JLabel("200€");
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.CENTER);
+                    car.add(infos, BorderLayout.NORTH);
                     car.add(infos2, BorderLayout.SOUTH);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -661,7 +735,7 @@ public class IHM implements Observe {
                     infos.setForeground(Color.red);
                     img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
-                    car.add(img,BorderLayout.CENTER);
+                    car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
@@ -683,7 +757,15 @@ public class IHM implements Observe {
                     break;
 
                 case 121:
+                    infos.setText("<html>PARC</html>");
+                    infos2.setText("<html>GRATUIT</html>");
+                    infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/parc.htm"));
                     car.setBorder(cadre);
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(img, BorderLayout.CENTER);
+                    car.add(infos2, BorderLayout.SOUTH);
                     plateau.add(car);
                     car.setBackground(Color.white);
                     break;
