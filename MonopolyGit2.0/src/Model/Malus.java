@@ -1,10 +1,10 @@
 package Model;
 
-import Controler.UtilsMono.*;
+
 import Enum.TypeCarreau;
 
 public class Malus extends Carreau {
-    private int taxe;
+    private final int taxe;
 
     public Malus(int numCarreau, String nomCarreau, TypeCarreau type, int taxe) {
         super(numCarreau, nomCarreau, type);

@@ -18,6 +18,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -38,6 +40,8 @@ import javax.swing.border.Border;
 public class IHM implements Observe {
 
     JFrame fenetre, fenetremenu, fenetreregles1, fenetreregles2;
+    JTextField j1t, j2t, j3t, j4t, j5t, j6t;
+    JLabel j1, j2, j3, j4, j5, j6;
     private Observateur o;
     JComboBox listeJoueurs;
 
@@ -67,11 +71,9 @@ public class IHM implements Observe {
             fenetremenu.setVisible(true);
             fenetremenu.repaint();
         });
-
         b6.addActionListener((ActionEvent) -> {
             fenetreregles1.setVisible(true);
         });
-
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
         pchoix.add(b5);
         pchoix.add(b6);
@@ -813,7 +815,7 @@ public class IHM implements Observe {
         //Fenêtre de menu principal
         fenetremenu = new JFrame();
         fenetremenu.setTitle("Menu Monopoly");
-        fenetremenu.setSize(400, 200);
+        fenetremenu.setSize(400, 300);
         fenetremenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetremenu.setVisible(false);
         fenetremenu.setLayout(new BorderLayout());
@@ -823,7 +825,7 @@ public class IHM implements Observe {
         titre.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel panelCentre = new JPanel();
-        panelCentre.setLayout(new GridLayout(4, 4));
+        panelCentre.setLayout(new GridLayout(9, 4));
         JLabel nbjoueurs = new JLabel("Joueurs : ");
         nbjoueurs.setHorizontalAlignment(JLabel.CENTER);
         listeJoueurs = new JComboBox();
@@ -831,16 +833,130 @@ public class IHM implements Observe {
             listeJoueurs.addItem(i + 1);
         }
 
-        for (int i = 0; i <= 15; i++) {
+        //Listener sur la ComboBox pour afficher le nombre de joueurs 
+        //à inscrire selon le nombre de joueurs choisi
+        listeJoueurs.addActionListener((ActionEvent e) -> {
+            if ("2".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(false);
+                j4.setVisible(false);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(false);
+                j4t.setVisible(false);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("3".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(false);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(false);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("4".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(false);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(false);
+                j6t.setVisible(false);
+            } else if ("5".equals(listeJoueurs.getSelectedItem().toString())) {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(true);
+                j6.setVisible(false);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(true);
+                j6t.setVisible(false);
+            } else {
+                j3.setVisible(true);
+                j4.setVisible(true);
+                j5.setVisible(true);
+                j6.setVisible(true);
+                j3t.setVisible(true);
+                j4t.setVisible(true);
+                j5t.setVisible(true);
+                j6t.setVisible(true);
+            }
+        });
+
+        //Instanciation des JLabels et JTextfiels pour le nombre de joueurs ainsi 
+        //que leur visibilité pour nombre de joueurs par défault=2
+        j1 = new JLabel("Joueur 1 :");
+        j2 = new JLabel("Joueur 2 :");
+        j3 = new JLabel("Joueur 3 :");
+        j3.setVisible(false);
+        j4 = new JLabel("Joueur 4 :");
+        j4.setVisible(false);
+        j5 = new JLabel("Joueur 5 :");
+        j5.setVisible(false);
+        j6 = new JLabel("Joueur 6 :");
+        j6.setVisible(false);
+
+        j1t = new JTextField();
+        j2t = new JTextField();
+        j3t = new JTextField();
+        j3t.setVisible(false);
+        j4t = new JTextField();
+        j4t.setVisible(false);
+        j5t = new JTextField();
+        j5t.setVisible(false);
+        j6t = new JTextField();
+        j6t.setVisible(false);
+
+        //Ajout des joueurs dans le gridLayout
+        for (int i = 0; i < 36; i++) {
             switch (i) {
-                case 6:
+                case 5:
                     panelCentre.add(nbjoueurs);
-                case 7:
+                    break;
+                case 6:
                     panelCentre.add(listeJoueurs);
+                    break;
+                case 9:
+                    panelCentre.add(j1);
+                    break;
+                case 10:
+                    panelCentre.add(j1t);
+                    break;
+                case 13:
+                    panelCentre.add(j2);
+                    break;
+                case 14:
+                    panelCentre.add(j2t);
+                    break;
+                case 17:
+                    panelCentre.add(j3);
+                    break;
+                case 18:
+                    panelCentre.add(j3t);
+                    break;
+                case 21:
+                    panelCentre.add(j4);
+                    break;
+                case 22:
+                    panelCentre.add(j4t);
+                    break;
+                case 25:
+                    panelCentre.add(j5);
+                    break;
+                case 26:
+                    panelCentre.add(j5t);
+                    break;
+                case 29:
+                    panelCentre.add(j6);
+                    break;
+                case 30:
+                    panelCentre.add(j6t);
+                    break;
                 default:
                     panelCentre.add(new JLabel());
+                    break;
             }
-
         }
 
         fenetremenu.add(panelCentre, BorderLayout.CENTER);
