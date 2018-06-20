@@ -7,8 +7,7 @@ public abstract class Terrain extends Carreau {
     private int prix;
     private Color couleur;
     private Joueur proprietaire ;
-    private int loyer = 10; //standard pour l'instant;
-
+    
     public Terrain(int numCarreau, String nomCarreau, TypeCarreau type,int prix, Color couleur) {
         super(numCarreau, nomCarreau, type);
         this.prix = prix;
@@ -39,9 +38,9 @@ public abstract class Terrain extends Carreau {
     }
 
     @Override
-    public int getLoyer(){
-        return loyer;
-    }
+    public abstract int getLoyer();
+        
+        
 
     @Override
     public abstract int getPrixMais();
@@ -51,5 +50,9 @@ public abstract class Terrain extends Carreau {
 
     @Override
     public abstract Propriete getPropriete();
+
+    public Object getHotel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
 }
