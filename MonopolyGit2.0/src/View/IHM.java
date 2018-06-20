@@ -838,12 +838,10 @@ public class IHM implements Observe {
         fenetremenu.add(panelCentre, BorderLayout.CENTER);
 
         JPanel panelBas = new JPanel();
-        panelBas.setLayout(new GridLayout(0, 3));
+        panelBas.setLayout(new GridLayout(0,2));
         JButton commencer = new JButton("Commencer");
         JButton arreter = new JButton("Arrêter");
-        JButton regles = new JButton("Règles");
         panelBas.add(commencer);
-        panelBas.add(regles);
         panelBas.add(arreter);
 
         fenetremenu.add(panelBas, BorderLayout.SOUTH);
@@ -860,11 +858,6 @@ public class IHM implements Observe {
             fenetremenu.disable();
         });
 
-        regles.addActionListener((ActionEvent e) -> {
-            fenetremenu.setVisible(false);
-            fenetreregles1.setVisible(true);
-            fenetreregles1.repaint();
-        });
 
         //fenetre regles1
         fenetreregles1 = new JFrame();
@@ -913,7 +906,7 @@ public class IHM implements Observe {
         
 
         
-        JButton retour = new JButton("Retour au menu");
+        JButton retour = new JButton("Retour au jeu");
         JButton nextpage = new JButton("Page Suivante");
         JPanel pbas = new JPanel(new GridLayout(0,2));
         pbas.add(retour);
@@ -949,7 +942,7 @@ public class IHM implements Observe {
         
         
         
-        JButton retour2 = new JButton("Retour au menu");
+        JButton retour2 = new JButton("Retour au jeu");
         JButton retourpage = new JButton("Page précédente");
         JPanel pbas2 = new JPanel(new GridLayout(0,2));
         pbas2.add(retourpage);
@@ -961,19 +954,14 @@ public class IHM implements Observe {
         retour.addActionListener((ActionEvent e) -> {
             fenetreregles1.setVisible(false);
             fenetreregles2.setVisible(false);
-            fenetremenu.setVisible(true);
-            fenetremenu.repaint();
         });
         retour2.addActionListener((ActionEvent e) -> {
             fenetreregles1.setVisible(false);
             fenetreregles2.setVisible(false);
-            fenetremenu.setVisible(true);
-            fenetremenu.repaint();
         });
         nextpage.addActionListener((ActionEvent e) -> {
             fenetreregles1.setVisible(false);
             fenetreregles2.setVisible(true);
-            fenetreregles2.repaint();
         });
         retourpage.addActionListener((ActionEvent e) ->{
             fenetreregles2.setVisible(false);
