@@ -7,19 +7,12 @@ package View;
 
 import Controler.Message;
 import Controler.Observateur;
-import Enum.TypesMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -89,11 +82,12 @@ public class IHM implements Observe {
         JPanel commande = new JPanel();
         JPanel commandeLayout = new JPanel();
         JPanel commandeScroll = new JPanel();
-        commandeScroll.setLayout(new GridLayout(30, 0));
-        commandeScroll.setPreferredSize(new Dimension(250, 1800));
         JScrollPane pane = new JScrollPane(commandeScroll);
 
+        commandeScroll.setLayout(new GridLayout(28, 0));
+        commandeScroll.setPreferredSize(new Dimension(280, 1400));
         commande.setLayout(new GridLayout(6, 0));
+        commande.setPreferredSize(new Dimension(300,500));
         commandeLayout.setLayout(new BorderLayout());
         commande.add(nom);
         commande.add(argent);
@@ -140,14 +134,13 @@ public class IHM implements Observe {
             Font font5 = new Font("Arial", Font.BOLD, 12);
             Font font6 = new Font("Arial", Font.BOLD, 14);
             Font font7 = new Font("Arial", Font.BOLD, 9);
+            Font font8 = new Font("Arial", Font.BOLD, 46);
             Font fontcaisse = new Font("Arial", Font.BOLD, 14);
             Font fontchance = new Font("Arial", Font.BOLD, 20);
-            Dimension dim2;
-            Dimension dim3 = new Dimension(100, 100);
 
             switch (i) {
                 //case chance et caisse de communauté
-                case 37:
+                case 81:
                     lab = new JLabel("Chance");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
                     lab.setForeground(Color.black);
@@ -415,6 +408,11 @@ public class IHM implements Observe {
                     panelCase.setBackground(Color.white);
                     break;
 
+                case 39:
+                    img = new JLabel(new ImageIcon("Images/monop.png"));
+                    car.add(img, BorderLayout.SOUTH);
+                    plateau.add(car);
+                    break;
                 case 44:
                     infos.setText("<html>Avenue de Neuilly</html>");
                     infos2 = new JLabel("140€");
@@ -443,7 +441,37 @@ public class IHM implements Observe {
                     plateau.add(car);
                     car.setBackground(Color.white);
                     break;
-
+                    
+                         //case centre
+                case 49:
+                    lab = new JLabel("IU");
+                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(carLab,BorderLayout.CENTER);
+                    car.add(lab,BorderLayout.EAST);
+                    plateau.add(car);
+                    break;
+                    
+                case 50:
+                    lab = new JLabel("TPO");
+                    lab.setFont(new Font("Arial",Font.BOLD,54));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(lab);
+                    plateau.add(car);
+                    break;
+                    
+                case 51:
+                    lab = new JLabel("LY");
+                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(carLab,BorderLayout.CENTER);
+                    car.add(lab,BorderLayout.WEST);
+                    plateau.add(car);
+                    break;
+               
                 case 55:
                     infos.setText("<html>Rue de Paradis</html>");
                     infos2 = new JLabel("160€");
@@ -502,17 +530,6 @@ public class IHM implements Observe {
                     car.add(panelCase, BorderLayout.CENTER);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
-                    break;
-                //case centre
-                case 61:
-                    lab = new JLabel(new ImageIcon("Images/index.jpeg"));
-                    dim2 = new Dimension(150, 150);
-                    dim3 = new Dimension(310, 282);
-                    car.setPreferredSize(dim3);
-                    lab.setPreferredSize(dim2);
-                    car.add(lab);
-                    plateau.add(car);
-
                     break;
 
                 case 77:
@@ -656,8 +673,8 @@ public class IHM implements Observe {
                     img = new JLabel(new ImageIcon("Images/eau.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.SOUTH);
-                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(infos2, BorderLayout.SOUTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
