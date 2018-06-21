@@ -760,7 +760,6 @@ public class Controler implements Observateur {
         for(int i =0; i<m.noms.size();i++){
             this.getJoueurs().put(i+1,new Joueur(i+1,m.noms.get(i),this.getCarreau(1)));
         }
-        System.out.println(""+joueurs.size());
         tourDeJeu(this.getJoueurs(), vuePlateau);
     }
     
@@ -772,6 +771,7 @@ public class Controler implements Observateur {
     private void retourMenu(Message m) {
         vuePlateau.getFenetrePlateau().setVisible(false);
         this.setVueMenu(new VueMenu());
+        joueurs.clear();
         vueMenu.addObservateur(this);
     }
 
