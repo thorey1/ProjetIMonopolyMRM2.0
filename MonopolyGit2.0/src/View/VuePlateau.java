@@ -131,8 +131,8 @@ public class VuePlateau extends Observe {
         //ajout des différents composants 
         pchoix.add(arreter);
         pchoix.add(regles);
-        dé.add(dé5);
-        dé.add(dé2);
+        dé.add(dé6);
+        dé.add(dé6);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
@@ -509,7 +509,7 @@ public class VuePlateau extends Observe {
                     pan12.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
-                    getCases().put(13, pan12);
+                    getCases().put(12, pan12);
                     break;
 
                 case 23:
@@ -698,6 +698,7 @@ public class VuePlateau extends Observe {
                     break;
 
                 case 67:
+                    JPanel pan35 = new JPanel(new BorderLayout());
                     infos.setText("<html>Boulevard des Capucines</html>");
                     infos2 = new JLabel("320€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -707,14 +708,17 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.green);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.EAST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    pan35.add(carLab, BorderLayout.EAST);
+                    pan35.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan35);
+                    pan35.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(35, pan35);
                     break;
 
                 case 77:
+                    JPanel pan17 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue Mozart</html>");
                     infos2 = new JLabel("180€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -724,38 +728,47 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.orange);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.WEST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    pan17.add(carLab, BorderLayout.WEST);
+                    pan17.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan17);
+                    pan17.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(17, pan17);
                     break;
 
                 case 78:
+                    JPanel pan34 = new JPanel(new BorderLayout());
                     infos.setText("<html>Caisse de Communauté</html>");
                     infos.setFont(fontcaisse);
                     infos.setForeground(Color.blue);
                     img = new JLabel(new ImageIcon("Images/caisse.jpg"));
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.setBorder(cadre);
+                    pan34.add(infos, BorderLayout.NORTH);
+                    pan34.add(img, BorderLayout.CENTER);
+                    car.add(pan34);
+                    pan34.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan34.setBackground(Color.white);
+                    getCases().put(34,pan34);
                     break;
 
                 case 88:
+                    JPanel pan18 = new JPanel(new BorderLayout());
                     infos.setText("<html>Caisse de Communauté</html>");
                     infos.setFont(fontcaisse);
                     infos.setForeground(Color.blue);
                     img = new JLabel(new ImageIcon("Images/caisse.jpg"));
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.setBorder(cadre);
+                    pan18.add(infos, BorderLayout.NORTH);
+                    pan18.add(img, BorderLayout.CENTER);
+                    car.add(pan18);
+                    pan18.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan18.setBackground(Color.white);
+                    getCases().put(18, pan18);
                     break;
 
                 case 89:
+                    JPanel pan33 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue Foch</html>");
                     infos2 = new JLabel("300€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -764,15 +777,18 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
-                    carLab.setBackground(Color.green);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.EAST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    carLab.setBackground(Color.green); 
+                    pan33.add(carLab, BorderLayout.EAST);
+                    pan33.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan33);
+                    pan33.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(33, pan33);
                     break;
 
                 case 99:
+                    JPanel pan19 = new JPanel(new BorderLayout());
                     infos.setText("<html>Boulevard Saint-Michel</html>");
                     infos2 = new JLabel("180€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -782,14 +798,17 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.orange);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.WEST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    pan19.add(carLab, BorderLayout.WEST);
+                    pan19.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan19);
+                    pan19.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(19,pan19);
                     break;
 
                 case 100:
+                    JPanel pan32 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue<br>de Breteuil</html>");
                     infos2 = new JLabel("300€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -799,14 +818,17 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.green);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.EAST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    pan32.add(carLab, BorderLayout.EAST);
+                    pan32.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan32);
+                    pan32.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(32, pan32);
                     break;
 
                 case 110:
+                    JPanel pan20 = new JPanel(new BorderLayout());
                     infos.setText("<html>Place Pigalle</html>");
                     infos2 = new JLabel("200€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
@@ -816,180 +838,214 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.orange);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.WEST);
-                    car.add(panelCase, BorderLayout.CENTER);
+                    pan20.add(carLab, BorderLayout.WEST);
+                    pan20.add(panelCase, BorderLayout.CENTER);
+                    car.add(pan20);
+                    pan20.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
+                    getCases().put(20, pan20);
                     break;
 
                 //case bas gauche   
                 case 111:
+                    JPanel pan31 = new JPanel(new BorderLayout());
                     infos.setText("<html>ALLER EN</html>");
                     infos2.setText("<html>PRISON</html>");
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     img = new JLabel(new ImageIcon("Images/police.jpg"));
-                    car.setBorder(cadre);
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan31.add(infos, BorderLayout.NORTH);
+                    pan31.add(img, BorderLayout.CENTER);
+                    pan31.add(infos2, BorderLayout.SOUTH);
+                    car.add(pan31);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan31.setBackground(Color.white);
+                    getCases().put(31, pan31);
                     break;
 
                 case 112:
+                    JPanel pan30 = new JPanel(new BorderLayout());
                     infos.setText("<html>Rue de la Fayette</html>");
                     infos2 = new JLabel("280€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan30.add(infos, BorderLayout.CENTER);
+                    pan30.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.yellow);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan30.add(carLab, BorderLayout.NORTH);
+                    car.add(pan30);
+                    pan30.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan30.setBackground(Color.white);
+                    getCases().put(30, pan30);
                     break;
 
                 case 113:
+                    JPanel pan29 = new JPanel(new BorderLayout());
                     infos.setText("<html>Compagnie de distibution d'eau</html>");
                     infos2 = new JLabel("150€");
                     img = new JLabel(new ImageIcon("Images/eau.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(infos2, BorderLayout.SOUTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.setBorder(cadre);
+                    pan29.add(infos, BorderLayout.NORTH);
+                    pan29.add(infos2, BorderLayout.SOUTH);
+                    pan29.add(img, BorderLayout.CENTER);
+                    car.add(pan29);
+                    pan29.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan29.setBackground(Color.white);
+                    getCases().put(29, pan29);
                     break;
 
                 case 114:
+                    JPanel pan28 = new JPanel(new BorderLayout());
                     infos.setText("<html>Place de la Bourse</html>");
                     infos2 = new JLabel("260€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan28.add(infos, BorderLayout.CENTER);
+                    pan28.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.yellow);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan28.add(carLab, BorderLayout.NORTH);
+                    car.add(pan28);
+                    pan28.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan28.setBackground(Color.white);
+                    getCases().put(28, pan28);
                     break;
 
                 case 115:
+                    JPanel pan27 = new JPanel(new BorderLayout());
                     infos.setText("<html>Faubourg Saint-Honoré</html>");
                     infos2 = new JLabel("260€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan27.add(infos, BorderLayout.CENTER);
+                    pan27.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.yellow);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan27.add(carLab, BorderLayout.NORTH);
+                    car.add(pan27);
+                    pan27.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan27.setBackground(Color.white);
+                    getCases().put(27, pan27);
                     break;
 
                 case 116:
+                    JPanel pan26 = new JPanel(new BorderLayout());
                     infos.setText("<html>Gare du Nord</html>");
                     infos2 = new JLabel("200€");
                     img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(infos2, BorderLayout.SOUTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.setBorder(cadre);
+                    pan26.add(infos, BorderLayout.NORTH);
+                    pan26.add(infos2, BorderLayout.SOUTH);
+                    pan26.add(img, BorderLayout.CENTER);
+                    car.add(pan26);
+                    pan26.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan26.setBackground(Color.white);
+                    getCases().put(26, pan26);
                     break;
 
                 case 117:
+                    JPanel pan25 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue Henri-Martin</html>");
                     infos2 = new JLabel("240€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan25.add(infos, BorderLayout.CENTER);
+                    pan25.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.red);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan25.add(carLab, BorderLayout.NORTH);
+                    car.add(pan25);
+                    pan25.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan25.setBackground(Color.white);
+                    getCases().put(25, pan25);
                     break;
 
                 case 118:
+                    JPanel pan24 = new JPanel(new BorderLayout());
                     infos.setText("<html>Boulevard Malesherbes</html>");
                     infos2 = new JLabel("220€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan24.add(infos, BorderLayout.CENTER);
+                    pan24.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.red);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan24.add(carLab, BorderLayout.NORTH);
+                    car.add(pan24);
+                    pan24.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan24.setBackground(Color.white);
+                    getCases().put(24, pan24);        
                     break;
 
                 case 119:
+                    JPanel pan23 = new JPanel(new BorderLayout());
                     infos.setText("<html>Chance</html>");
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setFont(fontchance);
                     infos.setForeground(Color.red);
                     img = new JLabel(new ImageIcon("Images/chance.jpeg"));
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.setBorder(cadre);
+                    pan23.add(infos, BorderLayout.NORTH);
+                    pan23.add(img, BorderLayout.CENTER);
+                    car.add(pan23);
+                    pan23.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan23.setBackground(Color.white);
+                    getCases().put(23, pan23);
                     break;
 
                 case 120:
+                    JPanel pan22 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue Matignon</html>");
                     infos2 = new JLabel("220€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setFont(font6);
-                    car.add(infos, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan22.add(infos, BorderLayout.CENTER);
+                    pan22.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.red);
-                    car.setBorder(cadre);
-                    car.add(carLab, BorderLayout.NORTH);
+                    pan22.add(carLab, BorderLayout.NORTH);
+                    car.add(pan22);
+                    pan22.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan22.setBackground(Color.white);
+                    getCases().put(22, pan22);
                     break;
 
                 case 121:
+                    JPanel pan21 = new JPanel(new BorderLayout());
                     infos.setText("<html>PARC</html>");
                     infos2.setText("<html>GRATUIT</html>");
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     img = new JLabel(new ImageIcon("Images/parc.htm"));
-                    car.setBorder(cadre);
-                    car.add(infos, BorderLayout.NORTH);
-                    car.add(img, BorderLayout.CENTER);
-                    car.add(infos2, BorderLayout.SOUTH);
+                    pan21.add(infos, BorderLayout.NORTH);
+                    pan21.add(img, BorderLayout.CENTER);
+                    pan21.add(infos2, BorderLayout.SOUTH);
+                    car.add(pan21);
+                    pan21.setBorder(cadre);
                     plateau.add(car);
-                    car.setBackground(Color.white);
+                    pan21.setBackground(Color.white);
+                    getCases().put(21, pan21);
                     break;
 
                 default:
