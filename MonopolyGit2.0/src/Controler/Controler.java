@@ -24,8 +24,7 @@ public class Controler implements Observateur {
     private HashMap<Color, Integer> couleurs;
     private VueMenu vueMenu;
     private VueRegle vueRegle;
-    private int tour =1 ;
-
+    private int tour = 1;
 
     // POUR TEST JEU
     public Controler() {
@@ -44,11 +43,10 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCartes().size(); i++) {
             cartes.put(i, this.initialiserHashMapCartes().get(i - 1));
         }
-       
+
         vueMenu = new VueMenu();
         vueMenu.addObservateur(this);
-        
-        
+
     }
 
     public HashMap<Integer, Joueur> getJoueurs() {
@@ -726,20 +724,20 @@ public class Controler implements Observateur {
 
     @Override
     public void traiterMessage(Message m) {
-        if (m.type == DEMARRER_PARTIE){
+        if (m.type == DEMARRER_PARTIE) {
             commencerPartie(m);
-        }else if (m.type == ARRETER){
+        } else if (m.type == ARRETER) {
             arreterPartie(m);
-        }else if(m.type == RETOUR){
+        } else if (m.type == RETOUR) {
             retourMenu(m);
-        }else if(m.type == REGLE){
+        } else if (m.type == REGLE) {
             afficherRegles(m);
-        }else if(m.type == FIN_TOUR){
+        } else if (m.type == FIN_TOUR) {
             finTour(m);
+        } else if (m.type == LANCER_DE) {
+            deplacerJoueur(m);
         }
     }
-
-    
 
     public void setVuePlateau(VuePlateau vuePlateau) {
         this.vuePlateau = vuePlateau;
@@ -748,22 +746,22 @@ public class Controler implements Observateur {
     public void setVueMenu(VueMenu vueMenu) {
         this.vueMenu = vueMenu;
     }
-    
+
     private void setVueRegle(VueRegle vueRegle) {
         this.vueRegle = vueRegle;
     }
-    
+
     private void commencerPartie(Message m) {
         vueMenu.getFenetremenu().setVisible(false);
         this.setVuePlateau(new VuePlateau(m.noms));
         vuePlateau.addObservateur(this);
-        for(int i =0; i<m.noms.size();i++){
-            this.getJoueurs().put(i+1,new Joueur(i+1,m.noms.get(i),this.getCarreau(1)));
+        for (int i = 0; i < m.noms.size(); i++) {
+            this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1)));
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
         System.out.print(vuePlateau.getCases().size());
     }
-    
+
     private void arreterPartie(Message m) {
         vueMenu.getFenetremenu().setVisible(false);
         System.out.println("Jeu arrêté");
@@ -781,25 +779,58 @@ public class Controler implements Observateur {
     }
 
     private void tourDeJeu(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau1) {
-        while (joueurs.size()>1){
+        while (joueurs.size() > 1) {
             vuePlateau1.getNom2().setText(joueurs.get(tour).getNomJoueur());
-            vuePlateau1.getArgent2().setText(""+joueurs.get(tour).getSolde());
-            break; 
+            vuePlateau1.getArgent2().setText("" + joueurs.get(tour).getSolde());
+            break;
         }
     }
 
     private void finTour(Message m) {
-        if(tour == joueurs.size()){
-            tour=1;
-        }else{
+        if (tour == joueurs.size()) {
+            tour = 1;
+        } else {
             tour++;
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
         vuePlateau.getFenetrePlateau().repaint();
     }
 
-    
-    
-    
+    private void deplacerJoueur(Message m) {
+        int de1 = this.lancerDe();
+        int de2 = this.lancerDe();
+        
+        //Dé 1
+        if (de1 == 1) {
+            vuePlateau.getDé().add(vuePlateau.getDé1());
+        } else if (de1 == 2) {
+            vuePlateau.getDé().add(vuePlateau.getDé2());
+        } else if (de1 == 3) {
+            vuePlateau.getDé().add(vuePlateau.getDé3());
+        } else if (de1 == 4) {
+            vuePlateau.getDé().add(vuePlateau.getDé4());
+        } else if (de1 == 5) {
+            vuePlateau.getDé().add(vuePlateau.getDé5());
+        } else {
+            vuePlateau.getDé().add(vuePlateau.getDé6());
+        }
+        
+        //Dé 2
+        if (de2 == 1) {
+            vuePlateau.getDé().add(vuePlateau.getDé1());
+        } else if (de2 == 2) {
+            vuePlateau.getDé().add(vuePlateau.getDé2());
+        } else if (de2 == 3) {
+            vuePlateau.getDé().add(vuePlateau.getDé3());
+        } else if (de2 == 4) {
+            vuePlateau.getDé().add(vuePlateau.getDé4());
+        } else if (de2 == 5) {
+            vuePlateau.getDé().add(vuePlateau.getDé5());
+        } else {
+            vuePlateau.getDé().add(vuePlateau.getDé6());
+        }
+        
+        vuePlateau.getFenetrePlateau().repaint();
+    }
 
 }
