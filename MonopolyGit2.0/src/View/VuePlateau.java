@@ -41,6 +41,7 @@ public class VuePlateau extends Observe {
         fenetre.setTitle("Monopoly");
         fenetre.setSize(1920, 1080);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         JLabel nom = new JLabel("Nom du joueur :");
         JLabel argent = new JLabel("Argent joueur :");
@@ -53,23 +54,25 @@ public class VuePlateau extends Observe {
         JButton b3 = new JButton("Construire");
         JButton b4 = new JButton("Bouton 4");
         JButton fin = new JButton("Fin du tour");
-        JButton b5 = new JButton("Arrêter");
-        JButton b6 = new JButton("Règles");
+        JButton arreter = new JButton("Arrêter");
+        JButton regles = new JButton("Règles");
 
         //A MODIFIER
-        b5.addActionListener((ActionEvent e) -> {
-            fenetre.setVisible(false);
-            fenetre.repaint();
-            fenetremenu.setVisible(true);
-            fenetremenu.repaint();
+        arreter.addActionListener((ActionEvent e) -> {
+            Message m = new Message();
+            m.type = TypesMessages.RETOUR;
+            this.notifierObservateur(m);
         });
-        b6.addActionListener((ActionEvent) -> {
-            fenetreregles1.setVisible(true);
+        
+        regles.addActionListener((ActionEvent) -> {
+            Message m = new Message();
+            m.type = TypesMessages.REGLE;
+            this.notifierObservateur(m);
         });
 
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
-        pchoix.add(b5);
-        pchoix.add(b6);
+        pchoix.add(arreter);
+        pchoix.add(regles);
 
         //instanciation des propriétés
         JTextField p1 = new JTextField("1");
@@ -104,7 +107,7 @@ public class VuePlateau extends Observe {
         commandeScroll.add(p5);
         //Mise en page de la zone de commande 
 
-        Dimension dim = new Dimension(300, 1080 - b5.getHeight());
+        Dimension dim = new Dimension(300, 1080 - arreter.getHeight());
         commandeLayout.setPreferredSize(dim);
         Border cadre = BorderFactory.createLineBorder(Color.black);
         commandeLayout.setBorder(cadre);
@@ -118,9 +121,6 @@ public class VuePlateau extends Observe {
 
     }
 
-    public void fenetrePlateau() {
-        fenetre.setVisible(true);
-    }
 
 
     @Override
@@ -830,5 +830,9 @@ public class VuePlateau extends Observe {
 
         }
         return plateau;
+    }
+
+    public JFrame getFenetrePlateau() {
+        return fenetre;
     }
 }

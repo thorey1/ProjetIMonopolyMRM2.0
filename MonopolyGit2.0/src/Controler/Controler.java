@@ -23,10 +23,12 @@ public class Controler implements Observateur {
     private HashMap<Color, Hotel> hotels;
     private HashMap<Color, Integer> couleurs;
     private VueMenu vueMenu;
+    private VueRegle vueRegle;
 
-    public Controler(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau, VueJoueurEtudiant vueJoueur, HashMap<Integer, Carte> cartes, HashMap<Integer, Carreau> carreaux) {
+    public Controler(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau,VueRegle vueRegle, VueJoueurEtudiant vueJoueur, HashMap<Integer, Carte> cartes, HashMap<Integer, Carreau> carreaux) {
         this.vuePlateau = vuePlateau;
         this.vueJoueur = vueJoueur;
+        this.vueRegle = vueRegle;
         cartes = new HashMap();
         carreaux = new HashMap();
         joueurs = new HashMap();
@@ -35,7 +37,6 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
             carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
         }
-        
         vueMenu.addObservateur(this);
 
     }
@@ -59,10 +60,9 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCartes().size(); i++) {
             cartes.put(i, this.initialiserHashMapCartes().get(i - 1));
         }
-        
-        
-        
+       
         vueMenu = new VueMenu();
+        vueMenu.addObservateur(this);
         
         
     }
@@ -229,7 +229,6 @@ public class Controler implements Observateur {
             }
             System.out.println("Fin du tour \n");
 
-            //faireAction(carreaux.get(pos), j);
         }
     }
 
@@ -277,17 +276,10 @@ public class Controler implements Observateur {
         return j;
     }
 
-//    public void traiterMessage() {
-    //          throw new UnsupportedOperationException();
-    //}
     public int lancerDe() {
         return (int) ((Math.random() * 6) + 1);
     }
 
-    //private void faireActionCarte
-// public int getNewPosition() {
-    //       throw new UnsupportedOperationException();
-    //}
     public ArrayList<Carreau> initialiserHashMapCarreaux() {
         Special t1 = new Special(1, "Départ", DEPART);
         Terrain t2 = new Propriete(2, "Boulevard de Belleville", PROPRIETE, 60, Color.pink);
@@ -751,19 +743,17 @@ public class Controler implements Observateur {
     @Override
     public void traiterMessage(Message m) {
         if (m.type == DEMARRER_PARTIE){
-            System.out.println("bonjour");
             commencerPartie(m);
+        }else if (m.type == ARRETER){
+            arreterPartie(m);
+        }else if(m.type == RETOUR){
+            retourMenu(m);
+        }else if(m.type == REGLE){
+            afficherRegles(m);
         }
     }
 
-    private void commencerPartie(Message m) {
-        vueMenu.getFenetremenu().setVisible(false);
-        System.out.println("bonjour");
-        vuePlateau = new VuePlateau(m.noms);
-        System.out.println("bonjour");
-        this.setVuePlateau(vuePlateau);
-        System.out.println("bonjour");
-    }
+    
 
     public void setVuePlateau(VuePlateau vuePlateau) {
         this.vuePlateau = vuePlateau;
@@ -772,6 +762,36 @@ public class Controler implements Observateur {
     public void setVueMenu(VueMenu vueMenu) {
         this.vueMenu = vueMenu;
     }
+    
+    private void setVueRegle(VueRegle vueRegle) {
+        this.vueRegle = vueRegle;
+    }
+    
+    private void commencerPartie(Message m) {
+        vueMenu.getFenetremenu().setVisible(false);
+        this.setVuePlateau(new VuePlateau(m.noms));
+        vuePlateau.addObservateur(this);
+      /*  for(int i = 0; i<m.noms.size();i++){
+            System.out.println(m.noms.get(i));
+        }*/
+    }
+    
+    private void arreterPartie(Message m) {
+        vueMenu.getFenetremenu().setVisible(false);
+        System.out.println("Jeu arrêté");
+    }
+
+    private void retourMenu(Message m) {
+        vuePlateau.getFenetrePlateau().setVisible(false);
+        this.setVueMenu(new VueMenu());
+        vueMenu.addObservateur(this);
+    }
+
+    private void afficherRegles(Message m) {
+        this.setVueRegle(new VueRegle());
+    }
+
+    
     
     
 

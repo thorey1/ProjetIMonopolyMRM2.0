@@ -7,8 +7,8 @@ package View;
 
 import Controler.Controler;
 
-/**
- *
+/**2
+ *6
  * @author boedam
  */
 public class mainIHM {
@@ -18,8 +18,6 @@ public class mainIHM {
      */
     public static void main(String[] args) {
         new Controler();
-       //VuePlateau vue = new VuePlateau(); pour test plateau
-        
     }
     
 }
