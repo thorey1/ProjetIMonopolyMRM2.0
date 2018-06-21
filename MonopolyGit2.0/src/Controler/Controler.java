@@ -25,23 +25,6 @@ public class Controler implements Observateur {
     private VueMenu vueMenu;
     private VueRegle vueRegle;
 
-    public Controler(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau,VueRegle vueRegle, VueJoueurEtudiant vueJoueur, HashMap<Integer, Carte> cartes, HashMap<Integer, Carreau> carreaux) {
-        this.vuePlateau = vuePlateau;
-        this.vueJoueur = vueJoueur;
-        this.vueRegle = vueRegle;
-        cartes = new HashMap();
-        carreaux = new HashMap();
-        joueurs = new HashMap();
-        couleurs = new HashMap();
-
-        for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
-            carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
-        }
-        vueMenu.addObservateur(this);
-
-    }
-    
-    
 
     // POUR TEST JEU
     public Controler() {
@@ -49,7 +32,7 @@ public class Controler implements Observateur {
         carreaux = new HashMap();
         joueurs = new HashMap();
         maisons = new HashMap();
-        maisons = InitialiserHashMapMaison();
+        maisons = initialiserHashMapMaison();
         hotels = new HashMap();
         hotels = InitialiserHashMapHotel();
 
@@ -365,7 +348,7 @@ public class Controler implements Observateur {
         return casecar;
     }
 
-    public HashMap<Color, Maison> InitialiserHashMapMaison() {
+    public HashMap<Color, Maison> initialiserHashMapMaison() {
         Maison m1 = new Maison(Color.pink, 50);
         Maison m2 = new Maison(Color.cyan, 50);
         Maison m3 = new Maison(Color.magenta, 100);
