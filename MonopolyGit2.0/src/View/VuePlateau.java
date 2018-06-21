@@ -91,8 +91,8 @@ public class VuePlateau extends Observe {
         JScrollPane pane = new JScrollPane(commandeScroll);
         
         //ajout des différents composants 
-        pchoix.add(b5);
-        pchoix.add(b6);
+        pchoix.add(arreter);
+        pchoix.add(regles);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
