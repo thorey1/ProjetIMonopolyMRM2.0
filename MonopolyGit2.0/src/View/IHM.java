@@ -11,17 +11,12 @@ import Enum.TypesMessages;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
@@ -36,7 +32,7 @@ import javax.swing.border.Border;
  *
  * @author tostonr
  */
-public class IHM implements Observe {
+public class IHM extends Observe {
 
     JFrame fenetre, fenetremenu, fenetreregles1, fenetreregles2;
     JTextField j1t, j2t, j3t, j4t, j5t, j6t;
@@ -58,7 +54,7 @@ public class IHM implements Observe {
 
         //Intanciation des boutons
         JButton acheter = new JButton("Acheter");
-        JButton b3 = new JButton("Bouton 3");
+        JButton b3 = new JButton("Construire");
         JButton b4 = new JButton("Bouton 4");
         JButton fin = new JButton("Fin du tour");
         JButton b5 = new JButton("Arrêter");
@@ -78,37 +74,45 @@ public class IHM implements Observe {
         pchoix.add(b6);
 
         //instanciation des propriétés
-        JTextField p1 = new JTextField("Vide");
-        JTextField p2 = new JTextField("Vide");
-        JTextField p3 = new JTextField("Vide");
-        JTextField p4 = new JTextField("Vide");
-        JTextField p5 = new JTextField("Vide");
+        JTextField p1 = new JTextField("1");
+        JTextField p2 = new JTextField("2");
+        JTextField p3 = new JTextField("3");
+        JTextField p4 = new JTextField("4");
+        JTextField p5 = new JTextField("5");
 
         //Création du panel commande et ajout des différents composants 
         JPanel commande = new JPanel();
         JPanel commandeLayout = new JPanel();
-        commande.setLayout(new GridLayout(13, 0));
+        JPanel commandeScroll = new JPanel();
+        JScrollPane pane = new JScrollPane(commandeScroll);
+
+        commandeScroll.setLayout(new GridLayout(28, 0));
+        commandeScroll.setPreferredSize(new Dimension(280, 1400));
+        commande.setLayout(new GridLayout(6, 0));
+        commande.setPreferredSize(new Dimension(300,500));
         commandeLayout.setLayout(new BorderLayout());
         commande.add(nom);
         commande.add(argent);
         commande.add(lancer);
         commande.add(acheter);
-        //commande.add(b3);
+        commande.add(b3);
         //commande.add(b4);
         commande.add(fin);
-        commande.add(p1);
-        commande.add(p2);
-        commande.add(p3);
-        commande.add(p4);
-        commande.add(p5);
-        commandeLayout.add(pchoix, BorderLayout.SOUTH);
-
+        //ajout des propriété au menu déroulant
+        commandeScroll.add(p1);
+        commandeScroll.add(p2);
+        commandeScroll.add(p3);
+        commandeScroll.add(p4);
+        commandeScroll.add(p5);
         //Mise en pages de la zone de commande 
+
         Dimension dim = new Dimension(300, 1080 - b5.getHeight());
         commandeLayout.setPreferredSize(dim);
         Border cadre = BorderFactory.createLineBorder(Color.black);
         commandeLayout.setBorder(cadre);
-        commandeLayout.add(commande);
+        commandeLayout.add(commande, BorderLayout.NORTH);
+        commandeLayout.add(pane, BorderLayout.CENTER);
+        commandeLayout.add(pchoix, BorderLayout.SOUTH);
         fenetre.add(commandeLayout, BorderLayout.WEST);
 
         //Création du plateau de jeu
@@ -132,14 +136,13 @@ public class IHM implements Observe {
             Font font5 = new Font("Arial", Font.BOLD, 12);
             Font font6 = new Font("Arial", Font.BOLD, 14);
             Font font7 = new Font("Arial", Font.BOLD, 9);
+            Font font8 = new Font("Arial", Font.BOLD, 46);
             Font fontcaisse = new Font("Arial", Font.BOLD, 14);
             Font fontchance = new Font("Arial", Font.BOLD, 20);
-            Dimension dim2;
-            Dimension dim3 = new Dimension(100, 100);
 
             switch (i) {
                 //case chance et caisse de communauté
-                case 37:
+                case 81:
                     lab = new JLabel("Chance");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
                     lab.setForeground(Color.black);
@@ -163,7 +166,7 @@ public class IHM implements Observe {
 
                 //début du tour
                 case 1:
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/fleche.gif"));
+                    img = new JLabel(new ImageIcon("Images/fleche.gif"));
                     lab = new JLabel("DEPART");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setText("<html>+200€ à chaque<br> passage</html>");
@@ -196,7 +199,7 @@ public class IHM implements Observe {
                     infos.setText("<html>Caisse de Communauté</html>");
                     infos.setFont(fontcaisse);
                     infos.setForeground(Color.blue);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    img = new JLabel(new ImageIcon("Images/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -223,7 +226,7 @@ public class IHM implements Observe {
                     infos.setText("<html>IMPOTS SUR<br>LE REVENU</html>");
                     infos.setFont(font7);
                     infos2 = new JLabel("200€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/impot.jpg"));
+                    img = new JLabel(new ImageIcon("Images/impot.jpg"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -237,7 +240,7 @@ public class IHM implements Observe {
                 case 6:
                     infos.setText("<html>Gare Montparnasse</html>");
                     infos2 = new JLabel("200€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
+                    img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -268,7 +271,7 @@ public class IHM implements Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setFont(fontchance);
                     infos.setForeground(Color.red);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    img = new JLabel(new ImageIcon("Images/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -316,7 +319,7 @@ public class IHM implements Observe {
                     lab.setBorder(cadre);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/prison.jpg"));
+                    img = new JLabel(new ImageIcon("Images/prison.jpg"));
                     img.setHorizontalAlignment(0);
                     car.setBorder(cadre);
                     car.add(lab, BorderLayout.EAST);
@@ -365,7 +368,7 @@ public class IHM implements Observe {
                 case 23:
                     infos.setText("<html>Taxe de luxe</html>");
                     infos2 = new JLabel("150€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/luxe.jpg"));
+                    img = new JLabel(new ImageIcon("Images/luxe.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -373,14 +376,14 @@ public class IHM implements Observe {
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    panelCase.setBackground(Color.white);
+                    car.setBackground(Color.white);
                     break;
 
                 case 33:
                     infos.setText("<html>Compagnie de distibution d'électricité</html>");
                     infos.setFont(font7);
                     infos2 = new JLabel("150€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/elec.jpg"));
+                    img = new JLabel(new ImageIcon("Images/elec.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -388,7 +391,7 @@ public class IHM implements Observe {
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    panelCase.setBackground(Color.white);
+                    car.setBackground(Color.white);
                     break;
 
                 case 34:
@@ -407,6 +410,11 @@ public class IHM implements Observe {
                     panelCase.setBackground(Color.white);
                     break;
 
+                case 39:
+                    img = new JLabel(new ImageIcon("Images/monop.png"));
+                    car.add(img, BorderLayout.SOUTH);
+                    plateau.add(car);
+                    break;
                 case 44:
                     infos.setText("<html>Avenue de Neuilly</html>");
                     infos2 = new JLabel("140€");
@@ -428,14 +436,44 @@ public class IHM implements Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setFont(fontchance);
                     infos.setForeground(Color.red);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    img = new JLabel(new ImageIcon("Images/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     car.setBackground(Color.white);
                     break;
-
+                    
+                         //case centre
+                case 49:
+                    lab = new JLabel("IU");
+                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(carLab,BorderLayout.CENTER);
+                    car.add(lab,BorderLayout.EAST);
+                    plateau.add(car);
+                    break;
+                    
+                case 50:
+                    lab = new JLabel("TPO");
+                    lab.setFont(new Font("Arial",Font.BOLD,54));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(lab);
+                    plateau.add(car);
+                    break;
+                    
+                case 51:
+                    lab = new JLabel("LY");
+                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setForeground(Color.white);
+                    car.setBackground(Color.red);
+                    car.add(carLab,BorderLayout.CENTER);
+                    car.add(lab,BorderLayout.WEST);
+                    plateau.add(car);
+                    break;
+               
                 case 55:
                     infos.setText("<html>Rue de Paradis</html>");
                     infos2 = new JLabel("160€");
@@ -455,7 +493,7 @@ public class IHM implements Observe {
                 case 56:
                     infos.setText("<html>Gare Saint-Lazare</html>");
                     infos2 = new JLabel("200€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
+                    img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -469,7 +507,7 @@ public class IHM implements Observe {
                 case 66:
                     infos.setText("<html>Gare de Lyon</html>");
                     infos2 = new JLabel("200€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
+                    img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.SOUTH);
@@ -495,17 +533,6 @@ public class IHM implements Observe {
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
                     break;
-                //case centre
-                case 61:
-                    lab = new JLabel(new ImageIcon("/users/info/etu-s2/tostonr/Downloads/index.jpeg"));
-                    dim2 = new Dimension(150, 150);
-                    dim3 = new Dimension(310, 282);
-                    car.setPreferredSize(dim3);
-                    lab.setPreferredSize(dim2);
-                    car.add(lab);
-                    plateau.add(car);
-
-                    break;
 
                 case 77:
                     infos.setText("<html>Avenue Mozart</html>");
@@ -527,7 +554,7 @@ public class IHM implements Observe {
                     infos.setText("<html>Caisse de Communauté</html>");
                     infos.setFont(fontcaisse);
                     infos.setForeground(Color.blue);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    img = new JLabel(new ImageIcon("Images/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -539,7 +566,7 @@ public class IHM implements Observe {
                     infos.setText("<html>Caisse de Communauté</html>");
                     infos.setFont(fontcaisse);
                     infos.setForeground(Color.blue);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/caisse.jpg"));
+                    img = new JLabel(new ImageIcon("Images/caisse.jpg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -617,7 +644,7 @@ public class IHM implements Observe {
                     infos2.setText("<html>PRISON</html>");
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/police.jpg"));
+                    img = new JLabel(new ImageIcon("Images/police.jpg"));
                     car.setBorder(cadre);
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -645,15 +672,15 @@ public class IHM implements Observe {
                 case 113:
                     infos.setText("<html>Compagnie de distibution d'eau</html>");
                     infos2 = new JLabel("150€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/eau.jpg"));
+                    img = new JLabel(new ImageIcon("Images/eau.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
-                    car.add(infos, BorderLayout.SOUTH);
-                    car.add(infos2, BorderLayout.NORTH);
+                    car.add(infos, BorderLayout.NORTH);
+                    car.add(infos2, BorderLayout.SOUTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
-                    panelCase.setBackground(Color.white);
+                    car.setBackground(Color.white);
                     break;
 
                 case 114:
@@ -689,7 +716,7 @@ public class IHM implements Observe {
                 case 116:
                     infos.setText("<html>Gare du Nord</html>");
                     infos2 = new JLabel("200€");
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/train.png"));
+                    img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.NORTH);
@@ -735,7 +762,7 @@ public class IHM implements Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setFont(fontchance);
                     infos.setForeground(Color.red);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/chance.jpeg"));
+                    img = new JLabel(new ImageIcon("Images/chance.jpeg"));
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -763,7 +790,7 @@ public class IHM implements Observe {
                     infos2.setText("<html>GRATUIT</html>");
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
-                    img = new JLabel(new ImageIcon("/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/image/parc.htm"));
+                    img = new JLabel(new ImageIcon("Images/parc.htm"));
                     car.setBorder(cadre);
                     car.add(infos, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -967,6 +994,27 @@ public class IHM implements Observe {
             fenetremenu.setVisible(false);
             fenetre.setVisible(true);
             fenetre.repaint();
+
+            Message m = new Message();
+            
+            ArrayList<String> noms = new ArrayList<>();
+            noms.add(j1t.getText());
+            noms.add(j2t.getText());
+            if (j3t.getText() != null) {
+                noms.add(j3t.getText());
+            }
+            if (j4t.getText() != null) {
+                noms.add(j4t.getText());
+            }
+            if (j5t.getText() != null) {
+                noms.add(j5t.getText());
+            }
+            if (j6t.getText() != null) {
+                noms.add(j6t.getText());
+            }
+            m.noms = noms;
+            m.type = TypesMessages.DEMARRER_PARTIE;
+            this.notifierObservateur(m);
         });
 
         arreter.addActionListener((ActionEvent e) -> {

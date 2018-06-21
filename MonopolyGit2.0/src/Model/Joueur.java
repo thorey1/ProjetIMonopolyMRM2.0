@@ -17,7 +17,7 @@ public class Joueur {
         public Joueur(int numJoueur, String nomJoueur, Carreau position) {
             this.numJoueur = numJoueur;
             this.nomJoueur = nomJoueur;
-            this.solde = 5000;
+            this.solde = 1500;
             this.prisonnier = false;
             setPosition(position);
             proprietes = new HashMap();

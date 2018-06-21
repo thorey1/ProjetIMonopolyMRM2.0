@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 package View;
+import Controler.Controler;
 
-/**
- *
- * @author boedam
+/**2
+ *6
+ * @author boedam6
  */
 public class mainIHM {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        IHM ihm = new IHM();
-        ihm.fenetreMenu();
+    public static void main(String[] args) { 
+        new Controler();
     }
     
 }

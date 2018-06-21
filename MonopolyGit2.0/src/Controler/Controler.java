@@ -8,34 +8,25 @@ import static Enum.TypeCarte.*;
 import static Enum.TypesMessages.*;
 import Model.*;
 import View.*;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import javax.swing.JPanel;
 
 public class Controler implements Observateur {
 
     private HashMap<Integer, Joueur> joueurs;
-    public VuePlateau vuePlateau;
+    private VuePlateau vuePlateau;
     public VueJoueurEtudiant vueJoueur;
     private HashMap<Integer, Carte> cartes;
     private HashMap<Integer, Carreau> carreaux;
     private HashMap<Color, Maison> maisons;
     private HashMap<Color, Hotel> hotels;
     private HashMap<Color, Integer> couleurs;
-
-    public Controler(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau, VueJoueurEtudiant vueJoueur, HashMap<Integer, Carte> cartes, HashMap<Integer, Carreau> carreaux) {
-        this.vuePlateau = vuePlateau;
-        this.vueJoueur = vueJoueur;
-        cartes = new HashMap();
-        carreaux = new HashMap();
-        joueurs = new HashMap();
-        couleurs = new HashMap();
-
-        for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
-            carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
-        }
-
-    }
+    private VueMenu vueMenu;
+    private VueRegle vueRegle;
+    private int tour = 1;
 
     // POUR TEST JEU
     public Controler() {
@@ -43,9 +34,9 @@ public class Controler implements Observateur {
         carreaux = new HashMap();
         joueurs = new HashMap();
         maisons = new HashMap();
-        maisons = InitialiserHashMapMaison();
+        maisons = initialiserHashMapMaison();
         hotels = new HashMap();
-        hotels = InitialiserHashMapHotel();
+        hotels = initialiserHashMapHotel();
 
         for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
             carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
@@ -54,6 +45,10 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCartes().size(); i++) {
             cartes.put(i, this.initialiserHashMapCartes().get(i - 1));
         }
+
+        vueMenu = new VueMenu();
+        vueMenu.addObservateur(this);
+
     }
 
     public HashMap<Integer, Joueur> getJoueurs() {
@@ -201,8 +196,8 @@ public class Controler implements Observateur {
                         //
                         Propriete prop = newCar.getPropriete();
                         //if ((j.getNbProp(prop) == getCouleurs().get(prop.getCouleur())) && (getCouleurs())) {
-                            //Construction après vérification que le joueur possède tous les terrains de la couleur de la case qu'il possède
-                            //this.construire(j, prop);
+                        //Construction après vérification que le joueur possède tous les terrains de la couleur de la case qu'il possède
+                        //this.construire(j, prop);
                         //}
 
                     }
@@ -216,14 +211,13 @@ public class Controler implements Observateur {
                     System.out.println("Tu es sur ta propriété! \n");
                 }
             }
-            System.out.println("Fin du tour \n");
+            System.out.println("fin du tour \n");
 
-            //faireAction(carreaux.get(pos), j);
         }
     }
 
     public Carte tirerCarte() {
-        ArrayList pilecartes = this.getCartes(this.getJoueur().getPosition().getTypeCarreau());
+        ArrayList pilecartes = this.getCartes(this.getJoueurTour().getPosition().getTypeCarreau());
         return this.getCarteAlea(pilecartes);
     }
 
@@ -256,7 +250,7 @@ public class Controler implements Observateur {
         return pilecarte;
     }
 
-    public Joueur getJoueur() {
+    public Joueur getJoueurTour() {
         Joueur j = null;
         for (int i = 1; i < joueurs.size(); i++) {
             if (joueurs.get(i).getTour()) {
@@ -266,27 +260,10 @@ public class Controler implements Observateur {
         return j;
     }
 
-//    public void traiterMessage() {
-    //          throw new UnsupportedOperationException();
-    //}
     public int lancerDe() {
         return (int) ((Math.random() * 6) + 1);
     }
 
-    private void faireAction(Message m) {
-        if (m.type == JOUER) {
-
-        } else if (m.type == TIRER_CARTE) {
-            //if (m.type==ACTION){
-
-            //}  
-        }
-    }
-
-    //private void faireActionCarte
-// public int getNewPosition() {
-    //       throw new UnsupportedOperationException();
-    //}
     public ArrayList<Carreau> initialiserHashMapCarreaux() {
         Special t1 = new Special(1, "Départ", DEPART);
         Terrain t2 = new Propriete(2, "Boulevard de Belleville", PROPRIETE, 60, Color.pink);
@@ -372,7 +349,7 @@ public class Controler implements Observateur {
         return casecar;
     }
 
-    public HashMap<Color, Maison> InitialiserHashMapMaison() {
+    public HashMap<Color, Maison> initialiserHashMapMaison() {
         Maison m1 = new Maison(Color.pink, 50);
         Maison m2 = new Maison(Color.cyan, 50);
         Maison m3 = new Maison(Color.magenta, 100);
@@ -396,7 +373,7 @@ public class Controler implements Observateur {
         return maisons;
     }
 
-    public HashMap<Color, Hotel> InitialiserHashMapHotel() {
+    public HashMap<Color, Hotel> initialiserHashMapHotel() {
         Hotel m1 = new Hotel(Color.pink, 50);
         Hotel m2 = new Hotel(Color.cyan, 50);
         Hotel m3 = new Hotel(Color.magenta, 100);
@@ -420,7 +397,7 @@ public class Controler implements Observateur {
         return hotels;
     }
 
-    public HashMap<Color, Integer> InitialiserHashMapCouleur() {
+    public HashMap<Color, Integer> initialiserHashMapCouleur() {
         HashMap<Color, Integer> couleurs = new HashMap();
 
         couleurs.put(Color.pink, 2);
@@ -480,11 +457,6 @@ public class Controler implements Observateur {
             carCourant.getPropriete().setHotel(hotel);
             j.payer(hotel.getPrix());
         }
-    }
-
-    @Override
-    public void traiterMessage(Message m) {
-        faireAction(m);
     }
 
     public ArrayList<Carte> initialiserHashMapCartes() {
@@ -731,28 +703,160 @@ public class Controler implements Observateur {
 
     }
 
-    public boolean memeNbMaison(Terrain t, Joueur j){
+    public boolean memeNbMaison(Terrain t, Joueur j) {
         boolean meme = false;
         Color coul = t.getPropriete().getCouleur();
         int nbMais = t.getPropriete().getMaisons().size();
         //a changer
         return false;
-        
+
     }
-    
-    public int getNbMaisonsCouleur(Color c){
+
+    public int getNbMaisonsCouleur(Color c) {
         int nbMais = 0;
         ArrayList<Propriete> props = new ArrayList();
-        for(int i = 0; i <= getCarreaux().size(); i++){
-            if(getCarreaux().get(i).getPropriete().getCouleur() == c){
+        for (int i = 0; i <= getCarreaux().size(); i++) {
+            if (getCarreaux().get(i).getPropriete().getCouleur() == c) {
                 props.add(getCarreaux().get(i).getPropriete());
             }
         }
         //a changer
         return 0;
-    }   
-    
-    
-    //changement
-      
+    }
+
+    @Override
+    public void traiterMessage(Message m) {
+        if (null != m.type) switch (m.type) {
+            case DEMARRER_PARTIE:
+                commencerPartie(m);
+                break;
+            case ARRETER:
+                arreterPartie(m);
+                break;
+            case RETOUR:
+                retourMenu(m);
+                break;
+            case REGLE:
+                afficherRegles(m);
+                break;
+            case FIN_TOUR:
+                finTour(m);
+                break;
+            case LANCER_DE:
+                deplacerJoueur(m);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setVuePlateau(VuePlateau vuePlateau) {
+        this.vuePlateau = vuePlateau;
+    }
+
+    public void setVueMenu(VueMenu vueMenu) {
+        this.vueMenu = vueMenu;
+    }
+
+    private void setVueRegle(VueRegle vueRegle) {
+        this.vueRegle = vueRegle;
+    }
+
+    private void commencerPartie(Message m) {
+        vueMenu.getFenetremenu().setVisible(false);
+        this.setVuePlateau(new VuePlateau(m.noms));
+        vuePlateau.addObservateur(this);
+        for (int i = 0; i < m.noms.size(); i++) {
+            this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1)));
+        }
+        tourDeJeu(this.getJoueurs(), vuePlateau);
+    }
+
+    private void arreterPartie(Message m) {
+        vueMenu.getFenetremenu().setVisible(false);
+        System.out.println("Jeu arrêté");
+    }
+
+    private void retourMenu(Message m) {
+        vuePlateau.getFenetrePlateau().setVisible(false);
+        this.setVueMenu(new VueMenu());
+        joueurs.clear();
+        vueMenu.addObservateur(this);
+    }
+
+    private void afficherRegles(Message m) {
+        this.setVueRegle(new VueRegle());
+    }
+
+    private void tourDeJeu(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau1) {
+        while (joueurs.size() > 1) {
+            vuePlateau1.getNom2().setText(joueurs.get(tour).getNomJoueur());
+            vuePlateau1.getArgent2().setText("" + joueurs.get(tour).getSolde());
+            break;
+        }
+    }
+
+    private void finTour(Message m) {
+        if (tour == joueurs.size()) {
+            tour = 1;
+        } else {
+            tour++;
+        }
+        tourDeJeu(this.getJoueurs(), vuePlateau);
+        vuePlateau.getFenetrePlateau().repaint();
+    }
+
+    private void deplacerJoueur(Message m) {
+        int de1 = this.lancerDe();
+        int de2 = this.lancerDe();
+        
+        vuePlateau.getDé().removeAll();
+        
+        //Dé 1
+        switch (de1) {
+            case 1:
+                vuePlateau.getDé().add(vuePlateau.getDé1());
+                break;
+            case 2:
+                vuePlateau.getDé().add(vuePlateau.getDé2());
+                break;
+            case 3:
+                vuePlateau.getDé().add(vuePlateau.getDé3());
+                break;
+            case 4:
+                vuePlateau.getDé().add(vuePlateau.getDé4());
+                break;
+            case 5:
+                vuePlateau.getDé().add(vuePlateau.getDé5());
+                break;
+            case 6:
+                vuePlateau.getDé().add(vuePlateau.getDé6());
+                break;
+        }
+        
+        //Dé 2
+        switch (de2) {
+            case 1:
+                vuePlateau.getDé().add(vuePlateau.getDé1x());
+                break;
+            case 2:
+                vuePlateau.getDé().add(vuePlateau.getDé2x());
+                break;
+            case 3:
+                vuePlateau.getDé().add(vuePlateau.getDé3x());
+                break;
+            case 4:
+                vuePlateau.getDé().add(vuePlateau.getDé4x());
+                break;
+            case 5:
+                vuePlateau.getDé().add(vuePlateau.getDé5x());
+                break;
+            case 6:
+                vuePlateau.getDé().add(vuePlateau.getDé6x());
+                break;
+        }
+        
+
+        vuePlateau.getFenetrePlateau().repaint();
+    }
 }
