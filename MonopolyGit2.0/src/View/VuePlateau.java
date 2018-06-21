@@ -47,9 +47,9 @@ public class VuePlateau extends Observe {
         JLabel nom2 = new JLabel("1");
         JLabel argent = new JLabel("Argent joueur :");
         JLabel argent2 = new JLabel("2");
+        JLabel dé1 = new JLabel(new ImageIcon("Images/fleche.gif"));
+        JLabel dé2 = new JLabel(new ImageIcon("Images/fleche.gif"));
         JButton lancer = new JButton("Lancer les dès");
-        JPanel des1 = new JPanel();
-        //des1= new JPanel(new ImageIcon("/users/info/etu-s2/boedam/Downloads/dés.jpg"));
 
         //Intanciation des boutons
         JButton acheter = new JButton("Acheter");
@@ -72,15 +72,43 @@ public class VuePlateau extends Observe {
         });
         
         //instanciation des propriétés
-        JTextField p1 = new JTextField("1");
-        JTextField p2 = new JTextField("2");
-        JTextField p3 = new JTextField("3");
-        JTextField p4 = new JTextField("4");
-        JTextField p5 = new JTextField("5");
+        JLabel p1 = new JLabel("1");
+        JLabel p2 = new JLabel("1");
+        JLabel p3 = new JLabel("1");
+        JLabel p4 = new JLabel("1");
+        JLabel p5 = new JLabel("1");
+        JLabel p6 = new JLabel("1");
+        JLabel p7 = new JLabel("1");
+        JLabel p8 = new JLabel("1");
+        JLabel p9 = new JLabel("1");
+        JLabel p10 = new JLabel("1");
+        JLabel p11= new JLabel("1");
+        JLabel p12 = new JLabel("1");
+        JLabel p13 = new JLabel("1");
+        JLabel p14 = new JLabel("1");
+        JLabel p15 = new JLabel("1");
+        JLabel p16 = new JLabel("1");
+        JLabel p17 = new JLabel("1");
+        JLabel p18 = new JLabel("1");
+        JLabel p19 = new JLabel("1");
+        JLabel p20 = new JLabel("1");
+        JLabel p21 = new JLabel("1");
+        JLabel p22 = new JLabel("1");
+        JLabel p23 = new JLabel("1");
+        JLabel p24 = new JLabel("1");
+        JLabel p25 = new JLabel("1");
+        JLabel p26 = new JLabel("1");
+        JLabel p27 = new JLabel("1");
+        JLabel p28= new JLabel("1");
+        
+        
+                
+      
 
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(2, 2));
-        JPanel commande = new JPanel(new GridLayout(5, 0));
+        JPanel dé = new JPanel(new GridLayout(0, 2));
+        JPanel commande = new JPanel(new GridLayout(6, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
         JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
@@ -89,11 +117,14 @@ public class VuePlateau extends Observe {
         //ajout des différents composants 
         pchoix.add(arreter);
         pchoix.add(regles);
+        dé.add(dé1);
+        dé.add(dé2);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
         information.add(argent2);
         commande.add(information);
+        commande.add(dé);
         commande.add(lancer);
         commande.add(acheter);
         commande.add(b3);
@@ -105,6 +136,29 @@ public class VuePlateau extends Observe {
         commandeScroll.add(p3);
         commandeScroll.add(p4);
         commandeScroll.add(p5);
+        commandeScroll.add(p6);
+        commandeScroll.add(p7);
+        commandeScroll.add(p8);
+        commandeScroll.add(p9);
+        commandeScroll.add(p10);
+        commandeScroll.add(p11);
+        commandeScroll.add(p12);
+        commandeScroll.add(p13);
+        commandeScroll.add(p14);
+        commandeScroll.add(p15);
+        commandeScroll.add(p16);
+        commandeScroll.add(p17);
+        commandeScroll.add(p18);
+        commandeScroll.add(p19);
+        commandeScroll.add(p20);
+        commandeScroll.add(p21);
+        commandeScroll.add(p22);
+        commandeScroll.add(p23);
+        commandeScroll.add(p24);
+        commandeScroll.add(p25);
+        commandeScroll.add(p26);
+        commandeScroll.add(p27);
+        commandeScroll.add(p28);
         
         //Mise en page de la zone de commande 
             //Mise en place des tailles et cadre
