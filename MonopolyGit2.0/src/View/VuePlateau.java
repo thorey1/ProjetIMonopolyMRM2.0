@@ -44,9 +44,9 @@ public class VuePlateau extends Observe {
          Border cadre = BorderFactory.createLineBorder(Color.black);
 
         JLabel nom = new JLabel("Nom du joueur :");
-        JLabel nom2 = new JLabel("");
+        JLabel nom2 = new JLabel("bite");
         JLabel argent = new JLabel("Argent joueur :");
-        JLabel argent2 = new JLabel("");
+        JLabel argent2 = new JLabel("couille");
         JButton lancer = new JButton("Lancer les dès");
         JPanel des1 = new JPanel();
         //des1= new JPanel(new ImageIcon("/users/info/etu-s2/boedam/Downloads/dés.jpg"));
