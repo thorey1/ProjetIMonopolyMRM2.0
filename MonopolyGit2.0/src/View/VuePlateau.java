@@ -244,22 +244,22 @@ public class VuePlateau extends Observe {
                 case 81:
                     lab = new JLabel("Chance");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
-                    lab.setForeground(Color.black);
+                    lab.setForeground(Color.red);
                     lab.setFont(font1);
                     car.add(lab);
                     plateau.add(car);
-                    car.setBackground(Color.RED);
+                    car.setBackground(Color.white);
                     car.setBorder(cadre);
                     break;
 
                 case 85:
                     lab = new JLabel("<html>Caisse de<br>communauté</html>");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
-                    lab.setForeground(Color.white);
+                    lab.setForeground(Color.blue);
                     lab.setFont(font2);
                     car.add(lab);
                     plateau.add(car);
-                    car.setBackground(Color.BLUE);
+                    car.setBackground(Color.white);
                     car.setBorder(cadre);
                     break;
 
