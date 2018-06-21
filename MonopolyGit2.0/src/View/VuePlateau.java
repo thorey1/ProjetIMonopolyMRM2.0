@@ -33,7 +33,7 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6;
+    private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x;
     private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     
@@ -58,6 +58,14 @@ public class VuePlateau extends Observe {
         dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
         dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
         dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
+        
+        dé1x = new JLabel(new ImageIcon("Images/dé1.png"));
+        dé2x = new JLabel(new ImageIcon("Images/dé2.png"));
+        dé3x = new JLabel(new ImageIcon("Images/dé3.png"));
+        dé4x = new JLabel(new ImageIcon("Images/dé4.png"));
+        dé5x = new JLabel(new ImageIcon("Images/dé5.png"));
+        dé6x = new JLabel(new ImageIcon("Images/dé6.png"));
+        
         JButton lancer = new JButton("Lancer les dès");
 
         //Intanciation des boutons
@@ -140,7 +148,7 @@ public class VuePlateau extends Observe {
         pchoix.add(arreter);
         pchoix.add(regles);
         dé.add(dé6);
-        dé.add(dé6);
+        dé.add(dé6x);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
@@ -1111,6 +1119,30 @@ public class VuePlateau extends Observe {
 
     public void setDé(JPanel dé) {
         this.dé = dé;
+    }
+
+    public JLabel getDé1x() {
+        return dé1x;
+    }
+
+    public JLabel getDé2x() {
+        return dé2x;
+    }
+
+    public JLabel getDé3x() {
+        return dé3x;
+    }
+
+    public JLabel getDé4x() {
+        return dé4x;
+    }
+
+    public JLabel getDé5x() {
+        return dé5x;
+    }
+
+    public JLabel getDé6x() {
+        return dé6x;
     }
 
 }

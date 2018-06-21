@@ -8,9 +8,11 @@ import static Enum.TypeCarte.*;
 import static Enum.TypesMessages.*;
 import Model.*;
 import View.*;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import javax.swing.JPanel;
 
 public class Controler implements Observateur {
 
@@ -724,18 +726,27 @@ public class Controler implements Observateur {
 
     @Override
     public void traiterMessage(Message m) {
-        if (m.type == DEMARRER_PARTIE) {
-            commencerPartie(m);
-        } else if (m.type == ARRETER) {
-            arreterPartie(m);
-        } else if (m.type == RETOUR) {
-            retourMenu(m);
-        } else if (m.type == REGLE) {
-            afficherRegles(m);
-        } else if (m.type == FIN_TOUR) {
-            finTour(m);
-        } else if (m.type == LANCER_DE) {
-            deplacerJoueur(m);
+        if (null != m.type) switch (m.type) {
+            case DEMARRER_PARTIE:
+                commencerPartie(m);
+                break;
+            case ARRETER:
+                arreterPartie(m);
+                break;
+            case RETOUR:
+                retourMenu(m);
+                break;
+            case REGLE:
+                afficherRegles(m);
+                break;
+            case FIN_TOUR:
+                finTour(m);
+                break;
+            case LANCER_DE:
+                deplacerJoueur(m);
+                break;
+            default:
+                break;
         }
     }
 
@@ -759,7 +770,6 @@ public class Controler implements Observateur {
             this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1)));
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
-        System.out.print(vuePlateau.getCases().size());
     }
 
     private void arreterPartie(Message m) {
@@ -800,36 +810,53 @@ public class Controler implements Observateur {
         int de1 = this.lancerDe();
         int de2 = this.lancerDe();
         
+        vuePlateau.getDé().removeAll();
+        
         //Dé 1
-        if (de1 == 1) {
-            vuePlateau.getDé().add(vuePlateau.getDé1());
-        } else if (de1 == 2) {
-            vuePlateau.getDé().add(vuePlateau.getDé2());
-        } else if (de1 == 3) {
-            vuePlateau.getDé().add(vuePlateau.getDé3());
-        } else if (de1 == 4) {
-            vuePlateau.getDé().add(vuePlateau.getDé4());
-        } else if (de1 == 5) {
-            vuePlateau.getDé().add(vuePlateau.getDé5());
-        } else {
-            vuePlateau.getDé().add(vuePlateau.getDé6());
+        switch (de1) {
+            case 1:
+                vuePlateau.getDé().add(vuePlateau.getDé1());
+                break;
+            case 2:
+                vuePlateau.getDé().add(vuePlateau.getDé2());
+                break;
+            case 3:
+                vuePlateau.getDé().add(vuePlateau.getDé3());
+                break;
+            case 4:
+                vuePlateau.getDé().add(vuePlateau.getDé4());
+                break;
+            case 5:
+                vuePlateau.getDé().add(vuePlateau.getDé5());
+                break;
+            case 6:
+                vuePlateau.getDé().add(vuePlateau.getDé6());
+                break;
         }
         
         //Dé 2
-        if (de2 == 1) {
-            vuePlateau.getDé().add(vuePlateau.getDé1());
-        } else if (de2 == 2) {
-            vuePlateau.getDé().add(vuePlateau.getDé2());
-        } else if (de2 == 3) {
-            vuePlateau.getDé().add(vuePlateau.getDé3());
-        } else if (de2 == 4) {
-            vuePlateau.getDé().add(vuePlateau.getDé4());
-        } else if (de2 == 5) {
-            vuePlateau.getDé().add(vuePlateau.getDé5());
-        } else {
-            vuePlateau.getDé().add(vuePlateau.getDé6());
+        switch (de2) {
+            case 1:
+                vuePlateau.getDé().add(vuePlateau.getDé1x());
+                break;
+            case 2:
+                vuePlateau.getDé().add(vuePlateau.getDé2x());
+                break;
+            case 3:
+                vuePlateau.getDé().add(vuePlateau.getDé3x());
+                break;
+            case 4:
+                vuePlateau.getDé().add(vuePlateau.getDé4x());
+                break;
+            case 5:
+                vuePlateau.getDé().add(vuePlateau.getDé5x());
+                break;
+            case 6:
+                vuePlateau.getDé().add(vuePlateau.getDé6x());
+                break;
         }
         
+
         vuePlateau.getFenetrePlateau().repaint();
     }
 
