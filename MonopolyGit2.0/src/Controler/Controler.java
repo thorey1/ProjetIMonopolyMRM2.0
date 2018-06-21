@@ -397,7 +397,7 @@ public class Controler implements Observateur {
         return hotels;
     }
 
-    public HashMap<Color, Integer> InitialiserHashMapCouleur() {
+    public HashMap<Color, Integer> initialiserHashMapCouleur() {
         HashMap<Color, Integer> couleurs = new HashMap();
 
         couleurs.put(Color.pink, 2);

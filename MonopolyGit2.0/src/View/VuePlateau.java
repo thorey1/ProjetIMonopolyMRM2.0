@@ -8,19 +8,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 /**
@@ -102,6 +98,8 @@ public class VuePlateau extends Observe {
             Message m = new Message();
             m.type = TypesMessages.LANCER_DE;
             this.notifierObservateur(m);
+            this.getFenetrePlateau().resize(1, 1);
+            this.getFenetrePlateau().resize(1920, 1080);
         });
         
         
@@ -137,7 +135,7 @@ public class VuePlateau extends Observe {
 
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(2, 2));
-        JPanel dé = new JPanel(new GridLayout(0, 2));
+        dé = new JPanel(new GridLayout(0, 2));
         JPanel commande = new JPanel(new GridLayout(7, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
         JPanel propriété = new JPanel(new BorderLayout());
@@ -154,8 +152,8 @@ public class VuePlateau extends Observe {
         information.add(nom2);
         information.add(argent);
         information.add(argent2);
-        dé.add(dé6);
-        dé.add(dé5);
+       // dé.add(dé6);
+       // dé.add(dé5);
         propriété.add(infosPropriété, BorderLayout.SOUTH);
         pchoix.add(arreter);
         pchoix.add(regles);
