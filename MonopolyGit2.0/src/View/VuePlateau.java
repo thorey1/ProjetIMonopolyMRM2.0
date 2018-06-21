@@ -67,6 +67,8 @@ public class VuePlateau extends Observe {
         JButton regles = new JButton("Règles");
 
         //A MODIFIER
+        JLabel infosPropriété=new JLabel("Propiétés du joueur");
+        infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
         arreter.addActionListener((ActionEvent e) -> {
             Message m = new Message();
             m.type = TypesMessages.RETOUR;
@@ -114,35 +116,34 @@ public class VuePlateau extends Observe {
         JLabel p26 = new JLabel("1");
         JLabel p27 = new JLabel("1");
         JLabel p28 = new JLabel("1");
-        
-        
-                
-      
 
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(2, 2));
         JPanel dé = new JPanel(new GridLayout(0, 2));
-        JPanel commande = new JPanel(new GridLayout(6, 0));
+        JPanel commande = new JPanel(new GridLayout(7, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
+        JPanel propriété = new JPanel(new BorderLayout());
         JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
         JScrollPane pane = new JScrollPane(commandeScroll);
         
-        //ajout des différents composants 
-        pchoix.add(arreter);
-        pchoix.add(regles);
-        dé.add(dé6);
-        dé.add(dé6);
+        //ajout des différents composants
         information.add(nom);
         information.add(nom2);
         information.add(argent);
         information.add(argent2);
+        dé.add(dé6);
+        dé.add(dé5);
+        propriété.add(infosPropriété, BorderLayout.SOUTH);
+        pchoix.add(arreter);
+        pchoix.add(regles);
         commande.add(information);
         commande.add(dé);
         commande.add(lancer);
         commande.add(acheter);
         commande.add(b3);
         commande.add(fin);
+        commande.add(infosPropriété);
         
         //ajout des propriété au menu déroulant
         commandeScroll.add(p1);
