@@ -33,7 +33,8 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2;
+    private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6;
+    private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     
 
@@ -69,6 +70,8 @@ public class VuePlateau extends Observe {
         //A MODIFIER
         JLabel infosPropriété=new JLabel("Propiétés du joueur");
         infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
+
+        //LISTENER BOUTONS
         arreter.addActionListener((ActionEvent e) -> {
             Message m = new Message();
             m.type = TypesMessages.RETOUR;
@@ -86,6 +89,13 @@ public class VuePlateau extends Observe {
             m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
         });
+        
+        lancer.addActionListener((ActionEvent) ->{
+            Message m = new Message();
+            m.type = TypesMessages.LANCER_DE;
+            this.notifierObservateur(m);
+        });
+        
         
         //instanciation des propriétés
         JLabel p1 = new JLabel("1");
@@ -1072,6 +1082,38 @@ public class VuePlateau extends Observe {
 
     public HashMap<Integer,JPanel> getCases() {
         return cases;
+    }
+
+    public JLabel getDé1() {
+        return dé1;
+    }
+
+    public JLabel getDé2() {
+        return dé2;
+    }
+
+    public JLabel getDé3() {
+        return dé3;
+    }
+
+    public JLabel getDé4() {
+        return dé4;
+    }
+
+    public JLabel getDé5() {
+        return dé5;
+    }
+
+    public JLabel getDé6() {
+        return dé6;
+    }
+
+    public JPanel getDé() {
+        return dé;
+    }
+
+    public void setDé(JPanel dé) {
+        this.dé = dé;
     }
 
 }
