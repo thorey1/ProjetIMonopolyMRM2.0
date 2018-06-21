@@ -32,12 +32,14 @@ public class VueRegle extends Observe{
         fenetreregles1.setTitle("Règles Monopoly");
         fenetreregles1.setSize(600, 950);
         fenetreregles1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetreregles1.setVisible(false);
+        fenetreregles1.setVisible(true);
 
         JLabel teteRegles = new JLabel("Règles du Monopoly");
         fenetreregles1.add(teteRegles, BorderLayout.NORTH);
         teteRegles.setHorizontalAlignment(JLabel.CENTER);
-
+        
+         
+        
         JLabel regle1 = new JLabel("<html> <h2>I.Préparation</h2> "
                 + "<p>1. Chaque joueur choisit un pion et le place sur la case numéro 1. </p> <br>"
                 + "<p>2. Le  Banquier  remet  à  chaque  joueur  une  somme  de 1500  euros. La  banque  possède  les Titres de  Propriété ."

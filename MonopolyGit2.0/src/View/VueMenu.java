@@ -7,6 +7,7 @@ package View;
 
 import Controler.Message;
 import Controler.Observateur;
+import Enum.TypesMessages;
 import static Enum.TypesMessages.*;
 
 import java.awt.BorderLayout;
@@ -31,6 +32,7 @@ public class VueMenu extends Observe {
     private JFrame fenetremenu;
     private JComboBox listeJoueurs;
     private Observateur o;
+
     public VueMenu() {
         //Fenêtre de menu principal
         fenetremenu = new JFrame();
@@ -41,8 +43,6 @@ public class VueMenu extends Observe {
                 400, 300);
         fenetremenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        fenetremenu.setVisible(
-                false);
         fenetremenu.setLayout(
                 new BorderLayout());
 
@@ -228,12 +228,8 @@ public class VueMenu extends Observe {
         //Listener menu
         commencer.addActionListener(
                 (ActionEvent e) -> {
-                    fenetremenu.setVisible(false);
-               //     fenetre.setVisible(true);
-               //     fenetre.repaint();
 
                     Message m = new Message();
-
                     ArrayList<String> noms = new ArrayList<>();
                     noms.add(j1t.getText());
                     noms.add(j2t.getText());
@@ -257,18 +253,18 @@ public class VueMenu extends Observe {
 
         arreter.addActionListener(
                 (ActionEvent e) -> {
-                    fenetremenu.setVisible(false);
-                    fenetremenu.disable();
+                    Message m = new Message();
+                    m.type = TypesMessages.ARRETER;
+                    this.notifierObservateur(m);
                 }
         );
-        
-        
+
         fenetremenu.setVisible(true);
     }
 
     @Override
     public void addObservateur(Observateur o) {
-        this.o=o;
+        this.o = o;
     }
 
     @Override
@@ -281,7 +277,5 @@ public class VueMenu extends Observe {
     public JFrame getFenetremenu() {
         return fenetremenu;
     }
-    
-    
 
 }
