@@ -24,6 +24,7 @@ public class Controler implements Observateur {
     private HashMap<Color, Integer> couleurs;
     private VueMenu vueMenu;
     private VueRegle vueRegle;
+    private int tour =1 ;
 
 
     // POUR TEST JEU
@@ -216,7 +217,7 @@ public class Controler implements Observateur {
     }
 
     public Carte tirerCarte() {
-        ArrayList pilecartes = this.getCartes(this.getJoueur().getPosition().getTypeCarreau());
+        ArrayList pilecartes = this.getCartes(this.getJoueurTour().getPosition().getTypeCarreau());
         return this.getCarteAlea(pilecartes);
     }
 
@@ -249,7 +250,7 @@ public class Controler implements Observateur {
         return pilecarte;
     }
 
-    public Joueur getJoueur() {
+    public Joueur getJoueurTour() {
         Joueur j = null;
         for (int i = 1; i < joueurs.size(); i++) {
             if (joueurs.get(i).getTour()) {
@@ -733,6 +734,8 @@ public class Controler implements Observateur {
             retourMenu(m);
         }else if(m.type == REGLE){
             afficherRegles(m);
+        }else if(m.type == FIN_TOUR){
+            finTour(m);
         }
     }
 
@@ -754,9 +757,11 @@ public class Controler implements Observateur {
         vueMenu.getFenetremenu().setVisible(false);
         this.setVuePlateau(new VuePlateau(m.noms));
         vuePlateau.addObservateur(this);
-      /*  for(int i = 0; i<m.noms.size();i++){
-            System.out.println(m.noms.get(i));
-        }*/
+        for(int i =0; i<m.noms.size();i++){
+            this.getJoueurs().put(i+1,new Joueur(i+1,m.noms.get(i),this.getCarreau(1)));
+        }
+        System.out.println(""+joueurs.size());
+        tourDeJeu(this.getJoueurs(), vuePlateau);
     }
     
     private void arreterPartie(Message m) {
@@ -772,6 +777,24 @@ public class Controler implements Observateur {
 
     private void afficherRegles(Message m) {
         this.setVueRegle(new VueRegle());
+    }
+
+    private void tourDeJeu(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau1) {
+        while (joueurs.size()>1){
+            vuePlateau1.getNom2().setText(joueurs.get(tour).getNomJoueur());
+            vuePlateau1.getArgent2().setText(""+joueurs.get(tour).getSolde());
+            break; 
+        }
+    }
+
+    private void finTour(Message m) {
+        if(tour == joueurs.size()){
+            tour=1;
+        }else{
+            tour++;
+        }
+        tourDeJeu(this.getJoueurs(), vuePlateau);
+        vuePlateau.getFenetrePlateau().repaint();
     }
 
     

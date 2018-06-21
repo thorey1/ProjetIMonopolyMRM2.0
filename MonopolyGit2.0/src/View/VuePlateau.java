@@ -28,10 +28,11 @@ import javax.swing.border.Border;
  */
 public class VuePlateau extends Observe {
 
-    private JFrame fenetre, fenetremenu, fenetreregles1, fenetreregles2;
+    private JFrame fenetre;
 
     private Observateur o;
     private ArrayList<String> noms;
+    private JLabel nom2,argent2;
     
 
     public VuePlateau(ArrayList<String> noms) {
@@ -44,9 +45,9 @@ public class VuePlateau extends Observe {
          Border cadre = BorderFactory.createLineBorder(Color.black);
 
         JLabel nom = new JLabel("Nom du joueur :");
-        JLabel nom2 = new JLabel("bite");
+        nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
-        JLabel argent2 = new JLabel("couille");
+        argent2 = new JLabel("");
         JButton lancer = new JButton("Lancer les dès");
         JPanel des1 = new JPanel();
         //des1= new JPanel(new ImageIcon("/users/info/etu-s2/boedam/Downloads/dés.jpg"));
@@ -68,6 +69,12 @@ public class VuePlateau extends Observe {
         regles.addActionListener((ActionEvent) -> {
             Message m = new Message();
             m.type = TypesMessages.REGLE;
+            this.notifierObservateur(m);
+        });
+        
+        fin.addActionListener((ActionEvent) ->{
+            Message m = new Message();
+            m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
         });
         
@@ -873,4 +880,13 @@ public class VuePlateau extends Observe {
     public JFrame getFenetrePlateau() {
         return fenetre;
     }
+
+    public JLabel getNom2() {
+        return nom2;
+    }
+
+    public JLabel getArgent2() {
+        return argent2;
+    }
+
 }

@@ -233,16 +233,16 @@ public class VueMenu extends Observe {
                     ArrayList<String> noms = new ArrayList<>();
                     noms.add(j1t.getText());
                     noms.add(j2t.getText());
-                    if (j3t.getText() != null) {
+                    if (!"".equals(j3t.getText())) {
                         noms.add(j3t.getText());
                     }
-                    if (j4t.getText() != null) {
+                    if (!"".equals(j4t.getText())) {
                         noms.add(j4t.getText());
                     }
-                    if (j5t.getText() != null) {
+                    if (!"".equals(j5t.getText())) {
                         noms.add(j5t.getText());
                     }
-                    if (j6t.getText() != null) {
+                    if (!"".equals(j6t.getText())) {
                         noms.add(j6t.getText());
                     }
                     m.noms = noms;
