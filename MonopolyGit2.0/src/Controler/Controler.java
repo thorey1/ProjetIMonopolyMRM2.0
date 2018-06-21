@@ -15,13 +15,14 @@ import java.util.Scanner;
 public class Controler implements Observateur {
 
     private HashMap<Integer, Joueur> joueurs;
-    public VuePlateau vuePlateau;
+    private VuePlateau vuePlateau;
     public VueJoueurEtudiant vueJoueur;
     private HashMap<Integer, Carte> cartes;
     private HashMap<Integer, Carreau> carreaux;
     private HashMap<Color, Maison> maisons;
     private HashMap<Color, Hotel> hotels;
     private HashMap<Color, Integer> couleurs;
+    private VueMenu vueMenu;
 
     public Controler(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau, VueJoueurEtudiant vueJoueur, HashMap<Integer, Carte> cartes, HashMap<Integer, Carreau> carreaux) {
         this.vuePlateau = vuePlateau;
@@ -34,8 +35,12 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
             carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
         }
+        
+        vueMenu.addObservateur(this);
 
     }
+    
+    
 
     // POUR TEST JEU
     public Controler() {
@@ -54,6 +59,12 @@ public class Controler implements Observateur {
         for (int i = 1; i <= this.initialiserHashMapCartes().size(); i++) {
             cartes.put(i, this.initialiserHashMapCartes().get(i - 1));
         }
+        
+        
+        
+        vueMenu = new VueMenu();
+        
+        
     }
 
     public HashMap<Integer, Joueur> getJoueurs() {
@@ -201,8 +212,8 @@ public class Controler implements Observateur {
                         //
                         Propriete prop = newCar.getPropriete();
                         //if ((j.getNbProp(prop) == getCouleurs().get(prop.getCouleur())) && (getCouleurs())) {
-                            //Construction après vérification que le joueur possède tous les terrains de la couleur de la case qu'il possède
-                            //this.construire(j, prop);
+                        //Construction après vérification que le joueur possède tous les terrains de la couleur de la case qu'il possède
+                        //this.construire(j, prop);
                         //}
 
                     }
@@ -271,16 +282,6 @@ public class Controler implements Observateur {
     //}
     public int lancerDe() {
         return (int) ((Math.random() * 6) + 1);
-    }
-
-    private void faireAction(Message m) {
-        if (m.type == JOUER) {
-
-        } else if (m.type == TIRER_CARTE) {
-            //if (m.type==ACTION){
-
-            //}  
-        }
     }
 
     //private void faireActionCarte
@@ -480,11 +481,6 @@ public class Controler implements Observateur {
             carCourant.getPropriete().setHotel(hotel);
             j.payer(hotel.getPrix());
         }
-    }
-
-    @Override
-    public void traiterMessage(Message m) {
-        faireAction(m);
     }
 
     public ArrayList<Carte> initialiserHashMapCartes() {
@@ -731,28 +727,52 @@ public class Controler implements Observateur {
 
     }
 
-    public boolean memeNbMaison(Terrain t, Joueur j){
+    public boolean memeNbMaison(Terrain t, Joueur j) {
         boolean meme = false;
         Color coul = t.getPropriete().getCouleur();
         int nbMais = t.getPropriete().getMaisons().size();
         //a changer
         return false;
-        
+
     }
-    
-    public int getNbMaisonsCouleur(Color c){
+
+    public int getNbMaisonsCouleur(Color c) {
         int nbMais = 0;
         ArrayList<Propriete> props = new ArrayList();
-        for(int i = 0; i <= getCarreaux().size(); i++){
-            if(getCarreaux().get(i).getPropriete().getCouleur() == c){
+        for (int i = 0; i <= getCarreaux().size(); i++) {
+            if (getCarreaux().get(i).getPropriete().getCouleur() == c) {
                 props.add(getCarreaux().get(i).getPropriete());
             }
         }
         //a changer
         return 0;
-    }   
+    }
+
+    @Override
+    public void traiterMessage(Message m) {
+        if (m.type == DEMARRER_PARTIE){
+            System.out.println("bonjour");
+            commencerPartie(m);
+        }
+    }
+
+    private void commencerPartie(Message m) {
+        vueMenu.getFenetremenu().setVisible(false);
+        System.out.println("bonjour");
+        vuePlateau = new VuePlateau(m.noms);
+        System.out.println("bonjour");
+        this.setVuePlateau(vuePlateau);
+        System.out.println("bonjour");
+    }
+
+    public void setVuePlateau(VuePlateau vuePlateau) {
+        this.vuePlateau = vuePlateau;
+    }
+
+    public void setVueMenu(VueMenu vueMenu) {
+        this.vueMenu = vueMenu;
+    }
     
     
-    //changement
-      
+
 }

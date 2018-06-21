@@ -6,6 +6,7 @@
 package Controler;
 
 import Enum.TypesMessages;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,10 +16,8 @@ public class Message {
     
     
     public TypesMessages type;  // type de message
-   
+    public ArrayList<String> noms; //nom des joueurs + nombre de joueurs (.size)
     
-    public Message(TypesMessages m ){
-        this.type=m;
-       
-    }
+    public Message(){}
+    
 }

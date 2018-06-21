@@ -12,7 +12,16 @@ import Controler.Message;
  *
  * @author laurillau
  */
-public interface Observe {
-    public void addObservateur(Observateur o);    
-    public void notifierObservateur(Message m);
+public class Observe {
+    public Observateur observateur;
+    
+    public void addObservateur(Observateur o) {
+        this.observateur = o;
+    }
+    
+    public void notifierObservateur(Message m) {
+        if (observateur != null) {
+            observateur.traiterMessage(m);
+        }
+    }
 }

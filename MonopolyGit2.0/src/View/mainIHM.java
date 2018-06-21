@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controler.Controler;
+
 /**
  *
  * @author boedam
@@ -15,8 +17,8 @@ public class mainIHM {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IHM ihm = new IHM();
-        ihm.fenetreMenu();
+       new Controler();
+        
     }
     
 }

@@ -22,6 +22,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,7 +38,7 @@ import javax.swing.border.Border;
  *
  * @author tostonr
  */
-public class IHM implements Observe {
+public class IHM extends Observe {
 
     JFrame fenetre, fenetremenu, fenetreregles1, fenetreregles2;
     JTextField j1t, j2t, j3t, j4t, j5t, j6t;
@@ -975,6 +976,27 @@ public class IHM implements Observe {
             fenetremenu.setVisible(false);
             fenetre.setVisible(true);
             fenetre.repaint();
+
+            Message m = new Message();
+            
+            ArrayList<String> noms = new ArrayList<>();
+            noms.add(j1t.getText());
+            noms.add(j2t.getText());
+            if (j3t.getText() != null) {
+                noms.add(j3t.getText());
+            }
+            if (j4t.getText() != null) {
+                noms.add(j4t.getText());
+            }
+            if (j5t.getText() != null) {
+                noms.add(j5t.getText());
+            }
+            if (j6t.getText() != null) {
+                noms.add(j6t.getText());
+            }
+            m.noms = noms;
+            m.type = TypesMessages.DEMARRER_PARTIE;
+            this.notifierObservateur(m);
         });
 
         arreter.addActionListener((ActionEvent e) -> {

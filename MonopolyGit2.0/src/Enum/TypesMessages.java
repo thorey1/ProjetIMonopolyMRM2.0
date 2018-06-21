@@ -10,11 +10,11 @@ package Enum;
  * @author hassanyo
  */
 public enum TypesMessages {
-    JOUER,
-    TIRER_CARTE,
-    ACHETER,
-    AUTRE,
-    FIN_TOUR,
     DEMARRER_PARTIE,
-    ARRETER
+    ARRETER,
+    LANCER_DE,
+    ACHETER,
+    CONSTRUIRE,
+    FIN_TOUR,    
+    REGLE,
 }
