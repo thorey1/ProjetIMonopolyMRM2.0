@@ -33,7 +33,8 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2;
+    private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6;
+    private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     
 
@@ -51,12 +52,12 @@ public class VuePlateau extends Observe {
         nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
         argent2 = new JLabel("");
-        JLabel dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
-        JLabel dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
-        JLabel dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
-        JLabel dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
-        JLabel dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
-        JLabel dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
+        dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
+        dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
+        dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
+        dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
+        dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
+        dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
         JButton lancer = new JButton("Lancer les dès");
 
         //Intanciation des boutons
@@ -66,7 +67,7 @@ public class VuePlateau extends Observe {
         JButton arreter = new JButton("Arrêter");
         JButton regles = new JButton("Règles");
 
-        //A MODIFIER
+        //LISTENER BOUTONS
         arreter.addActionListener((ActionEvent e) -> {
             Message m = new Message();
             m.type = TypesMessages.RETOUR;
@@ -84,6 +85,13 @@ public class VuePlateau extends Observe {
             m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
         });
+        
+        lancer.addActionListener((ActionEvent) ->{
+            Message m = new Message();
+            m.type = TypesMessages.LANCER_DE;
+            this.notifierObservateur(m);
+        });
+        
         
         //instanciation des propriétés
         JLabel p1 = new JLabel("1");
@@ -121,7 +129,7 @@ public class VuePlateau extends Observe {
 
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(2, 2));
-        JPanel dé = new JPanel(new GridLayout(0, 2));
+        dé = new JPanel(new GridLayout(0, 2));
         JPanel commande = new JPanel(new GridLayout(6, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
         JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
@@ -1071,6 +1079,38 @@ public class VuePlateau extends Observe {
 
     public HashMap<Integer,JPanel> getCases() {
         return cases;
+    }
+
+    public JLabel getDé1() {
+        return dé1;
+    }
+
+    public JLabel getDé2() {
+        return dé2;
+    }
+
+    public JLabel getDé3() {
+        return dé3;
+    }
+
+    public JLabel getDé4() {
+        return dé4;
+    }
+
+    public JLabel getDé5() {
+        return dé5;
+    }
+
+    public JLabel getDé6() {
+        return dé6;
+    }
+
+    public JPanel getDé() {
+        return dé;
+    }
+
+    public void setDé(JPanel dé) {
+        this.dé = dé;
     }
 
 }
