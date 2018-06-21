@@ -211,7 +211,7 @@ public class Controler implements Observateur {
                     System.out.println("Tu es sur ta propriété! \n");
                 }
             }
-            System.out.println("in du tour \n");
+            System.out.println("fin du tour \n");
 
         }
     }
@@ -859,5 +859,4 @@ public class Controler implements Observateur {
 
         vuePlateau.getFenetrePlateau().repaint();
     }
-
 }
