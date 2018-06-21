@@ -131,8 +131,8 @@ public class VuePlateau extends Observe {
         //ajout des différents composants 
         pchoix.add(arreter);
         pchoix.add(regles);
-        dé.add(dé5);
-        dé.add(dé2);
+        dé.add(dé6);
+        dé.add(dé6);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
@@ -509,7 +509,7 @@ public class VuePlateau extends Observe {
                     pan12.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
-                    getCases().put(13, pan12);
+                    getCases().put(12, pan12);
                     break;
 
                 case 23:
@@ -862,7 +862,7 @@ public class VuePlateau extends Observe {
                     car.setBorder(cadre);
                     plateau.add(car);
                     pan31.setBackground(Color.white);
-                    getCases().put(21, pan31);
+                    getCases().put(31, pan31);
                     break;
 
                 case 112:
@@ -881,7 +881,7 @@ public class VuePlateau extends Observe {
                     pan30.setBorder(cadre);
                     plateau.add(car);
                     pan30.setBackground(Color.white);
-                    getCases().put(22, pan30);
+                    getCases().put(30, pan30);
                     break;
 
                 case 113:

@@ -761,6 +761,7 @@ public class Controler implements Observateur {
             this.getJoueurs().put(i+1,new Joueur(i+1,m.noms.get(i),this.getCarreau(1)));
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
+        System.out.print(vuePlateau.getCases().size());
     }
     
     private void arreterPartie(Message m) {
