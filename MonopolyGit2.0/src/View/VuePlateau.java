@@ -41,7 +41,7 @@ public class VuePlateau extends Observe {
         fenetre.setTitle("Monopoly");
         fenetre.setSize(1920, 1080);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+         Border cadre = BorderFactory.createLineBorder(Color.black);
 
         JLabel nom = new JLabel("Nom du joueur :");
         JLabel nom2 = new JLabel("");
@@ -70,11 +70,7 @@ public class VuePlateau extends Observe {
             m.type = TypesMessages.REGLE;
             this.notifierObservateur(m);
         });
-
-        JPanel pchoix = new JPanel(new GridLayout(0, 2));
-        pchoix.add(arreter);
-        pchoix.add(regles);
-
+        
         //instanciation des propriétés
         JTextField p1 = new JTextField("1");
         JTextField p2 = new JTextField("2");
@@ -91,8 +87,8 @@ public class VuePlateau extends Observe {
         JScrollPane pane = new JScrollPane(commandeScroll);
         
         //ajout des différents composants 
-        pchoix.add(b5);
-        pchoix.add(b6);
+        pchoix.add(arreter);
+        pchoix.add(regles);
         information.add(nom);
         information.add(nom2);
         information.add(argent);
