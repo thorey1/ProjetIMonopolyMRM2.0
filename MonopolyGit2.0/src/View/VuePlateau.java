@@ -51,8 +51,12 @@ public class VuePlateau extends Observe {
         nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
         argent2 = new JLabel("");
-        JLabel dé1 = new JLabel(new ImageIcon("Images/fleche.gif"));
-        JLabel dé2 = new JLabel(new ImageIcon("Images/fleche.gif"));
+        JLabel dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
+        JLabel dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
+        JLabel dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
+        JLabel dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
+        JLabel dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
+        JLabel dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
         JButton lancer = new JButton("Lancer les dès");
 
         //Intanciation des boutons
@@ -92,7 +96,7 @@ public class VuePlateau extends Observe {
         JLabel p8 = new JLabel("1");
         JLabel p9 = new JLabel("1");
         JLabel p10 = new JLabel("1");
-        JLabel p11= new JLabel("1");
+        JLabel p11 = new JLabel("1");
         JLabel p12 = new JLabel("1");
         JLabel p13 = new JLabel("1");
         JLabel p14 = new JLabel("1");
@@ -109,7 +113,7 @@ public class VuePlateau extends Observe {
         JLabel p25 = new JLabel("1");
         JLabel p26 = new JLabel("1");
         JLabel p27 = new JLabel("1");
-        JLabel p28= new JLabel("1");
+        JLabel p28 = new JLabel("1");
         
         
                 
@@ -127,7 +131,7 @@ public class VuePlateau extends Observe {
         //ajout des différents composants 
         pchoix.add(arreter);
         pchoix.add(regles);
-        dé.add(dé1);
+        dé.add(dé5);
         dé.add(dé2);
         information.add(nom);
         information.add(nom2);
