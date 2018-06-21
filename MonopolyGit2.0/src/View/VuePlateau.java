@@ -52,12 +52,12 @@ public class VuePlateau extends Observe {
         nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
         argent2 = new JLabel("");
-        JLabel dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
-        JLabel dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
-        JLabel dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
-        JLabel dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
-        JLabel dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
-        JLabel dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
+        dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
+        dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
+        dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
+        dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
+        dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
+        dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
         JButton lancer = new JButton("Lancer les dès");
 
         //Intanciation des boutons

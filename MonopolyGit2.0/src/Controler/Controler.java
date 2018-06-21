@@ -832,5 +832,4 @@ public class Controler implements Observateur {
         
         vuePlateau.getFenetrePlateau().repaint();
     }
-//btm git
 }
