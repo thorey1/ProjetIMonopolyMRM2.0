@@ -41,9 +41,12 @@ public class VuePlateau extends Observe {
         fenetre.setTitle("Monopoly");
         fenetre.setSize(1920, 1080);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Border cadre = BorderFactory.createLineBorder(Color.black);
 
         JLabel nom = new JLabel("Nom du joueur :");
+        JLabel nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
+        JLabel argent2 = new JLabel("");
         JButton lancer = new JButton("Lancer les dès");
         JPanel des1 = new JPanel();
         //des1= new JPanel(new ImageIcon("/users/info/etu-s2/boedam/Downloads/dés.jpg"));
@@ -51,7 +54,6 @@ public class VuePlateau extends Observe {
         //Intanciation des boutons
         JButton acheter = new JButton("Acheter");
         JButton b3 = new JButton("Construire");
-        JButton b4 = new JButton("Bouton 4");
         JButton fin = new JButton("Fin du tour");
         JButton b5 = new JButton("Arrêter");
         JButton b6 = new JButton("Règles");
@@ -67,10 +69,6 @@ public class VuePlateau extends Observe {
             fenetreregles1.setVisible(true);
         });
 
-        JPanel pchoix = new JPanel(new GridLayout(0, 2));
-        pchoix.add(b5);
-        pchoix.add(b6);
-
         //instanciation des propriétés
         JTextField p1 = new JTextField("1");
         JTextField p2 = new JTextField("2");
@@ -78,41 +76,49 @@ public class VuePlateau extends Observe {
         JTextField p4 = new JTextField("4");
         JTextField p5 = new JTextField("5");
 
-        //Création du panel commande et ajout des différents composants 
-        JPanel commande = new JPanel();
-        JPanel commandeLayout = new JPanel();
-        JPanel commandeScroll = new JPanel();
-        commandeScroll.setLayout(new GridLayout(28, 0));
-        commandeScroll.setPreferredSize(new Dimension(280, 1400));
+        //Création des panels de commande 
+        JPanel information = new JPanel(new GridLayout(2, 2));
+        JPanel commande = new JPanel(new GridLayout(5, 0));
+        JPanel commandeLayout = new JPanel(new BorderLayout());
+        JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
+        JPanel pchoix = new JPanel(new GridLayout(0, 2));
         JScrollPane pane = new JScrollPane(commandeScroll);
-
-        commande.setLayout(new GridLayout(6, 0));
-        commandeLayout.setLayout(new BorderLayout());
-        commande.setPreferredSize(new Dimension(300,500));
-        commande.add(nom);
-        commande.add(argent);
+        
+        //ajout des différents composants 
+        pchoix.add(b5);
+        pchoix.add(b6);
+        information.add(nom);
+        information.add(nom2);
+        information.add(argent);
+        information.add(argent2);
+        commande.add(information);
         commande.add(lancer);
         commande.add(acheter);
         commande.add(b3);
-        //commande.add(b4);
         commande.add(fin);
+        
         //ajout des propriété au menu déroulant
         commandeScroll.add(p1);
         commandeScroll.add(p2);
         commandeScroll.add(p3);
         commandeScroll.add(p4);
         commandeScroll.add(p5);
+        
         //Mise en page de la zone de commande 
-
-        Dimension dim = new Dimension(300, 1080 - b5.getHeight());
+            //Mise en place des tailles et cadre
+        commandeScroll.setPreferredSize(new Dimension(280, 1400));
+        commande.setPreferredSize(new Dimension(300,500));
+        Dimension dim = new Dimension(300, 1080-b5.getHeight());
         commandeLayout.setPreferredSize(dim);
-        Border cadre = BorderFactory.createLineBorder(Color.black);
         commandeLayout.setBorder(cadre);
+        
+            //Ajout des 3 panel au panel commandeLayout
         commandeLayout.add(commande, BorderLayout.NORTH);
         commandeLayout.add(pane, BorderLayout.CENTER);
         commandeLayout.add(pchoix, BorderLayout.SOUTH);
+        
+            //Ajout de commandeLayout et plateau à la frame
         fenetre.add(commandeLayout, BorderLayout.WEST);
-
         fenetre.add(afficherPlateau(), BorderLayout.CENTER);
         fenetre.setVisible(true);
 
@@ -211,6 +217,7 @@ public class VuePlateau extends Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.NORTH);
+                    infos2.setFont(font6);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.pink);
                     car.setBorder(cadre);
@@ -238,6 +245,7 @@ public class VuePlateau extends Observe {
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.NORTH);
+                    infos2.setFont(font6);
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.pink);
                     car.setBorder(cadre);
@@ -253,6 +261,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/impot.jpg"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -267,6 +276,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -280,6 +290,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("100€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -308,6 +319,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("100€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -323,6 +335,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("120€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -362,6 +375,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("400€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -378,6 +392,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("140€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -395,6 +410,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/luxe.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -404,12 +420,13 @@ public class VuePlateau extends Observe {
                     break;
 
                 case 33:
-                    infos.setText("<html>Compagnie de distibution d'électricité</html>");
-                    infos.setFont(font7);
+                    infos.setText("<html>Compagnie d'électricité</html>");
+                    infos.setFont(new Font("Arial", Font.BOLD, 9));
                     infos2 = new JLabel("150€");
                     img = new JLabel(new ImageIcon("Images/elec.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -423,6 +440,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("350€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -439,11 +457,13 @@ public class VuePlateau extends Observe {
                     car.add(img, BorderLayout.SOUTH);
                     plateau.add(car);
                     break;
+                    
                 case 44:
                     infos.setText("<html>Avenue de Neuilly</html>");
                     infos2 = new JLabel("140€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -503,6 +523,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("160€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -520,6 +541,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -534,6 +556,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.SOUTH);
                     car.add(infos2, BorderLayout.NORTH);
                     car.add(img, BorderLayout.CENTER);
@@ -547,6 +570,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("320€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -563,6 +587,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("180€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -603,6 +628,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("300€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -619,6 +645,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("180€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -635,6 +662,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("300€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -651,6 +679,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("200€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
@@ -683,6 +712,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("280€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
@@ -699,6 +729,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/eau.jpg"));
                     infos.setHorizontalAlignment(car.getWidth() / 2);
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.NORTH);
                     car.add(infos2, BorderLayout.SOUTH);
                     car.add(img, BorderLayout.CENTER);
@@ -712,6 +743,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("260€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
@@ -727,6 +759,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("260€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
@@ -743,6 +776,7 @@ public class VuePlateau extends Observe {
                     img = new JLabel(new ImageIcon("Images/train.png"));
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.NORTH);
                     car.add(infos2, BorderLayout.SOUTH);
                     car.add(img, BorderLayout.CENTER);
@@ -756,6 +790,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("240€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
@@ -771,6 +806,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("220€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);
@@ -799,6 +835,7 @@ public class VuePlateau extends Observe {
                     infos2 = new JLabel("220€");
                     infos2.setHorizontalAlignment(car.getWidth() / 2);
                     infos.setHorizontalAlignment(car.getWidth() / 2);
+                    infos2.setFont(font6);
                     car.add(infos, BorderLayout.CENTER);
                     car.add(infos2, BorderLayout.SOUTH);
                     carLab.setBorder(cadre);

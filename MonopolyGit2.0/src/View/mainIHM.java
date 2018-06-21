@@ -6,6 +6,7 @@
 package View;
 
 import Controler.Controler;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,8 +18,8 @@ public class mainIHM {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new Controler();
-       //VuePlateau vue = new VuePlateau(); pour test plateau
+       //new Controler();
+       VuePlateau vue = new VuePlateau(new ArrayList<>());
         
     }
     

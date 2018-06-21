@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 
 
 
-public class VueJoueurEtudiant implements Observe {
+public class VueJoueurEtudiant extends Observe {
      
     private JPanel panelBoutons ;
     private JPanel panelCentre ;
@@ -83,8 +83,8 @@ public class VueJoueurEtudiant implements Observe {
            btnAller.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Message m = new Message(TypesMessages.JOUER);
-                notifierObservateur(m);
+              //  Message m = new Message(TypesMessages.DEMARRER_PARTIE);
+                //notifierObservateur(m);
             }
         });
         
