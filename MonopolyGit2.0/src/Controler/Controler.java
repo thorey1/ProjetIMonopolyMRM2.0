@@ -35,7 +35,7 @@ public class Controler implements Observateur {
         maisons = new HashMap();
         maisons = initialiserHashMapMaison();
         hotels = new HashMap();
-        hotels = InitialiserHashMapHotel();
+        hotels = initialiserHashMapHotel();
 
         for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
             carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
@@ -211,7 +211,7 @@ public class Controler implements Observateur {
                     System.out.println("Tu es sur ta propriété! \n");
                 }
             }
-            System.out.println("Fin du tour \n");
+            System.out.println("in du tour \n");
 
         }
     }
@@ -373,7 +373,7 @@ public class Controler implements Observateur {
         return maisons;
     }
 
-    public HashMap<Color, Hotel> InitialiserHashMapHotel() {
+    public HashMap<Color, Hotel> initialiserHashMapHotel() {
         Hotel m1 = new Hotel(Color.pink, 50);
         Hotel m2 = new Hotel(Color.cyan, 50);
         Hotel m3 = new Hotel(Color.magenta, 100);
