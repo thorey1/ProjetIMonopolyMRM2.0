@@ -423,8 +423,8 @@ public class Controler implements Observateur {
     }
 
     public void commencerJeu() {
-        Joueur j1 = new Joueur(1, "Malo", this.getCarreaux().get(1));
-        Joueur j2 = new Joueur(2, "Youssef", this.getCarreaux().get(1));
+        Joueur j1 = new Joueur(1, "Malo", this.getCarreaux().get(1), vuePlateau.getPions().get(0));
+        Joueur j2 = new Joueur(2, "Youssef", this.getCarreaux().get(1),vuePlateau.getPions().get(1));
         //Joueur j3 = new Joueur(3, "O'Neal", this.getCarreaux().get(1));
         //Joueur j4 = new Joueur(4, "Rémi", this.getCarreaux().get(1));
         //Joueur j5 = new Joueur(5, "Yann", this.getCarreaux().get(1));
@@ -777,7 +777,7 @@ public class Controler implements Observateur {
         this.setVuePlateau(new VuePlateau(m.noms));
         vuePlateau.addObservateur(this);
         for (int i = 0; i < m.noms.size(); i++) {
-            this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1)));
+            this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1), vuePlateau.getPions().get(i)));
         }
         grid = new JPanel(new GridLayout(m.noms.size(), 0));
         vuePlateau.getCases().get(1).add(grid, BorderLayout.EAST);
@@ -836,6 +836,8 @@ public class Controler implements Observateur {
         while (joueurs.size() > 1) {
             vuePlateau1.getNom2().setText(joueurs.get(tour).getNomJoueur());
             vuePlateau1.getArgent2().setText("" + joueurs.get(tour).getSolde());
+            vuePlateau1.getCouleurPion2().setText("" + joueurs.get(tour).getPion().getCouleur());
+            vuePlateau1.getCouleurPion2().setForeground(joueurs.get(tour).getPion().getColor());
             break;
         }
     }
@@ -911,7 +913,6 @@ public class Controler implements Observateur {
             if (this.getJoueurTour().getNumJoueur() == 1) {
                 grid.add(vuePlateau.getPion1());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
             }
 
             if (this.getJoueurTour().getNumJoueur() == 2) {

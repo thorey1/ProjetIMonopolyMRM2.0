@@ -33,7 +33,7 @@ public class VuePlateau extends Observe {
     private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     private Pion pion1,pion2,pion3,pion4,pion5,pion6;
-    
+    private ArrayList<Pion> pions = new ArrayList();
 
     public VuePlateau(ArrayList<String> noms) {
         this.noms = new ArrayList();
@@ -77,12 +77,19 @@ public class VuePlateau extends Observe {
         JButton regles = new JButton("Règles");
         
         //Instanciation des pions
+        //pions = new ArrayList();
         pion1 = new Pion(Color.RED);
+        pions.add(pion1);
         pion2 = new Pion(Color.BLUE);
+        pions.add(pion2);
         pion3 = new Pion(Color.CYAN);
+        pions.add(pion3);
         pion4 = new Pion(Color.ORANGE);
+        pions.add(pion4);
         pion5 = new Pion(Color.GREEN);
+        pions.add(pion5);
         pion6 = new Pion(Color.PINK);
+        pions.add(pion6);
         
         //A MODIFIER
         JLabel infosPropriété=new JLabel("Propiétés du joueur");
@@ -317,15 +324,6 @@ public class VuePlateau extends Observe {
                     lab.setFont(font1);
                     pan1.add(lab, BorderLayout.NORTH);
                     pan1.add(infos, BorderLayout.CENTER);
- /*                 pion1 = new Pion(Color.blue);
-                    pan1.add(pion1, BorderLayout.EAST);
-                    pion2 = new Pion(Color.pink);
-                    pan1.add(pion2, BorderLayout.EAST); 
-                    pion1 = new Pion(Color.blue);
-                    pion2 = new Pion(Color.pink);
-                    grid.add(pion1);
-                    grid.add(pion2);
-                    pan1.add(grid,BorderLayout.EAST); */
                     pan1.add(img, BorderLayout.SOUTH);
                     car.add(pan1,BorderLayout.CENTER);
                     car.setBorder(cadre);
@@ -1202,6 +1200,22 @@ public class VuePlateau extends Observe {
 
     public Pion getPion6() {
         return pion6;
+    }
+
+    public void setCouleurPion2(JLabel couleurPion2) {
+        this.couleurPion2 = couleurPion2;
+    }
+
+    public JLabel getCouleurPion2() {
+        return couleurPion2;
+    }
+
+    public void setPion6(Pion pion6) {
+        this.pion6 = pion6;
+    }
+
+    public ArrayList<Pion> getPions() {
+        return pions;
     }
 
 }
