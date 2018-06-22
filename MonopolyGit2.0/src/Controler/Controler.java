@@ -1019,6 +1019,8 @@ public class Controler implements Observateur {
             }
         }
 
-        //faireAction(j.getPosition())dnghjjhjghjghjgjtgjgghthdghghfgfgzqdsxdvds
+        //faireAction
     }
+    
+    
 }

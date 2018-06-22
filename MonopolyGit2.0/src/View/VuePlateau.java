@@ -29,15 +29,16 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2,couleurPion2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x,infosPropriété;
+    private JLabel nom2, argent2, couleurPion2, dé1, dé2, dé3, dé4, dé5, dé6, dé1x, dé2x, dé3x, dé4x, dé5x, dé6x, infosPropriété;
     private JPanel dé;
-    private HashMap<Integer,JPanel> cases;
-    private Pion pion1,pion2,pion3,pion4,pion5,pion6;
+    private HashMap<Integer, JPanel> cases;
+    private Pion pion1, pion2, pion3, pion4, pion5, pion6;
     private ArrayList<Pion> pions = new ArrayList();
+    private JLabel p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28;
 
     public VuePlateau(ArrayList<String> noms) {
         this.noms = new ArrayList();
-        this.noms=noms;
+        this.noms = noms;
         cases = new HashMap();
         fenetre = new JFrame();
         fenetre.setTitle("Monopoly");
@@ -51,23 +52,23 @@ public class VuePlateau extends Observe {
         argent2 = new JLabel("");
         JLabel couleurPion = new JLabel("Couleur du pion :");
         couleurPion2 = new JLabel("");
-        
+
         dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
         dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
         dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
         dé4 = new JLabel(new ImageIcon("Images/dé4.png"));
         dé5 = new JLabel(new ImageIcon("Images/dé5.png"));
         dé6 = new JLabel(new ImageIcon("Images/dé6.png"));
-        
+
         dé1x = new JLabel(new ImageIcon("Images/dé1.png"));
         dé2x = new JLabel(new ImageIcon("Images/dé2.png"));
         dé3x = new JLabel(new ImageIcon("Images/dé3.png"));
         dé4x = new JLabel(new ImageIcon("Images/dé4.png"));
         dé5x = new JLabel(new ImageIcon("Images/dé5.png"));
         dé6x = new JLabel(new ImageIcon("Images/dé6.png"));
-        
+
         JButton lancer = new JButton("Lancer les dès");
-        infosPropriété=new JLabel("");
+        infosPropriété = new JLabel("");
         infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
         //Intanciation des boutons et images
         JButton construire = new JButton("Construire");
@@ -75,8 +76,8 @@ public class VuePlateau extends Observe {
         fin.setEnabled(false);
         JButton arreter = new JButton("Arrêter");
         JButton regles = new JButton("Règles");
-        JLabel img= new JLabel(new ImageIcon("Images/flechebas.png"));
-                
+        JLabel img = new JLabel(new ImageIcon("Images/flechebas.png"));
+
         //Instanciation des pions
         //pions = new ArrayList();
         pion1 = new Pion(Color.RED);
@@ -98,22 +99,22 @@ public class VuePlateau extends Observe {
             m.type = TypesMessages.RETOUR;
             this.notifierObservateur(m);
         });
-        
+
         regles.addActionListener((ActionEvent) -> {
             Message m = new Message();
             m.type = TypesMessages.REGLE;
             this.notifierObservateur(m);
         });
-        
-        fin.addActionListener((ActionEvent) ->{
+
+        fin.addActionListener((ActionEvent) -> {
             Message m = new Message();
             m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
             fin.setEnabled(false);
             lancer.setEnabled(true);
         });
-        
-        lancer.addActionListener((ActionEvent) ->{
+
+        lancer.addActionListener((ActionEvent) -> {
             Message m = new Message();
             m.type = TypesMessages.LANCER_DE;
             this.notifierObservateur(m);
@@ -122,37 +123,36 @@ public class VuePlateau extends Observe {
             fin.setEnabled(true);
             lancer.setEnabled(false);
         });
-        
-        
+
         //instanciation des propriétés
-        JLabel p1 = new JLabel("1");
-        JLabel p2 = new JLabel("1");
-        JLabel p3 = new JLabel("1");
-        JLabel p4 = new JLabel("1");
-        JLabel p5 = new JLabel("1");
-        JLabel p6 = new JLabel("1");
-        JLabel p7 = new JLabel("1");
-        JLabel p8 = new JLabel("1");
-        JLabel p9 = new JLabel("1");
-        JLabel p10 = new JLabel("1");
-        JLabel p11 = new JLabel("1");
-        JLabel p12 = new JLabel("1");
-        JLabel p13 = new JLabel("1");
-        JLabel p14 = new JLabel("1");
-        JLabel p15 = new JLabel("1");
-        JLabel p16 = new JLabel("1");
-        JLabel p17 = new JLabel("1");
-        JLabel p18 = new JLabel("1");
-        JLabel p19 = new JLabel("1");
-        JLabel p20 = new JLabel("1");
-        JLabel p21 = new JLabel("1");
-        JLabel p22 = new JLabel("1");
-        JLabel p23 = new JLabel("1");
-        JLabel p24 = new JLabel("1");
-        JLabel p25 = new JLabel("1");
-        JLabel p26 = new JLabel("1");
-        JLabel p27 = new JLabel("1");
-        JLabel p28 = new JLabel("1");
+        p1 = new JLabel("");
+        p2 = new JLabel("");
+        p3 = new JLabel("");
+        p4 = new JLabel("");
+        p5 = new JLabel("");
+        p6 = new JLabel("");
+        p7 = new JLabel("");
+        p8 = new JLabel("");
+        p9 = new JLabel("");
+        p10 = new JLabel("");
+        p11 = new JLabel("");
+        p12 = new JLabel("");
+        p13 = new JLabel("");
+        p14 = new JLabel("");
+        p15 = new JLabel("");
+        p16 = new JLabel("");
+        p17 = new JLabel("");
+        p18 = new JLabel("");
+        p19 = new JLabel("");
+        p20 = new JLabel("");
+        p21 = new JLabel("");
+        p22 = new JLabel("");
+        p23 = new JLabel("");
+        p24 = new JLabel("");
+        p25 = new JLabel("");
+        p26 = new JLabel("");
+        p27 = new JLabel("");
+        p28 = new JLabel("");
 
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(3, 3));
@@ -162,7 +162,7 @@ public class VuePlateau extends Observe {
         JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
         JScrollPane pane = new JScrollPane(commandeScroll);
-        
+
         //ajout des différents composants 
         pchoix.add(arreter);
         pchoix.add(regles);
@@ -174,7 +174,7 @@ public class VuePlateau extends Observe {
         information.add(argent2);
         information.add(couleurPion);
         information.add(couleurPion2);
-        
+
         pchoix.add(arreter);
         pchoix.add(regles);
         commande.add(information);
@@ -183,7 +183,7 @@ public class VuePlateau extends Observe {
         commande.add(construire);
         commande.add(fin);
         commande.add(infosPropriété);
-        
+
         //ajout des propriété au menu déroulant
         commandeScroll.add(p1);
         commandeScroll.add(p2);
@@ -213,30 +213,27 @@ public class VuePlateau extends Observe {
         commandeScroll.add(p26);
         commandeScroll.add(p27);
         commandeScroll.add(p28);
-        
+
         //Mise en page de la zone de commande 
-            //Mise en place des tailles et cadre
+        //Mise en place des tailles et cadre
         commandeScroll.setPreferredSize(new Dimension(280, 1400));
-        commande.setPreferredSize(new Dimension(300,500));
-        
+        commande.setPreferredSize(new Dimension(300, 500));
 
         Dimension dim = new Dimension(300, 1080 - arreter.getHeight());
         commandeLayout.setPreferredSize(dim);
         commandeLayout.setBorder(cadre);
-        
-            //Ajout des 3 panel au panel commandeLayout
+
+        //Ajout des 3 panel au panel commandeLayout
         commandeLayout.add(commande, BorderLayout.NORTH);
         commandeLayout.add(pane, BorderLayout.CENTER);
         commandeLayout.add(pchoix, BorderLayout.SOUTH);
-        
-            //Ajout de commandeLayout et plateau à la frame
+
+        //Ajout de commandeLayout et plateau à la frame
         fenetre.add(commandeLayout, BorderLayout.WEST);
         fenetre.add(afficherPlateau(), BorderLayout.CENTER);
         fenetre.setVisible(true);
 
     }
-
-
 
     @Override
     public void addObservateur(Observateur o) {
@@ -289,7 +286,7 @@ public class VuePlateau extends Observe {
                     car.add(lab);
                     plateau.add(car);
                     car.setBackground(Color.white);
-                    car.setBorder(cadre);      
+                    car.setBorder(cadre);
                     break;
 
                 case 85:
@@ -306,7 +303,7 @@ public class VuePlateau extends Observe {
                 //début du tour
                 case 1:
                     JPanel pan1 = new JPanel(new BorderLayout());
-                  //  JPanel grid = new JPanel(new GridLayout(6,0));
+                    //  JPanel grid = new JPanel(new GridLayout(6,0));
                     img = new JLabel(new ImageIcon("Images/fleche.gif"));
                     lab = new JLabel("DEPART");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
@@ -316,7 +313,7 @@ public class VuePlateau extends Observe {
                     pan1.add(lab, BorderLayout.NORTH);
                     pan1.add(infos, BorderLayout.CENTER);
                     pan1.add(img, BorderLayout.SOUTH);
-                    car.add(pan1,BorderLayout.CENTER);
+                    car.add(pan1, BorderLayout.CENTER);
                     car.setBorder(cadre);
                     plateau.add(car);
                     pan1.setBackground(Color.white);
@@ -367,7 +364,7 @@ public class VuePlateau extends Observe {
                     pan4.add(infos2, BorderLayout.NORTH);
                     infos2.setFont(font6);
                     carLab.setBorder(cadre);
-                    carLab.setBackground(Color.pink); 
+                    carLab.setBackground(Color.pink);
                     pan4.add(carLab, BorderLayout.SOUTH);
                     car.add(pan4);
                     pan4.setBorder(cadre);
@@ -425,7 +422,7 @@ public class VuePlateau extends Observe {
                     carLab.setBorder(cadre);
                     carLab.setBackground(Color.CYAN);
                     pan7.add(carLab, BorderLayout.SOUTH);
-                    car.add(pan7); 
+                    car.add(pan7);
                     pan7.setBorder(cadre);
                     plateau.add(car);
                     pan7.setBackground(Color.white);
@@ -509,7 +506,7 @@ public class VuePlateau extends Observe {
                     pan11.setBorder(cadre);
                     plateau.add(car);
                     pan11.setBackground(Color.white);
-                    getCases().put(11, pan11);        
+                    getCases().put(11, pan11);
                     break;
 
                 case 12:
@@ -614,7 +611,7 @@ public class VuePlateau extends Observe {
                     car.add(img, BorderLayout.SOUTH);
                     plateau.add(car);
                     break;
-                    
+
                 case 44:
                     JPanel pan14 = new JPanel(new BorderLayout());
                     infos.setText("<html>Avenue de Neuilly</html>");
@@ -625,7 +622,7 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
-                    carLab.setBackground(Color.MAGENTA); 
+                    carLab.setBackground(Color.MAGENTA);
                     pan14.add(carLab, BorderLayout.WEST);
                     pan14.add(panelCase, BorderLayout.CENTER);
                     car.add(pan14);
@@ -650,37 +647,37 @@ public class VuePlateau extends Observe {
                     pan37.setBackground(Color.white);
                     getCases().put(37, pan37);
                     break;
-                    
-                         //case centre
+
+                //case centre
                 case 49:
                     lab = new JLabel("IU");
-                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setFont(new Font("Arial", Font.BOLD, 52));
                     lab.setForeground(Color.white);
                     car.setBackground(Color.red);
-                    car.add(carLab,BorderLayout.CENTER);
-                    car.add(lab,BorderLayout.EAST);
+                    car.add(carLab, BorderLayout.CENTER);
+                    car.add(lab, BorderLayout.EAST);
                     plateau.add(car);
                     break;
-                    
+
                 case 50:
                     lab = new JLabel("TPO");
-                    lab.setFont(new Font("Arial",Font.BOLD,54));
+                    lab.setFont(new Font("Arial", Font.BOLD, 54));
                     lab.setForeground(Color.white);
                     car.setBackground(Color.red);
                     car.add(lab);
                     plateau.add(car);
                     break;
-                    
+
                 case 51:
                     lab = new JLabel("LY");
-                    lab.setFont(new Font("Arial",Font.BOLD,52));
+                    lab.setFont(new Font("Arial", Font.BOLD, 52));
                     lab.setForeground(Color.white);
                     car.setBackground(Color.red);
-                    car.add(carLab,BorderLayout.CENTER);
-                    car.add(lab,BorderLayout.WEST);
+                    car.add(carLab, BorderLayout.CENTER);
+                    car.add(lab, BorderLayout.WEST);
                     plateau.add(car);
                     break;
-               
+
                 case 55:
                     JPanel pan15 = new JPanel(new BorderLayout());
                     infos.setText("<html>Rue de Paradis</html>");
@@ -691,7 +688,7 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
-                    carLab.setBackground(Color.MAGENTA); 
+                    carLab.setBackground(Color.MAGENTA);
                     pan15.add(carLab, BorderLayout.WEST);
                     pan15.add(panelCase, BorderLayout.CENTER);
                     car.add(pan15);
@@ -789,7 +786,7 @@ public class VuePlateau extends Observe {
                     pan34.setBorder(cadre);
                     plateau.add(car);
                     pan34.setBackground(Color.white);
-                    getCases().put(34,pan34);
+                    getCases().put(34, pan34);
                     break;
 
                 case 88:
@@ -817,7 +814,7 @@ public class VuePlateau extends Observe {
                     panelCase.add(infos, BorderLayout.CENTER);
                     panelCase.add(infos2, BorderLayout.NORTH);
                     carLab.setBorder(cadre);
-                    carLab.setBackground(Color.green); 
+                    carLab.setBackground(Color.green);
                     pan33.add(carLab, BorderLayout.EAST);
                     pan33.add(panelCase, BorderLayout.CENTER);
                     car.add(pan33);
@@ -844,7 +841,7 @@ public class VuePlateau extends Observe {
                     pan19.setBorder(cadre);
                     plateau.add(car);
                     panelCase.setBackground(Color.white);
-                    getCases().put(19,pan19);
+                    getCases().put(19, pan19);
                     break;
 
                 case 100:
@@ -1033,7 +1030,7 @@ public class VuePlateau extends Observe {
                     pan24.setBorder(cadre);
                     plateau.add(car);
                     pan24.setBackground(Color.white);
-                    getCases().put(24, pan24);        
+                    getCases().put(24, pan24);
                     break;
 
                 case 119:
@@ -1109,7 +1106,7 @@ public class VuePlateau extends Observe {
         return argent2;
     }
 
-    public HashMap<Integer,JPanel> getCases() {
+    public HashMap<Integer, JPanel> getCases() {
         return cases;
     }
 
@@ -1223,4 +1220,5 @@ public class VuePlateau extends Observe {
         this.infosPropriété = infosPropriété;
     }
 
+    
 }
