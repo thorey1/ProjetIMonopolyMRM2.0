@@ -25,6 +25,7 @@ public class Controler implements Observateur {
     private HashMap<Color, Hotel> hotels;
     private HashMap<Color, Integer> couleurs;
     private VueMenu vueMenu;
+    private VuePrison vuePrison;
     private VueRegle vueRegle;
     private int tour = 1;
 
@@ -745,6 +746,9 @@ public class Controler implements Observateur {
             case LANCER_DE:
                 deplacerJoueur(m);
                 break;
+            case PAYER_50:
+                deplacerJoueur(m);
+                break;
             default:
                 break;
         }
@@ -753,7 +757,11 @@ public class Controler implements Observateur {
     public void setVuePlateau(VuePlateau vuePlateau) {
         this.vuePlateau = vuePlateau;
     }
-
+    
+    public void setVuePrison(VuePrison vuePrison) {
+        this.vuePrison = vuePrison;
+    }
+    
     public void setVueMenu(VueMenu vueMenu) {
         this.vueMenu = vueMenu;
     }
@@ -786,6 +794,11 @@ public class Controler implements Observateur {
 
     private void afficherRegles(Message m) {
         this.setVueRegle(new VueRegle());
+    }
+    private void reglePrison(Message m) {
+        vuePrison.getFenetrePrison().setVisible(true);
+        this.setVuePrison(new VuePrison());
+        vuePrison.addObservateur(this);
     }
 
     private void tourDeJeu(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau1) {
