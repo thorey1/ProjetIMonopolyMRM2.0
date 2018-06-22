@@ -6,8 +6,8 @@
 package View;
 import Controler.Controler;
 
-/**2
- *6
+/**
+ *
  * @author boedam6
  */
 public class mainIHM {

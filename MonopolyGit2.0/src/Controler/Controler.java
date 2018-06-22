@@ -8,6 +8,7 @@ import static Enum.TypeCarte.*;
 import static Enum.TypesMessages.*;
 import Model.*;
 import View.*;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,8 @@ public class Controler implements Observateur {
     private VueMenu vueMenu;
     private VueRegle vueRegle;
     private int tour = 1;
+    private JPanel grid;
+    private int de1, de2;
 
     // POUR TEST JEU
     public Controler() {
@@ -112,10 +115,10 @@ public class Controler implements Observateur {
                             }
                         } else if (proprio != null && proprio != j) {
                             System.out.println("Tu es sur la propriété " + nomProp + " qui appartient à " + proprio.getNomJoueur() + "\n");
-                            j.payer(newCar.getLoyer());
-                            proprio.gain(newCar.getLoyer());
-                            System.out.println(j.getNomJoueur() + " perd " + newCar.getLoyer() + ", Il te reste " + j.getSolde());
-                            System.out.println(proprio.getNomJoueur() + " gagne " + newCar.getLoyer() + "\n");
+                            j.payer(newCar.getLoyer(de1, de2));
+                            proprio.gain(newCar.getLoyer(de1, de2));
+                            System.out.println(j.getNomJoueur() + " perd " + newCar.getLoyer(de1, de2) + ", Il te reste " + j.getSolde());
+                            System.out.println(proprio.getNomJoueur() + " gagne " + newCar.getLoyer(de1, de2) + "\n");
                         } else {
                             System.out.println("Tu es sur ta propriété! \n");
                         }
@@ -203,10 +206,10 @@ public class Controler implements Observateur {
                     }
                 } else if (proprio != null && proprio != j) {
                     System.out.println("Tu es sur la propriété " + nomProp + " qui appartient à " + proprio.getNomJoueur() + "\n");
-                    j.payer(newCar.getLoyer());
-                    proprio.gain(newCar.getLoyer());
-                    System.out.println(j.getNomJoueur() + " perd " + newCar.getLoyer() + ", Il te reste " + j.getSolde());
-                    System.out.println(proprio.getNomJoueur() + " gagne " + newCar.getLoyer() + "\n");
+                    j.payer(newCar.getLoyer(de1, de2));
+                    proprio.gain(newCar.getLoyer(de1, de2));
+                    System.out.println(j.getNomJoueur() + " perd " + newCar.getLoyer(de1, de2) + ", Il te reste " + j.getSolde());
+                    System.out.println(proprio.getNomJoueur() + " gagne " + newCar.getLoyer(de1, de2) + "\n");
                 } else {
                     System.out.println("Tu es sur ta propriété! \n");
                 }
@@ -252,8 +255,8 @@ public class Controler implements Observateur {
 
     public Joueur getJoueurTour() {
         Joueur j = null;
-        for (int i = 1; i < joueurs.size(); i++) {
-            if (joueurs.get(i).getTour()) {
+        for (int i = 1; i <= joueurs.size(); i++) {
+            if (i == tour) {
                 j = joueurs.get(i);
             }
         }
@@ -442,7 +445,7 @@ public class Controler implements Observateur {
         }
     }
 
-    public void construire(Joueur j, Propriete p) {
+    public void Construire(Joueur j, Propriete p) {
         Carreau carCourant = carreaux.get(p.getNumCarreau());
         Color coul = carCourant.getPropriete().getCouleur();
 
@@ -726,27 +729,29 @@ public class Controler implements Observateur {
 
     @Override
     public void traiterMessage(Message m) {
-        if (null != m.type) switch (m.type) {
-            case DEMARRER_PARTIE:
-                commencerPartie(m);
-                break;
-            case ARRETER:
-                arreterPartie(m);
-                break;
-            case RETOUR:
-                retourMenu(m);
-                break;
-            case REGLE:
-                afficherRegles(m);
-                break;
-            case FIN_TOUR:
-                finTour(m);
-                break;
-            case LANCER_DE:
-                deplacerJoueur(m);
-                break;
-            default:
-                break;
+        if (null != m.type) {
+            switch (m.type) {
+                case DEMARRER_PARTIE:
+                    commencerPartie(m);
+                    break;
+                case ARRETER:
+                    arreterPartie(m);
+                    break;
+                case RETOUR:
+                    retourMenu(m);
+                    break;
+                case REGLE:
+                    afficherRegles(m);
+                    break;
+                case FIN_TOUR:
+                    finTour();
+                    break;
+                case LANCER_DE:
+                    jetDe(m);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -768,6 +773,35 @@ public class Controler implements Observateur {
         vuePlateau.addObservateur(this);
         for (int i = 0; i < m.noms.size(); i++) {
             this.getJoueurs().put(i + 1, new Joueur(i + 1, m.noms.get(i), this.getCarreau(1)));
+        }
+        grid = new JPanel(new GridLayout(m.noms.size(), 0));
+        vuePlateau.getCases().get(1).add(grid, BorderLayout.EAST);
+
+        if (this.getJoueurs().size() == 2) {
+            grid.add(vuePlateau.getPion1());
+            grid.add(vuePlateau.getPion2());
+        } else if (this.getJoueurs().size() == 3) {
+            grid.add(vuePlateau.getPion1());
+            grid.add(vuePlateau.getPion2());
+            grid.add(vuePlateau.getPion3());
+        } else if (this.getJoueurs().size() == 4) {
+            grid.add(vuePlateau.getPion1());
+            grid.add(vuePlateau.getPion2());
+            grid.add(vuePlateau.getPion3());
+            grid.add(vuePlateau.getPion4());
+        } else if (this.getJoueurs().size() == 5) {
+            grid.add(vuePlateau.getPion1());
+            grid.add(vuePlateau.getPion2());
+            grid.add(vuePlateau.getPion3());
+            grid.add(vuePlateau.getPion4());
+            grid.add(vuePlateau.getPion5());
+        } else if (this.getJoueurs().size() == 6) {
+            grid.add(vuePlateau.getPion1());
+            grid.add(vuePlateau.getPion2());
+            grid.add(vuePlateau.getPion3());
+            grid.add(vuePlateau.getPion4());
+            grid.add(vuePlateau.getPion5());
+            grid.add(vuePlateau.getPion6());
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
     }
@@ -796,7 +830,7 @@ public class Controler implements Observateur {
         }
     }
 
-    private void finTour(Message m) {
+    private void finTour() {
         if (tour == joueurs.size()) {
             tour = 1;
         } else {
@@ -806,12 +840,13 @@ public class Controler implements Observateur {
         vuePlateau.getFenetrePlateau().repaint();
     }
 
-    private void deplacerJoueur(Message m) {
-        int de1 = this.lancerDe();
-        int de2 = this.lancerDe();
-        
+    private void jetDe(Message m) {
+        de1 = this.lancerDe();
+        de2 = this.lancerDe();
+        int compteur = 0;
+
         vuePlateau.getDé().removeAll();
-        
+
         //Dé 1
         switch (de1) {
             case 1:
@@ -833,7 +868,7 @@ public class Controler implements Observateur {
                 vuePlateau.getDé().add(vuePlateau.getDé6());
                 break;
         }
-        
+
         //Dé 2
         switch (de2) {
             case 1:
@@ -855,8 +890,123 @@ public class Controler implements Observateur {
                 vuePlateau.getDé().add(vuePlateau.getDé6x());
                 break;
         }
-        
-
         vuePlateau.getFenetrePlateau().repaint();
+
+        deplacerJoueur(de1, de2);
+
+        if (compteur == 3) {
+            this.getJoueurTour().setPosition(this.getCarreaux().get(11));
+            this.getJoueurTour().setPrison(true);
+
+            if (this.getJoueurTour().getNumJoueur() == 1) {
+                grid.add(vuePlateau.getPion1());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+            if (this.getJoueurTour().getNumJoueur() == 2) {
+                grid.add(vuePlateau.getPion2());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+            if (this.getJoueurTour().getNumJoueur() == 3) {
+                grid.add(vuePlateau.getPion3());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+            if (this.getJoueurTour().getNumJoueur() == 4) {
+                grid.add(vuePlateau.getPion4());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+            if (this.getJoueurTour().getNumJoueur() == 5) {
+                grid.add(vuePlateau.getPion5());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+            if (this.getJoueurTour().getNumJoueur() == 6) {
+                grid.add(vuePlateau.getPion6());
+                vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
+
+            }
+
+        }
+
+        if (de1 == de2) {
+            tour = tour - 1;
+            compteur++;
+        }
+
+    }
+
+    private void deplacerJoueur(int de1, int de2) {
+        grid = new JPanel(new GridLayout(this.getJoueurs().size(), 0));
+        Joueur j = this.getJoueurTour();
+        int newposPanel = j.getPosition().getNumCarreau() + de1 + de2;
+
+        if (newposPanel > 40) {
+            newposPanel = newposPanel % 40;
+        }
+        j.setPosition(this.getCarreaux().get(newposPanel));
+
+        if (j.getNumJoueur() == 1) {
+            grid.add(vuePlateau.getPion1());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        if (j.getNumJoueur() == 2) {
+            grid.add(vuePlateau.getPion2());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        if (j.getNumJoueur() == 3) {
+            grid.add(vuePlateau.getPion3());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        if (j.getNumJoueur() == 4) {
+            grid.add(vuePlateau.getPion4());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        if (j.getNumJoueur() == 5) {
+            grid.add(vuePlateau.getPion5());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        if (j.getNumJoueur() == 6) {
+            grid.add(vuePlateau.getPion6());
+            if (newposPanel > 31 && newposPanel <= 40) {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.WEST);
+            } else {
+                vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
+            }
+        }
+
+        //faireAction(j.getPosition())
     }
 }

@@ -32,6 +32,7 @@ public class VuePlateau extends Observe {
     private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x;
     private JPanel dé;
     private HashMap<Integer,JPanel> cases;
+    private Pion pion1,pion2,pion3,pion4,pion5,pion6;
     
 
     public VuePlateau(ArrayList<String> noms) {
@@ -66,11 +67,21 @@ public class VuePlateau extends Observe {
 
         //Intanciation des boutons
         JButton acheter = new JButton("Acheter");
-        JButton b3 = new JButton("Construire");
+        acheter.setEnabled(false);
+        JButton construire = new JButton("Construire");
         JButton fin = new JButton("Fin du tour");
+        fin.setEnabled(false);
         JButton arreter = new JButton("Arrêter");
         JButton regles = new JButton("Règles");
-
+        
+        //Instanciation des pions
+        pion1 = new Pion(Color.RED);
+        pion2 = new Pion(Color.BLUE);
+        pion3 = new Pion(Color.CYAN);
+        pion4 = new Pion(Color.ORANGE);
+        pion5 = new Pion(Color.GREEN);
+        pion6 = new Pion(Color.PINK);
+        
         //A MODIFIER
         JLabel infosPropriété=new JLabel("Propiétés du joueur");
         infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
@@ -92,6 +103,9 @@ public class VuePlateau extends Observe {
             Message m = new Message();
             m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
+            fin.setEnabled(false);
+            acheter.setEnabled(false);
+            lancer.setEnabled(true);
         });
         
         lancer.addActionListener((ActionEvent) ->{
@@ -100,6 +114,9 @@ public class VuePlateau extends Observe {
             this.notifierObservateur(m);
             this.getFenetrePlateau().resize(1, 1);
             this.getFenetrePlateau().resize(1920, 1080);
+            fin.setEnabled(true);
+            lancer.setEnabled(false);
+            acheter.setEnabled(true);
         });
         
         
@@ -161,7 +178,7 @@ public class VuePlateau extends Observe {
         commande.add(dé);
         commande.add(lancer);
         commande.add(acheter);
-        commande.add(b3);
+        commande.add(construire);
         commande.add(fin);
         commande.add(infosPropriété);
         
@@ -270,7 +287,7 @@ public class VuePlateau extends Observe {
                     car.add(lab);
                     plateau.add(car);
                     car.setBackground(Color.white);
-                    car.setBorder(cadre);
+                    car.setBorder(cadre);      
                     break;
 
                 case 85:
@@ -287,6 +304,7 @@ public class VuePlateau extends Observe {
                 //début du tour
                 case 1:
                     JPanel pan1 = new JPanel(new BorderLayout());
+                  //  JPanel grid = new JPanel(new GridLayout(6,0));
                     img = new JLabel(new ImageIcon("Images/fleche.gif"));
                     lab = new JLabel("DEPART");
                     lab.setHorizontalAlignment(car.getWidth() / 2);
@@ -295,13 +313,21 @@ public class VuePlateau extends Observe {
                     lab.setFont(font1);
                     pan1.add(lab, BorderLayout.NORTH);
                     pan1.add(infos, BorderLayout.CENTER);
+ /*                 pion1 = new Pion(Color.blue);
+                    pan1.add(pion1, BorderLayout.EAST);
+                    pion2 = new Pion(Color.pink);
+                    pan1.add(pion2, BorderLayout.EAST); 
+                    pion1 = new Pion(Color.blue);
+                    pion2 = new Pion(Color.pink);
+                    grid.add(pion1);
+                    grid.add(pion2);
+                    pan1.add(grid,BorderLayout.EAST); */
                     pan1.add(img, BorderLayout.SOUTH);
-                    car.add(pan1);
-                    pan1.setBorder(cadre);
+                    car.add(pan1,BorderLayout.CENTER);
+                    car.setBorder(cadre);
                     plateau.add(car);
                     pan1.setBackground(Color.white);
                     getCases().put(1, pan1);
-
                     break;
 
                 case 2:
@@ -1148,6 +1174,30 @@ public class VuePlateau extends Observe {
 
     public JLabel getDé6x() {
         return dé6x;
+    }
+
+    public Pion getPion1() {
+        return pion1;
+    }
+
+    public Pion getPion2() {
+        return pion2;
+    }
+
+    public Pion getPion3() {
+        return pion3;
+    }
+
+    public Pion getPion4() {
+        return pion4;
+    }
+
+    public Pion getPion5() {
+        return pion5;
+    }
+
+    public Pion getPion6() {
+        return pion6;
     }
 
 }

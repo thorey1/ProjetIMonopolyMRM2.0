@@ -19,11 +19,11 @@ public class Compagnie extends Terrain {
     }
 
     @Override
-    public int getLoyer() {
+    public int getLoyer(int de1, int de2) {
         if (super.getProprietaire().getNbProp(this) == 1) {
-            return ((int) ((Math.random() * 6) + 1)) * 4;
+            return  (de1 + de2) * 4;
         } else {
-            return ((int) ((Math.random() * 6) + 1)) * 10;
+            return (de1 + de2) * 10;
         }
     }
 

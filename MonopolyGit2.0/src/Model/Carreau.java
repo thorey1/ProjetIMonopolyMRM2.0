@@ -42,7 +42,7 @@ public abstract class Carreau {
     
     public abstract Joueur getProprietaire();
 
-    public abstract int getLoyer();
+    public abstract int getLoyer(int de1, int de2);
     
     public abstract int getPrixMais();
     

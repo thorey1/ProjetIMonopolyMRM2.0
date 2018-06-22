@@ -38,7 +38,7 @@ public abstract class Terrain extends Carreau {
     }
 
     @Override
-    public abstract int getLoyer();
+    public abstract int getLoyer(int de1, int de2);
         
         
 
