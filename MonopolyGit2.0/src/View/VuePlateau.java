@@ -29,7 +29,7 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2,couleurPion2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x;
+    private JLabel nom2,argent2,couleurPion2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x,infosPropriété;
     private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     private Pion pion1,pion2,pion3,pion4,pion5,pion6;
@@ -51,6 +51,7 @@ public class VuePlateau extends Observe {
         argent2 = new JLabel("");
         JLabel couleurPion = new JLabel("Couleur du pion :");
         couleurPion2 = new JLabel("");
+        
         dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
         dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
         dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
@@ -66,16 +67,16 @@ public class VuePlateau extends Observe {
         dé6x = new JLabel(new ImageIcon("Images/dé6.png"));
         
         JButton lancer = new JButton("Lancer les dès");
-
-        //Intanciation des boutons
-        JButton acheter = new JButton("Acheter");
-        acheter.setEnabled(false);
+        infosPropriété=new JLabel("");
+        infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
+        //Intanciation des boutons et images
         JButton construire = new JButton("Construire");
         JButton fin = new JButton("Fin du tour");
         fin.setEnabled(false);
         JButton arreter = new JButton("Arrêter");
         JButton regles = new JButton("Règles");
-        
+        JLabel img= new JLabel(new ImageIcon("Images/flechebas.png"));
+                
         //Instanciation des pions
         //pions = new ArrayList();
         pion1 = new Pion(Color.RED);
@@ -90,10 +91,6 @@ public class VuePlateau extends Observe {
         pions.add(pion5);
         pion6 = new Pion(Color.PINK);
         pions.add(pion6);
-        
-        //A MODIFIER
-        JLabel infosPropriété=new JLabel("Propiétés du joueur");
-        infosPropriété.setHorizontalAlignment(infosPropriété.getWidth() / 2);
 
         //LISTENER BOUTONS
         arreter.addActionListener((ActionEvent e) -> {
@@ -113,7 +110,6 @@ public class VuePlateau extends Observe {
             m.type = TypesMessages.FIN_TOUR;
             this.notifierObservateur(m);
             fin.setEnabled(false);
-            acheter.setEnabled(false);
             lancer.setEnabled(true);
         });
         
@@ -125,7 +121,6 @@ public class VuePlateau extends Observe {
             this.getFenetrePlateau().resize(1920, 1080);
             fin.setEnabled(true);
             lancer.setEnabled(false);
-            acheter.setEnabled(true);
         });
         
         
@@ -162,9 +157,8 @@ public class VuePlateau extends Observe {
         //Création des panels de commande 
         JPanel information = new JPanel(new GridLayout(3, 3));
         dé = new JPanel(new GridLayout(0, 2));
-        JPanel commande = new JPanel(new GridLayout(7, 0));
+        JPanel commande = new JPanel(new GridLayout(6, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
-        JPanel propriété = new JPanel(new BorderLayout());
         JPanel commandeScroll = new JPanel(new GridLayout(28, 0));
         JPanel pchoix = new JPanel(new GridLayout(0, 2));
         JScrollPane pane = new JScrollPane(commandeScroll);
@@ -180,15 +174,12 @@ public class VuePlateau extends Observe {
         information.add(argent2);
         information.add(couleurPion);
         information.add(couleurPion2);
-        propriété.add(new JLabel(new ImageIcon("Images/flechebas.png")),BorderLayout.EAST);
-        propriété.add(new JLabel(new ImageIcon("Images/flechebas.png")),BorderLayout.WEST);
-        propriété.add(infosPropriété, BorderLayout.CENTER);
+        
         pchoix.add(arreter);
         pchoix.add(regles);
         commande.add(information);
         commande.add(dé);
         commande.add(lancer);
-        commande.add(acheter);
         commande.add(construire);
         commande.add(fin);
         commande.add(infosPropriété);
@@ -1216,6 +1207,20 @@ public class VuePlateau extends Observe {
 
     public ArrayList<Pion> getPions() {
         return pions;
+    }
+
+    /**
+     * @return the infosPropriété
+     */
+    public JLabel getInfosPropriété() {
+        return infosPropriété;
+    }
+
+    /**
+     * @param infosPropriété the infosPropriété to set
+     */
+    public void setInfosPropriété(JLabel infosPropriété) {
+        this.infosPropriété = infosPropriété;
     }
 
 }

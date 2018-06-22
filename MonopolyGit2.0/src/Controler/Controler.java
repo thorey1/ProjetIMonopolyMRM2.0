@@ -838,6 +838,7 @@ public class Controler implements Observateur {
             vuePlateau1.getArgent2().setText("" + joueurs.get(tour).getSolde());
             vuePlateau1.getCouleurPion2().setText("" + joueurs.get(tour).getPion().getCouleur());
             vuePlateau1.getCouleurPion2().setForeground(joueurs.get(tour).getPion().getColor());
+            vuePlateau1.getInfosPropriété().setText("Propriété de "+joueurs.get(tour).getNomJoueur());
             break;
         }
     }
@@ -1018,6 +1019,6 @@ public class Controler implements Observateur {
             }
         }
 
-        //faireAction(j.getPosition())
+        //faireAction(j.getPosition())dnghjjhjghjghjgjtgjgghthdghghfgfgzqdsxdvds
     }
 }
