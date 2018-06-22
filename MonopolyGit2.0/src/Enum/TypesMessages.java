@@ -17,5 +17,6 @@ public enum TypesMessages {
     CONSTRUIRE,
     FIN_TOUR,    
     REGLE,
-    RETOUR
+    RETOUR,
+    PAYER_50
 }

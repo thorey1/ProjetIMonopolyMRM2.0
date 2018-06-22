@@ -29,7 +29,7 @@ public class VuePlateau extends Observe {
 
     private Observateur o;
     private ArrayList<String> noms;
-    private JLabel nom2,argent2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x;
+    private JLabel nom2,argent2,couleurPion2,dé1,dé2,dé3,dé4,dé5,dé6,dé1x,dé2x,dé3x,dé4x,dé5x,dé6x;
     private JPanel dé;
     private HashMap<Integer,JPanel> cases;
     private Pion pion1,pion2,pion3,pion4,pion5,pion6;
@@ -49,6 +49,8 @@ public class VuePlateau extends Observe {
         nom2 = new JLabel("");
         JLabel argent = new JLabel("Argent joueur :");
         argent2 = new JLabel("");
+        JLabel couleurPion = new JLabel("Couleur du pion :");
+        couleurPion2 = new JLabel("");
         dé1 = new JLabel(new ImageIcon("Images/dé1.png"));
         dé2 = new JLabel(new ImageIcon("Images/dé2.png"));
         dé3 = new JLabel(new ImageIcon("Images/dé3.png"));
@@ -151,7 +153,7 @@ public class VuePlateau extends Observe {
         JLabel p28 = new JLabel("1");
 
         //Création des panels de commande 
-        JPanel information = new JPanel(new GridLayout(2, 2));
+        JPanel information = new JPanel(new GridLayout(3, 3));
         dé = new JPanel(new GridLayout(0, 2));
         JPanel commande = new JPanel(new GridLayout(7, 0));
         JPanel commandeLayout = new JPanel(new BorderLayout());
@@ -169,8 +171,8 @@ public class VuePlateau extends Observe {
         information.add(nom2);
         information.add(argent);
         information.add(argent2);
-       // dé.add(dé6);
-       // dé.add(dé5);
+        information.add(couleurPion);
+        information.add(couleurPion2);
         propriété.add(infosPropriété, BorderLayout.SOUTH);
         pchoix.add(arreter);
         pchoix.add(regles);

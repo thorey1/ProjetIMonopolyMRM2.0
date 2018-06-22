@@ -21,7 +21,6 @@ public class Gare extends Terrain{
         super(numCarreau, nomCarreau, type, prix, couleur);       
     }
     
-    @Override
     public int getLoyer() {
       return super.getProprietaire().getNbProp(this)*25;
 
@@ -41,6 +40,11 @@ public class Gare extends Terrain{
 
     @Override
     public Propriete getPropriete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getLoyer(int de1, int de2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
