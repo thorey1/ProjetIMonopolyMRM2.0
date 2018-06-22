@@ -3,9 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Controler/Controler.java</file>
-            <file>file:/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/VuePlateau.java</file>
-            <file>file:/users/info/etu-s2/faurepeq/projet/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/mainIHM.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Controler/Controler.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Tirage.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/VuePlateau.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Special.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/VueRegle.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Propriete.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Malus.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/VueMenu.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Joueur.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Compagnie.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/Pion.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Carreau.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Gare.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Enum/TypesMessages.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Controler/Message.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/Model/Terrain.java</file>
+            <file>file:/users/info/etu-s2/boedam/NetBeansProjects/ProjetIMonopolyMRM2.0/MonopolyGit2.0/src/View/mainIHM.java</file>
         </group>
     </open-files>
 </project-private>

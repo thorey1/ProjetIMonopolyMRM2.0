@@ -1,6 +1,7 @@
 package Model;
 
 import Enum.TypeCarreau;
+import View.Pion;
 import java.awt.Color;
 import java.util.HashMap;
 
@@ -13,12 +14,14 @@ public class Joueur {
 	private HashMap<Color, Terrain> proprietes;
         private boolean tour;
         private boolean carteLibPrison;
+        private Pion pion;
 
-        public Joueur(int numJoueur, String nomJoueur, Carreau position) {
+        public Joueur(int numJoueur, String nomJoueur, Carreau position, Pion pion) {
             this.numJoueur = numJoueur;
             this.nomJoueur = nomJoueur;
             this.solde = 1500;
             this.prisonnier = false;
+            this.pion = pion;
             setPosition(position);
             proprietes = new HashMap();
             setCarteLibPrison(false);
@@ -141,6 +144,14 @@ public class Joueur {
      */
     public HashMap<Color, Terrain> getProprietes() {
         return proprietes;
+    }
+
+    public Pion getPion() {
+        return pion;
+    }
+
+    public void setPion(Pion pion) {
+        this.pion = pion;
     }
         
 }
