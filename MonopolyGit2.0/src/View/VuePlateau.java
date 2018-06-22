@@ -173,7 +173,9 @@ public class VuePlateau extends Observe {
         information.add(argent2);
         information.add(couleurPion);
         information.add(couleurPion2);
-        propriété.add(infosPropriété, BorderLayout.SOUTH);
+        propriété.add(new JLabel(new ImageIcon("Images/flechebas.png")),BorderLayout.EAST);
+        propriété.add(new JLabel(new ImageIcon("Images/flechebas.png")),BorderLayout.WEST);
+        propriété.add(infosPropriété, BorderLayout.CENTER);
         pchoix.add(arreter);
         pchoix.add(regles);
         commande.add(information);
