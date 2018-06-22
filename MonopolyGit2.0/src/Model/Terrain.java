@@ -6,22 +6,18 @@ import java.awt.Color;
 public abstract class Terrain extends Carreau {
     private int prix;
     private Color couleur;
-    private Joueur proprietaire ;
+    private Joueur proprio = null;
+    
     
     public Terrain(int numCarreau, String nomCarreau, TypeCarreau type,int prix, Color couleur) {
         super(numCarreau, nomCarreau, type);
         this.prix = prix;
         this.couleur = couleur;
-        this.proprietaire = null;
+        this.proprio = null;
     }
     
     
 
-    @Override
-    public void setProprietaire(Joueur proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-        
 
     @Override
     public int getPrix() {
@@ -32,15 +28,21 @@ public abstract class Terrain extends Carreau {
         return couleur;
     }
 
-    @Override
-    public Joueur getProprietaire() {
-        return proprietaire;
+
+    public Joueur getProprio(){
+        return proprio;
+    };
+    
+    public void setProprio(Joueur proprio){
+        this.proprio = proprio;
     }
 
     @Override
     public abstract int getLoyer(int de1, int de2);
         
-        
+    public Terrain getTerrain(){
+        return this;
+    }
 
     @Override
     public abstract int getPrixMais();

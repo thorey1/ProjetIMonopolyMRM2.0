@@ -18,6 +18,7 @@ public class Propriete extends Terrain {
     private Hotel hotel = null;
     private ArrayList<Maison> maisons;
     private int loyer = 0;
+    
 
     public Propriete(int numCarreau, String nomCarreau, TypeCarreau type, int prix, Color couleur) {
         super(numCarreau, nomCarreau, type, prix, couleur);
@@ -324,10 +325,14 @@ public class Propriete extends Terrain {
         }
         return loyer;
     }
-
+    
     //overrides inutilisés mais requis
     @Override
     public int getLoyer(int de1, int de2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
 }

@@ -6,6 +6,7 @@
 package Controler;
 
 import Enum.TypesMessages;
+import Model.Carreau;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Message {
     
-    
+    public Carreau carreau;
     public TypesMessages type;  // type de message
     public ArrayList<String> noms; //nom des joueurs + nombre de joueurs (.size)
     

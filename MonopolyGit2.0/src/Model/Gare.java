@@ -22,7 +22,7 @@ public class Gare extends Terrain{
     }
     
     public int getLoyer() {
-      return super.getProprietaire().getNbProp(this)*25;
+      return super.getProprio().getNbProp(this)*25;
 
     }
     

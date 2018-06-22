@@ -1,6 +1,5 @@
 package Model;
 
-import Controler.UtilsMono.*;
 import Enum.TypeCarreau;
 
 public class Special extends Carreau {
@@ -34,16 +33,6 @@ public class Special extends Carreau {
 
     @Override
     public int getPrix() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setProprietaire(Joueur proprietaire) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Joueur getProprietaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

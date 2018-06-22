@@ -20,7 +20,7 @@ public class Compagnie extends Terrain {
 
     @Override
     public int getLoyer(int de1, int de2) {
-        if (super.getProprietaire().getNbProp(this) == 1) {
+        if (super.getProprio().getNbProp(this) == 1) {
             return  (de1 + de2) * 4;
         } else {
             return (de1 + de2) * 10;

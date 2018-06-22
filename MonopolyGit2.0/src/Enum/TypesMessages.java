@@ -18,5 +18,7 @@ public enum TypesMessages {
     FIN_TOUR,    
     REGLE,
     RETOUR,
-    PAYER_50
+    PAYER_50,
+    ACHAT,
+    LOYER
 }

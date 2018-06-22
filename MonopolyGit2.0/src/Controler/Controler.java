@@ -16,7 +16,7 @@ import java.util.Scanner;
 import javax.swing.JPanel;
 
 public class Controler implements Observateur {
-
+    
     private HashMap<Integer, Joueur> joueurs;
     private VuePlateau vuePlateau;
     public VueJoueurEtudiant vueJoueur;
@@ -26,7 +26,7 @@ public class Controler implements Observateur {
     private HashMap<Color, Hotel> hotels;
     private HashMap<Color, Integer> couleurs;
     private VueMenu vueMenu;
-    private VuePrison vuePrison;
+    private VuePropriete vuePropriete;
     private VueRegle vueRegle;
     private int tour = 1;
     private JPanel grid;
@@ -41,41 +41,41 @@ public class Controler implements Observateur {
         maisons = initialiserHashMapMaison();
         hotels = new HashMap();
         hotels = initialiserHashMapHotel();
-
+        
         for (int i = 1; i <= this.initialiserHashMapCarreaux().size(); i++) {
             carreaux.put(i, this.initialiserHashMapCarreaux().get(i - 1));
         }
-
+        
         for (int i = 1; i <= this.initialiserHashMapCartes().size(); i++) {
             cartes.put(i, this.initialiserHashMapCartes().get(i - 1));
         }
-
+        
         vueMenu = new VueMenu();
         vueMenu.addObservateur(this);
-
+        
     }
-
+    
     public HashMap<Integer, Joueur> getJoueurs() {
         return joueurs;
     }
-
+    
     public HashMap<Integer, Carte> getCartes() {
         return cartes;
     }
-
+    
     public HashMap<Integer, Carreau> getCarreaux() {
         return carreaux;
     }
-
+    
     public HashMap<Color, Integer> getCouleurs() {
         return couleurs;
     }
-
-    public void deplacement(Joueur j) {
+    
+  /*  public void deplacement(Joueur j) {
         boolean ddouble = true;
         int compteur = 0;
         System.out.println("Au tour de " + j.getNomJoueur());
-
+        
         if (j.getPrison()) {
             System.out.println("Tu dois faire un double pour sortir de prison ou payer 50€! \n Quel est ton choix?(payer/dé) ");
             Scanner scanner = new Scanner(System.in);
@@ -89,7 +89,7 @@ public class Controler implements Observateur {
                 this.pause();
                 int d2 = this.lancerDe();
                 System.out.println("Voici le deuxième dé : " + d2 + "\n");
-
+                
                 if (d1 == d2) {
                     System.out.println("Vous avez fait un double, vous sortez de prison !");
                     j.setPrison(false);
@@ -112,7 +112,7 @@ public class Controler implements Observateur {
                                 newCar.setProprietaire(j);
                                 System.out.printf("Tu paies %d la propriété %s\n", prixProp, nomProp);
                                 System.out.println("Il te reste " + j.getSolde());
-
+                                
                             }
                         } else if (proprio != null && proprio != j) {
                             System.out.println("Tu es sur la propriété " + nomProp + " qui appartient à " + proprio.getNomJoueur() + "\n");
@@ -135,7 +135,7 @@ public class Controler implements Observateur {
                 ddouble = true;
             }
         }
-
+        
         while (ddouble) {
             ddouble = false;
             System.out.println("Presser entrée pour lancer le premier dé" + "\n");
@@ -146,7 +146,7 @@ public class Controler implements Observateur {
             this.pause();
             int d2 = this.lancerDe();
             System.out.println("Voici le deuxième dé : " + d2 + "\n");
-
+            
             if (d1 == d2) {
                 System.out.println("Vous avez fait un double !");
                 ddouble = true;
@@ -159,11 +159,11 @@ public class Controler implements Observateur {
                 System.out.println("Fin du tour");
                 break;
             }
-
+            
             int pos = j.getPosition().getNumCarreau();
             int newPos = pos + d1 + d2;
             Carreau newCar;
-
+            
             if (j.getPosition().getNumCarreau() + d1 + d2 > carreaux.size()) {
                 newCar = carreaux.get(newPos % carreaux.size());
                 j.setPosition(newCar);
@@ -173,7 +173,7 @@ public class Controler implements Observateur {
                 newCar = carreaux.get(newPos);
                 j.setPosition(newCar);
             }
-
+            
             String nomProp = newCar.getNomCarreau();
             if (newCar.getTypeCarreau() == TypeCarreau.MALUS || newCar.getTypeCarreau() == TypeCarreau.CHANCE || newCar.getTypeCarreau() == TypeCarreau.COMMUNAUTE || newCar.getTypeCarreau() == TypeCarreau.DEPART || newCar.getTypeCarreau() == TypeCarreau.PARC) {
                 System.out.println("Tu es sur la case " + nomProp);
@@ -193,8 +193,8 @@ public class Controler implements Observateur {
                     if ("o".equals(rep)) {
                         int prixProp = newCar.getPrix();
                         j.payer(prixProp);
-                        newCar.setProprietaire(j);
-
+                        newCar.getPropriete().setProprietaire(j);
+                        
                         System.out.printf("Tu paies %d la propriété %s\n", prixProp, nomProp);
                         System.out.println("Il te reste " + j.getSolde());
                         //
@@ -216,19 +216,19 @@ public class Controler implements Observateur {
                 }
             }
             System.out.println("fin du tour \n");
-
+            
         }
-    }
-
+    }*/
+    
     public Carte tirerCarte() {
         ArrayList pilecartes = this.getCartes(this.getJoueurTour().getPosition().getTypeCarreau());
         return this.getCarteAlea(pilecartes);
     }
-
+    
     public Carreau getCarreau(int position) {
         return carreaux.get(position);
     }
-
+    
     public Carte getCarteAlea(ArrayList<Carte> pileCartes) {
         int nbcartes = pileCartes.size();
         Carte carte = null;
@@ -239,11 +239,11 @@ public class Controler implements Observateur {
         }
         return carte;
     }
-
+    
     public Carte getCarte(int numCarte) {
         return cartes.get(numCarte);
     }
-
+    
     public ArrayList<Carte> getCartes(TypeCarreau tc) {
         ArrayList pilecarte = new ArrayList();
         for (int i = 0; i < cartes.size(); i++) {
@@ -253,7 +253,7 @@ public class Controler implements Observateur {
         }
         return pilecarte;
     }
-
+    
     public Joueur getJoueurTour() {
         Joueur j = null;
         for (int i = 1; i <= joueurs.size(); i++) {
@@ -263,11 +263,11 @@ public class Controler implements Observateur {
         }
         return j;
     }
-
+    
     public int lancerDe() {
         return (int) ((Math.random() * 6) + 1);
     }
-
+    
     public ArrayList<Carreau> initialiserHashMapCarreaux() {
         Special t1 = new Special(1, "Départ", DEPART);
         Terrain t2 = new Propriete(2, "Boulevard de Belleville", PROPRIETE, 60, Color.pink);
@@ -352,7 +352,7 @@ public class Controler implements Observateur {
         casecar.add(t40);
         return casecar;
     }
-
+    
     public HashMap<Color, Maison> initialiserHashMapMaison() {
         Maison m1 = new Maison(Color.pink, 50);
         Maison m2 = new Maison(Color.cyan, 50);
@@ -362,9 +362,9 @@ public class Controler implements Observateur {
         Maison m6 = new Maison(Color.yellow, 150);
         Maison m7 = new Maison(Color.green, 200);
         Maison m8 = new Maison(Color.blue, 200);
-
+        
         HashMap<Color, Maison> maisons = new HashMap();
-
+        
         maisons.put(Color.pink, m1);
         maisons.put(Color.cyan, m2);
         maisons.put(Color.magenta, m3);
@@ -373,10 +373,10 @@ public class Controler implements Observateur {
         maisons.put(Color.yellow, m6);
         maisons.put(Color.green, m7);
         maisons.put(Color.blue, m8);
-
+        
         return maisons;
     }
-
+    
     public HashMap<Color, Hotel> initialiserHashMapHotel() {
         Hotel m1 = new Hotel(Color.pink, 50);
         Hotel m2 = new Hotel(Color.cyan, 50);
@@ -386,9 +386,9 @@ public class Controler implements Observateur {
         Hotel m6 = new Hotel(Color.yellow, 150);
         Hotel m7 = new Hotel(Color.green, 200);
         Hotel m8 = new Hotel(Color.blue, 200);
-
+        
         HashMap<Color, Hotel> hotels = new HashMap();
-
+        
         hotels.put(Color.pink, m1);
         hotels.put(Color.cyan, m2);
         hotels.put(Color.magenta, m3);
@@ -397,13 +397,13 @@ public class Controler implements Observateur {
         hotels.put(Color.yellow, m6);
         hotels.put(Color.green, m7);
         hotels.put(Color.blue, m8);
-
+        
         return hotels;
     }
-
+    
     public HashMap<Color, Integer> initialiserHashMapCouleur() {
         HashMap<Color, Integer> couleurs = new HashMap();
-
+        
         couleurs.put(Color.pink, 2);
         couleurs.put(Color.cyan, 3);
         couleurs.put(Color.magenta, 2);
@@ -412,19 +412,19 @@ public class Controler implements Observateur {
         couleurs.put(Color.yellow, 3);
         couleurs.put(Color.green, 3);
         couleurs.put(Color.blue, 2);
-
+        
         return couleurs;
     }
-
+    
     public void pause() {
         System.out.println("Press \"ENTER\" to continue...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
-
+    
     public void commencerJeu() {
         Joueur j1 = new Joueur(1, "Malo", this.getCarreaux().get(1), vuePlateau.getPions().get(0));
-        Joueur j2 = new Joueur(2, "Youssef", this.getCarreaux().get(1),vuePlateau.getPions().get(1));
+        Joueur j2 = new Joueur(2, "Youssef", this.getCarreaux().get(1), vuePlateau.getPions().get(1));
         //Joueur j3 = new Joueur(3, "O'Neal", this.getCarreaux().get(1));
         //Joueur j4 = new Joueur(4, "Rémi", this.getCarreaux().get(1));
         //Joueur j5 = new Joueur(5, "Yann", this.getCarreaux().get(1));
@@ -440,21 +440,21 @@ public class Controler implements Observateur {
         for (int j = 0; j < 50; j++) {
             for (int i = 1; i <= joueurs.size(); i++) {
                 System.out.println("------------------------------------------------");
-                deplacement(joueurs.get(i));
+//                deplacement(joueurs.get(i));
                 System.out.println("------------------------------------------------");
             }
         }
     }
-
+    
     public void Construire(Joueur j, Propriete p) {
         Carreau carCourant = carreaux.get(p.getNumCarreau());
         Color coul = carCourant.getPropriete().getCouleur();
-
+        
         if (p.getMaisons().isEmpty()) {
             Maison maison = maisons.get(coul);
             j.payer(maison.getPrix());
             carCourant.getPropriete().addMaison(maison);
-
+            
         } else if (p.getMaisons().size() == 4) {
             p.getMaisons().clear();
             Hotel hotel = hotels.get(coul);
@@ -462,7 +462,7 @@ public class Controler implements Observateur {
             j.payer(hotel.getPrix());
         }
     }
-
+    
     public ArrayList<Carte> initialiserHashMapCartes() {
         Carte c1 = new Carte(1, ACTION, CHANCE, "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée.");
         Carte c2 = new Carte(2, DEPLACEMENT, CHANCE, "Reculez de trois cases.");
@@ -480,7 +480,7 @@ public class Controler implements Observateur {
         Carte c14 = new Carte(14, DEPLACEMENT, CHANCE, "Rendez-vous à la Rue de la Paix.");
         Carte c15 = new Carte(15, ARGENT, CHANCE, "Votre immeuble et votre prêt rapportent. Vous devez toucher 150€.");
         Carte c16 = new Carte(16, DEPLACEMENT, CHANCE, "Accédez au Boulevard de la Villette. Si vous passez par la case Départ, recevez 200€.");
-
+        
         Carte c17 = new Carte(17, ACTION, COMMUNAUTE, "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée.");
         Carte c18 = new Carte(18, ARGENT, COMMUNAUTE, "Payez une amende de 10€");
         Carte c19 = new Carte(19, ARGENT, COMMUNAUTE, "C'est votre anniversaire. Chaque joueur doit vous donner 10€");
@@ -497,9 +497,9 @@ public class Controler implements Observateur {
         Carte c30 = new Carte(30, ARGENT, COMMUNAUTE, "Recevez votre intérêt sur l'emprunt à 7% : 25€");
         Carte c31 = new Carte(31, ARGENT, COMMUNAUTE, "Recevez votre revenu annuel : 100€");
         Carte c32 = new Carte(32, ARGENT, COMMUNAUTE, "Vous avez gagné le deuxième prix de beauté : recevez 10€");
-
+        
         ArrayList<Carte> cartesComplet = new ArrayList();
-
+        
         cartesComplet.add(c1);
         cartesComplet.add(c2);
         cartesComplet.add(c3);
@@ -532,20 +532,20 @@ public class Controler implements Observateur {
         cartesComplet.add(c30);
         cartesComplet.add(c31);
         cartesComplet.add(c32);
-
+        
         return cartesComplet;
-
+        
     }
-
+    
     public boolean passeParDepart(Joueur j, Carreau c) {
         if (c.getNumCarreau() > j.getPosition().getNumCarreau()) {
             return false;
         } else {
             return true;
         }
-
+        
     }
-
+    
     public void actionCarte(Joueur j, Carte c) {
         switch (c.getNumCarte()) {
             case 1:
@@ -571,7 +571,7 @@ public class Controler implements Observateur {
                     j.setPrison(true);
                 }
                 break;
-
+            
             case 3:
                 int houses = 0;
                 int nbhot = 0;
@@ -585,11 +585,11 @@ public class Controler implements Observateur {
                 prix = 40 * houses + 115 * nbhot;
                 j.setSolde(j.getSolde() - prix);
                 break;
-
+            
             case 4:
                 j.setSolde(j.getSolde() - 15);
                 break;
-
+            
             case 5:
                 int mez = 0;
                 int hots = 0;
@@ -603,7 +603,7 @@ public class Controler implements Observateur {
                 cout = 40 * mez + 115 * hots;
                 j.setSolde(j.getSolde() - cout);
                 break;
-
+            
             case 6:
                 j.setSolde(j.getSolde() - 20);
                 break;
@@ -626,7 +626,7 @@ public class Controler implements Observateur {
                 }
                 j.setPosition(getCarreau(16));
                 break;
-
+            
             case 11:
                 j.setSolde(j.getSolde() - 150);
                 break;
@@ -654,7 +654,7 @@ public class Controler implements Observateur {
             case 17:
                 j.setCarteLibPrison(true);
                 break;
-
+            
             case 18:
                 j.setSolde(j.getSolde() - 10);
                 break;
@@ -704,18 +704,18 @@ public class Controler implements Observateur {
             default:
                 break;
         }
-
+        
     }
-
+    
     public boolean memeNbMaison(Terrain t, Joueur j) {
         boolean meme = false;
         Color coul = t.getPropriete().getCouleur();
         int nbMais = t.getPropriete().getMaisons().size();
         //a changer
         return false;
-
+        
     }
-
+    
     public int getNbMaisonsCouleur(Color c) {
         int nbMais = 0;
         ArrayList<Propriete> props = new ArrayList();
@@ -727,7 +727,7 @@ public class Controler implements Observateur {
         //a changer
         return 0;
     }
-
+    
     @Override
     public void traiterMessage(Message m) {
         if (null != m.type) {
@@ -750,28 +750,34 @@ public class Controler implements Observateur {
                 case LANCER_DE:
                     jetDe(m);
                     break;
+                case ACHAT:
+                    achatProp(m);
+                    break;
+                case LOYER:
+                    payerLoyer(m);
+                    break;
                 default:
                     break;
             }
         }
     }
-
+    
     public void setVuePlateau(VuePlateau vuePlateau) {
         this.vuePlateau = vuePlateau;
     }
     
-    public void setVuePrison(VuePrison vuePrison) {
-        this.vuePrison = vuePrison;
+    public void setVueAction(VuePropriete vueAction) {
+        this.vuePropriete = vueAction;
     }
     
     public void setVueMenu(VueMenu vueMenu) {
         this.vueMenu = vueMenu;
     }
-
+    
     private void setVueRegle(VueRegle vueRegle) {
         this.vueRegle = vueRegle;
     }
-
+    
     private void commencerPartie(Message m) {
         vueMenu.getFenetremenu().setVisible(false);
         this.setVuePlateau(new VuePlateau(m.noms));
@@ -781,7 +787,7 @@ public class Controler implements Observateur {
         }
         grid = new JPanel(new GridLayout(m.noms.size(), 0));
         vuePlateau.getCases().get(1).add(grid, BorderLayout.EAST);
-
+        
         if (this.getJoueurs().size() == 2) {
             grid.add(vuePlateau.getPion1());
             grid.add(vuePlateau.getPion2());
@@ -810,28 +816,24 @@ public class Controler implements Observateur {
         }
         tourDeJeu(this.getJoueurs(), vuePlateau);
     }
-
+    
     private void arreterPartie(Message m) {
         vueMenu.getFenetremenu().setVisible(false);
         System.out.println("Jeu arrêté");
     }
-
+    
     private void retourMenu(Message m) {
         vuePlateau.getFenetrePlateau().setVisible(false);
         this.setVueMenu(new VueMenu());
         joueurs.clear();
         vueMenu.addObservateur(this);
     }
-
+    
     private void afficherRegles(Message m) {
-        this.setVueRegle(new VueRegle());
+        vueRegle = null;
+        vueRegle = new VueRegle();
     }
-    private void reglePrison(Message m) {
-        vuePrison.getFenetrePrison().setVisible(true);
-        this.setVuePrison(new VuePrison());
-        vuePrison.addObservateur(this);
-    }
-
+    
     private void tourDeJeu(HashMap<Integer, Joueur> joueurs, VuePlateau vuePlateau1) {
         while (joueurs.size() > 1) {
             vuePlateau1.getNom2().setText(joueurs.get(tour).getNomJoueur());
@@ -841,7 +843,7 @@ public class Controler implements Observateur {
             break;
         }
     }
-
+    
     private void finTour() {
         if (tour == joueurs.size()) {
             tour = 1;
@@ -851,12 +853,12 @@ public class Controler implements Observateur {
         tourDeJeu(this.getJoueurs(), vuePlateau);
         vuePlateau.getFenetrePlateau().repaint();
     }
-
+    
     private void jetDe(Message m) {
         de1 = this.lancerDe();
         de2 = this.lancerDe();
         int compteur = 0;
-
+        
         vuePlateau.getDé().removeAll();
 
         //Dé 1
@@ -903,67 +905,67 @@ public class Controler implements Observateur {
                 break;
         }
         vuePlateau.getFenetrePlateau().repaint();
-
+        
         deplacerJoueur(de1, de2);
-
+        
         if (compteur == 3) {
             this.getJoueurTour().setPosition(this.getCarreaux().get(11));
             this.getJoueurTour().setPrison(true);
-
+            
             if (this.getJoueurTour().getNumJoueur() == 1) {
                 grid.add(vuePlateau.getPion1());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
             }
-
+            
             if (this.getJoueurTour().getNumJoueur() == 2) {
                 grid.add(vuePlateau.getPion2());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
+                
             }
-
+            
             if (this.getJoueurTour().getNumJoueur() == 3) {
                 grid.add(vuePlateau.getPion3());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
+                
             }
-
+            
             if (this.getJoueurTour().getNumJoueur() == 4) {
                 grid.add(vuePlateau.getPion4());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
+                
             }
-
+            
             if (this.getJoueurTour().getNumJoueur() == 5) {
                 grid.add(vuePlateau.getPion5());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
+                
             }
-
+            
             if (this.getJoueurTour().getNumJoueur() == 6) {
                 grid.add(vuePlateau.getPion6());
                 vuePlateau.getCases().get(11).add(grid, BorderLayout.WEST);
-
+                
             }
-
+            
         }
-
+        
         if (de1 == de2) {
             tour = tour - 1;
             compteur++;
         }
-
+        
     }
-
+    
     private void deplacerJoueur(int de1, int de2) {
         grid = new JPanel(new GridLayout(this.getJoueurs().size(), 0));
         Joueur j = this.getJoueurTour();
         int newposPanel = j.getPosition().getNumCarreau() + de1 + de2;
-
+        
         if (newposPanel > 40) {
             newposPanel = newposPanel % 40;
         }
         j.setPosition(this.getCarreaux().get(newposPanel));
-
+        
         if (j.getNumJoueur() == 1) {
             grid.add(vuePlateau.getPion1());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -972,7 +974,7 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
+        
         if (j.getNumJoueur() == 2) {
             grid.add(vuePlateau.getPion2());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -981,7 +983,7 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
+        
         if (j.getNumJoueur() == 3) {
             grid.add(vuePlateau.getPion3());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -990,7 +992,7 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
+        
         if (j.getNumJoueur() == 4) {
             grid.add(vuePlateau.getPion4());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -999,7 +1001,7 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
+        
         if (j.getNumJoueur() == 5) {
             grid.add(vuePlateau.getPion5());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -1008,7 +1010,7 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
+        
         if (j.getNumJoueur() == 6) {
             grid.add(vuePlateau.getPion6());
             if (newposPanel > 31 && newposPanel <= 40) {
@@ -1017,7 +1019,31 @@ public class Controler implements Observateur {
                 vuePlateau.getCases().get(newposPanel).add(grid, BorderLayout.EAST);
             }
         }
-
-        //faireAction(j.getPosition())
+        
+        
+        
+        
+        if(j.getPosition().getTypeCarreau() == PROPRIETE || j.getPosition().getTypeCarreau() == GARE || j.getPosition().getTypeCarreau() == COMPAGNIE ){
+            Joueur proprio = j.getPosition().getPropriete().getProprio();
+            vuePropriete = new VuePropriete(proprio,j.getPosition().getNomCarreau(),j.getPosition().getPrix(),j.getPosition().getLoyer());
+            vuePropriete.addObservateur(this);
+        }else{
+            System.out.println("a venir");
+        }
+        
+        
+        
     }
+    
+    private void achatProp(Message m) {
+        this.getJoueurTour().payer(this.getJoueurTour().getPosition().getPrix());
+        this.getJoueurTour().addProprietes(this.getJoueurTour().getPosition().getPropriete().getCouleur(), this.getJoueurTour().getPosition().getPropriete());
+        this.getJoueurTour().getPosition().getPropriete().setProprio(this.getJoueurTour());
+    }
+    
+    private void payerLoyer(Message m) {
+        this.getJoueurTour().payer(this.getJoueurTour().getPosition().getLoyer());
+        this.getJoueurTour().getPosition().getPropriete().getProprio().gain(this.getJoueurTour().getPosition().getLoyer());
+    }
+    
 }
